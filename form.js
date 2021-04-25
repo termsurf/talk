@@ -540,7 +540,7 @@ ASCII_OVO_TO_UNICODE_OVO.forEach(({ text }) => {
 })
 
 const form = text => {
-  let remaining = text
+  let remaining = text.replace(/([A-Z])/g, (_, $1) => `${$1.toLowerCase()}+`)
   let output = []
   a:
   while (remaining.length) {
