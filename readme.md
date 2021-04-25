@@ -19,7 +19,7 @@
 
 <h3 id="summary">Summary</h3>
 
-A [paper](https://leaf.surf/ovo) exists describing how OVO works. The OVO encoding uses the Latin script with diacritics to encode most of Earth's natural language features, enough so that you can write every language using the same Latin-oriented system and be close enough to a realistic pronunciation, including nasalized vowels, tense consonants, clicks, and tones.
+A [paper](https://leaf.surf/ovo) exists describing how OVO works. The OVO encoding uses the Latin script with diacritics to encode most of Earth's natural language features, enough so that you can write every language using the same Latin-oriented system and be close enough to a realistic pronunciation, including nasalized vowels, tense consonants, clicks, and tones, amongst other things.
 
 <h3 id="mount">Mount</h3>
 
