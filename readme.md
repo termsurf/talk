@@ -26,7 +26,7 @@ A [paper](https://leaf.surf/ovo) exists describing how call script works. The ca
 Here are the consonants and vowels in their main form (without tone or stress markers).
 
 <p align="center">
-  <img src="https://github.com/mountbuild/call-script/blob/build/symbols.png?raw=true" />
+  <img src="https://github.com/mountbuild/call-script/blob/main/symbols.png?raw=true" />
 </p>
 
 Note, to add "aspiration" to a sound, you add the corresponding "h" symbol after the main symbol. To add nasalization to a vowel, you add a tilde below the vowel. Long vowels are made by writing two vowel letters.
