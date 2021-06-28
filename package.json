@@ -1,5 +1,5 @@
 {
-  "version": "1.5.1",
-  "name": "@mountbuild/ovo",
+  "version": "1.0.0",
+  "name": "@mountbuild/call-script",
   "main": "form.js"
 }

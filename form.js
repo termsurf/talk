@@ -10,6 +10,7 @@ const m = {
     'dot': '\u0307',
     'ddot': '\u0308',
     'ring': '\u030A',
+    'tilde': '\u0303',
   },
   d: {
     'grave': '\u0316',
@@ -22,7 +23,7 @@ const m = {
   }
 }
 
-const ASCII_OVO_TO_UNICODE_OVO = [
+const ASCII_TO_UNICODE = [
   { text: 'i+&^^', code: `ı${m.d.tilde}${m.d.dot}${m.u.dacute}` },
   { text: 'i+&^', code: `ı${m.d.tilde}${m.d.dot}${m.u.acute}` },
   { text: 'i+&__', code: `ı${m.d.tilde}${m.d.dot}${m.u.dgrave}` },
@@ -381,7 +382,7 @@ const ASCII_OVO_TO_UNICODE_OVO = [
   { text: 'n', code: `n` },
   { text: 'q', code: `q` },
   { text: 'g?', code: `g${m.u.grave}` },
-  { text: 'g.', code: `g${m.u.ddot}` },
+  { text: 'g.', code: `g${m.u.tilde}` },
   { text: 'g@', code: `g${m.u.up}` },
   { text: 'g', code: `g` },
   { text: '\'', code: `'` },
@@ -390,55 +391,56 @@ const ASCII_OVO_TO_UNICODE_OVO = [
   { text: 'd?', code: `d${m.d.acute}` },
   { text: 'd*', code: `d${m.d.ring}` },
   { text: 'd+', code: `d${m.d.dot}` },
-  { text: 'd.', code: `d${m.d.ddot}` },
+  { text: 'd~', code: `d${m.d.ddot}` },
+  { text: 'd.', code: `d${m.d.tilde}` },
   { text: 'd@', code: `d${m.d.down}` },
   { text: 'd', code: `d` },
   { text: 'b?', code: `b${m.d.acute}` },
   { text: 'b!', code: `b${m.d.grave}` },
-  { text: 'b.', code: `b${m.d.ddot}` },
+  { text: 'b.', code: `b${m.d.tilde}` },
   { text: 'b@', code: `b${m.d.down}` },
   { text: 'b', code: `b` },
   { text: 'p!', code: `p${m.u.acute}` },
   { text: 'p*', code: `p${m.u.ring}` },
-  { text: 'p.', code: `p${m.d.ddot}` },
-  { text: 'p@', code: `d${m.u.up}` },
+  { text: 'p.', code: `p${m.u.tilde}` },
+  { text: 'p@', code: `p${m.u.up}` },
   { text: 'p', code: `p` },
   { text: 't+', code: `t${m.d.dot}` },
   { text: 't!', code: `t${m.d.grave}` },
   { text: 't*', code: `t${m.d.ring}` },
-  { text: 't.', code: `t${m.d.ddot}` },
+  { text: 't.', code: `t${m.d.tilde}` },
   { text: 't@', code: `t${m.d.down}` },
   { text: 't', code: `t` },
   { text: 'k!', code: `k${m.d.grave}` },
   { text: 'k*', code: `k${m.d.ring}` },
   { text: 'k+!', code: `k${m.d.dot}${m.d.grave}` },
   { text: 'k+', code: `k${m.d.dot}` },
-  { text: 'k.', code: `k${m.d.ddot}` },
+  { text: 'k.', code: `k${m.d.tilde}` },
   { text: 'k@', code: `k${m.d.down}` },
   { text: 'k', code: `k` },
   { text: 'h~', code: `h${m.d.ddot}` },
   { text: 'h+', code: `h${m.d.dot}` },
   { text: 'h', code: `h` },
   { text: 'j+', code: `ȷ̈` },
-  { text: 'j~', code: `ȷ̂` },
   { text: 'j', code: `j` },
   { text: 's+', code: `s${m.d.dot}` },
+  { text: 's~', code: `s${m.d.ddot}` },
   { text: 's@', code: `s${m.d.down}` },
   { text: 's', code: `s` },
   { text: 's!', code: `s${m.u.acute}` },
   { text: 'f+', code: `f${m.d.dot}` },
   { text: 'f~', code: `f${m.d.ddot}` },
-  { text: 'f@', code: `f${m.d.down}` },
   { text: 'f', code: `f` },
   { text: 'v+', code: `v${m.d.dot}` },
   { text: 'v', code: `v` },
   { text: 'z', code: `z` },
+  { text: 'z+', code: `z${m.d.dot}` },
   { text: 'c+~', code: `c${m.d.ddot}` },
   { text: 'c+', code: `c${m.d.dot}` },
   { text: 'c', code: `c` },
   { text: 'l+', code: `l${m.d.dot}` },
   { text: 'l*', code: `l${m.d.ring}` },
-  { text: 'l~', code: `l̬` },
+  { text: 'l~', code: `l${m.d.ddot}` },
   { text: 'l', code: `l` },
   { text: 'r~', code: `r${m.d.ddot}` },
   { text: 'r+', code: `r${m.d.dot}` },
@@ -454,7 +456,7 @@ const ASCII_OVO_TO_UNICODE_OVO = [
   { text: 'y+', code: `y${m.u.dot}` },
 ]
 
-const IPA_TO_ASCII_OVO = [
+const IPA_TO_ASCII = [
   { text: 'i', code: 'i' },
   { text: 'ɪ', code: 'i+' },
   { text: 'ʏ', code: 'i~' },
@@ -490,11 +492,13 @@ const IPA_TO_ASCII_OVO = [
   { text: 'b', code: 'b' },
   { text: 'ɓ', code: 'b?' },
   { text: 'ʙ', code: 'b!' },
+  { text: 'dˤ', code: 'd~' },
   { text: 'd', code: 'd' },
   { text: 'ɖ', code: 'd+' },
   { text: 'ǂ', code: 'd*' },
   { text: 'θ', code: 'c' },
   { text: 'ð', code: 'c+' },
+  { text: 'ðˤ', code: 'c+~' },
   { text: 'f', code: 'f' },
   { text: 'ɸ', code: 'f+' },
   { text: 'g', code: 'g' },
@@ -507,13 +511,15 @@ const IPA_TO_ASCII_OVO = [
   { text: 'ħ', code: 'h+' },
   { text: 'ɦ', code: 'hh' },
   { text: 'x', code: 'h+' },
-  { text: 'χ', code: 'h+' },
+  { text: 'χ', code: 'h~' },
   { text: 'ç', code: 'hy' },
   { text: 'ʒ', code: 'j' },
   { text: 'ʐ', code: 'j+' },
-  { text: 'ɮ', code: 'j~' },
+  { text: 'ɮ', code: 'z+' },
   { text: 'ʑ', code: 'jy' },
   { text: 'k\'', code: 'k!' },
+  { text: 'k͈', code: 'k@' },
+  { text: 'k̚', code: 'k.' },
   { text: 'k', code: 'k' },
   { text: 'ǃ', code: 'k*' },
   { text: 'q\'', code: 'k+!' },
@@ -526,10 +532,11 @@ const IPA_TO_ASCII_OVO = [
   { text: 'ɲ', code: 'ny' },
   { text: 'l', code: 'l' },
   { text: 'ɭ', code: 'l+' },
-  { text: 'ɬ', code: 'l~' },
   { text: 'ɫ', code: 'lr~' },
   { text: 'ʎ', code: 'ly' },
   { text: 'ǁ', code: 'l*' },
+  { text: 'p͈', code: 'p@' },
+  { text: 'p̚', code: 'p.' },
   { text: 'p', code: 'p' },
   { text: 'p\'', code: 'p!' },
   { text: 'ʘ', code: 'p*' },
@@ -539,7 +546,13 @@ const IPA_TO_ASCII_OVO = [
   { text: 'ɣ', code: 'r~' },
   { text: 'ʁ', code: 'r~' },
   { text: 'ʀ', code: 'r~!' },
+  { text: 's͈', code: 's@' },
+  { text: 'sˤ', code: 's~' },
+  { text: 'ɬ', code: 's+' },
   { text: 's', code: 's' },
+  { text: 't̚', code: 't.' },
+  { text: 't͈', code: 't@' },
+  { text: 't\'', code: 't!' },
   { text: 't', code: 't' },
   { text: 'ʈ', code: 't+' },
   { text: 'ǀ', code: 't*' },
@@ -562,7 +575,7 @@ const IPA_TO_ASCII_OVO = [
 ]
 
 const look = {}
-ASCII_OVO_TO_UNICODE_OVO.forEach(({ text }) => {
+ASCII_TO_UNICODE.forEach(({ text }) => {
   look[text] = '^' + text.replace(/[\(\)\*\!\?\_\.\[\]\|\\\\/\^\+]/g, _ => `\\${_}`)
 })
 
@@ -571,7 +584,7 @@ const form = text => {
   let output = []
   a:
   while (remaining.length) {
-    for (let node of ASCII_OVO_TO_UNICODE_OVO) {
+    for (let node of ASCII_TO_UNICODE) {
       const pattern = look[node.text]
       const regex = new RegExp(pattern)
       const match = remaining.match(regex)
@@ -587,7 +600,7 @@ const form = text => {
   return output.join('')
 }
 
-form.ASCII_OVO_TO_UNICODE_OVO = ASCII_OVO_TO_UNICODE_OVO
-form.IPA_TO_ASCII_OVO = IPA_TO_ASCII_OVO
+form.ASCII_TO_UNICODE = ASCII_TO_UNICODE
+form.IPA_TO_ASCII = IPA_TO_ASCII
 
 module.exports = form
