@@ -36,7 +36,7 @@ Note, to add "aspiration" to a sound, you add the corresponding "h" symbol after
 Here are all the possible vowel combinations. The combination elements are: tone (1, 2, 3, 4, or 5, 1 being the lowest, 5 being the highest), nasality, and stress. In languages with only 3 tones you can just use tones 2, 3, and 4, but in languages with 5 tones you need all 5. Nasality is done with a tilde above the vowel. Stress is done with one dot above the vowel. Low tones tilt to the left, high tones to the right.
 
 <p align="center">
-  <img src="https://github.com/mountbuild/call-script/blob/build/vowels.png?raw=true" />
+  <img src="https://github.com/mountbuild/call-script/blob/main/vowels.png?raw=true" />
 </p>
 
 <h3 id="mount">Mount</h3>
