@@ -422,6 +422,7 @@ const ASCII_TO_UNICODE = [
   { text: 'h', code: `h` },
   { text: 'j+', code: `ȷ̈` },
   { text: 'j', code: `j` },
+  { text: 's+!', code: `s${m.d.dot}${m.u.acute}` },
   { text: 's!', code: `s${m.u.acute}` },
   { text: 's+', code: `s${m.d.dot}` },
   { text: 's~', code: `s${m.d.ddot}` },
@@ -448,7 +449,9 @@ const ASCII_TO_UNICODE = [
   { text: 'x@', code: `x${m.d.down}` },
   { text: 'x', code: `x` },
   { text: 'w', code: `w` },
+  { text: 'w+', code: `w${m.d.dot}` },
   { text: 'y', code: `y` },
+  { text: 'y+', code: `y${m.u.dot}` },
 ]
 
 const IPA_TO_ASCII = [
