@@ -43,6 +43,20 @@ The letter `e#` is roughly `/œ/`, which is pronounced with the shape of your li
 
 The [K](https://www.youtube.com/watch?v=rgtWtDwMIhA) sound is a deeper k sound pronounced at the bottom of your throat.
 
+Ejective sounds are produced like you are beat boxing.
+
+Tones are produced like you are on a musical scale, only slightly less exaggerated.
+
+Retroflex sounds are produced with the tip of the tongue on the high part of the roof of your mouth.
+
+[Pharyngealized sounds](https://www.youtube.com/watch?v=yG967iHMnVE) and [Velarized sounds](https://www.youtube.com/watch?v=E3pcu5vFjtI) are produced by sucking your tongue back when you say the consonant.
+
+Labial sounds are produced by rounding your lips when saying the sound.
+
+[Palatalized sounds](https://www.youtube.com/watch?v=H-W327PH5Ns) are produced with a thin y at after the consonant.
+
+[Chinese retroflex sounds](https://www.youtube.com/watch?v=dpQ3IMd4AMg).
+
 ### Vowel Symbols
 
 Here are all the possible vowel combinations. The combination elements are: tone (1, 2, 3, 4, or 5, 1 being the lowest, 5 being the highest), nasality, and stress. In languages with only 3 tones you can just use tones 2, 3, and 4, but in languages with 5 tones you need all 5. Nasality is done with a tilde below the vowel. Stress is done with one dot above the vowel. Low tones tilt to the left, high tones to the right.
