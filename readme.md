@@ -31,6 +31,16 @@ Here are the consonants and vowels in their main form (without tone or stress ma
 
 Note, to add "aspiration" to a sound, you add the corresponding "h" symbol after the main symbol. To add nasalization to a vowel, you add a tilde below the vowel. Long vowels are made by writing two vowel letters.
 
+The letter `i#` is roughly `/ɨ/`, which is pronounced with the shape of your lips like a `u`, saying `i`, with the inside of the mouth like an `i`.
+
+The letter `a#` is roughly `/ø/`, which is pronounced with the shape of your lips like a `u`, saying `i`, but with the inside of the mouth like an `e`.
+
+The letter `u#` is roughly `/ɹ/`, which is pronounced like the English `r`. Lips are shaped like a `u`, saying an `e`, with the inside of the mouth like a `U`.
+
+The letter `o#` is roughly `/ɔ/`, which is pronounced like the British English `a`. Lips are shaped like a `o`, saying an `a`.
+
+The letter `e#` is roughly `/œ/`, which is pronounced with the shape of your lips like an `o`, saying an `U`.
+
 ### Vowel Symbols
 
 Here are all the possible vowel combinations. The combination elements are: tone (1, 2, 3, 4, or 5, 1 being the lowest, 5 being the highest), nasality, and stress. In languages with only 3 tones you can just use tones 2, 3, and 4, but in languages with 5 tones you need all 5. Nasality is done with a tilde below the vowel. Stress is done with one dot above the vowel. Low tones tilt to the left, high tones to the right.
