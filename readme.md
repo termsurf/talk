@@ -57,7 +57,15 @@ Labial sounds are produced by rounding your lips when saying the sound.
 
 [Chinese retroflex sounds](https://www.youtube.com/watch?v=dpQ3IMd4AMg).
 
-### Vowel Symbols
+## Sound Variation
+
+The `W` is for labialization, `Y` for palatalization, `h` for aspiration, `Q~` for phayrngeal stop, `~` for pharyngealization, `M` for nasalization, and `$` for non-aspirated stop.
+
+<p align="center">
+  <img src="https://github.com/mountbuild/call-script/blob/main/variations.png?raw=true" />
+</p>
+
+## Vowel Symbols
 
 Here are all the possible vowel combinations. The combination elements are: tone (1, 2, 3, 4, or 5, 1 being the lowest, 5 being the highest), nasality, and stress. In languages with only 3 tones you can just use tones 2, 3, and 4, but in languages with 5 tones you need all 5. Nasality is done with a tilde below the vowel. Stress is done with one dot above the vowel. Low tones tilt to the left, high tones to the right.
 

@@ -1,8 +1,11 @@
 {
-  "version": "2.1.0",
+  "version": "2.1.1",
   "name": "@mountbuild/call-script",
   "main": "form.js",
   "dependencies": {
     "@mountbuild/script-tree": "1.0.0"
-  }
+  },
+  "files": [
+    "form.js"
+  ]
 }
