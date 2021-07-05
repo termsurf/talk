@@ -41,6 +41,8 @@ The letter `o#` is roughly `/ɔ/`, which is pronounced like the British English 
 
 The letter `e#` is roughly `/œ/`, which is pronounced with the shape of your lips like an `o`, saying an `U`.
 
+The [K](https://www.youtube.com/watch?v=rgtWtDwMIhA) sound is a deeper k sound pronounced at the bottom of your throat.
+
 ### Vowel Symbols
 
 Here are all the possible vowel combinations. The combination elements are: tone (1, 2, 3, 4, or 5, 1 being the lowest, 5 being the highest), nasality, and stress. In languages with only 3 tones you can just use tones 2, 3, and 4, but in languages with 5 tones you need all 5. Nasality is done with a tilde below the vowel. Stress is done with one dot above the vowel. Low tones tilt to the left, high tones to the right.
