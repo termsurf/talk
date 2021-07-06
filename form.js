@@ -345,7 +345,7 @@ let VOWELS = [
   { i: 'ɹ', o: 'u#' },
 ]
 
-const TONES = [[m.u.dgrave, '__'], [m.u.grave, '_'], [m.u.acute, '^'], [m.u.dacute, '^^'], [m.u.down, '_^'], [m.u.up, '^_']]
+const TONES = [[m.u.dgrave, '++'], [m.u.grave, '+'], [m.u.acute, '^'], [m.u.dacute, '^^']]
 const NEWVOWELS = []
 
 TONES.forEach(tone => {
