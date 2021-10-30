@@ -205,7 +205,7 @@ const ASCII_TO_UNICODE = [
   { i: '"', o: `"` },
   { i: 'd!', o: `d${m.d.grave}` },
   { i: 'd*', o: `d${m.d.tilde}` },
-  { i: 'd+', o: `d${m.d.dot}` },
+  { i: 'D', o: `d${m.d.dot}` },
   { i: 'd@', o: `d${m.d.down}` },
   { i: 'd', o: `d` },
   { i: 'b?', o: `b${m.d.acute}` },

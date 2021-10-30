@@ -10,7 +10,7 @@
   call-script
 </h3>
 <p align='center'>
-  The Tone Script Romanization Scheme
+  The <a href='https://github.com/drumworkteam/tone'>Tone Script</a> Romanization Scheme
 </p>
 
 <br/>
