@@ -1,9 +1,9 @@
 {
-  "version": "2.2.1",
-  "name": "@mountbuild/call-script",
+  "version": "1.0.0",
+  "name": "@drumwork/call",
   "main": "form.js",
   "dependencies": {
-    "@mountbuild/script-tree": "1.0.0"
+    "@lancejpollard/script-tree": "1.0.0"
   },
   "files": [
     "form.js"
