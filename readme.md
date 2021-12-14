@@ -21,7 +21,7 @@
 
 Call script uses the Latin script with diacritics to encode most of Earth's natural language features, enough so that you can write every language using the same Latin-oriented system and be close enough to a realistic pronunciation, including nasalized vowels, tense consonants, clicks, and tones, amongst other things. All of the symbols are shown large and on the left of each box in the tables below.
 
-In addition to a compact "Latin script with diacritics" version, there is also an ASCII version suitable for writing on a traditional keyboard. This is shown in a faint color in the upper right of each box in the tables below. It is also clearly mapped out in the [source code](https://github.com/drumworkteam/call/blob/main/form.js#L29-L265) as well.
+In addition to a compact "Latin script with diacritics" version, there is also an ASCII version suitable for writing on a traditional keyboard. This is shown in a faint color in the upper right of each box in the tables below. It is also clearly mapped out in the [source code](https://github.com/drumworkteam/call/blob/main/form.js#L29-L265) as well. You can easily transform this into [tone script](https://github.com/drumworkteam/tone) by writing call script in ASCII, and running it through the tone script code, which is freely available and open source there.
 
 ### Main Symbols
 
