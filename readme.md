@@ -6,11 +6,15 @@
 <br/>
 <br/>
 
+<p align='center'>
+  <img src='https://github.com/drumworkteam/call/blob/make/view/make.svg?raw=true' height='192'>
+</p>
+
 <h3 align='center'>
   call
 </h3>
 <p align='center'>
-  The <a href='https://github.com/drumworkteam/tone'>Tone Script</a> Romanization Scheme
+  The <a href='https://github.com/drumworkteam/tone'>Tone Text</a> Romanization Scheme
 </p>
 
 <br/>
