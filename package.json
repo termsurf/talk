@@ -1,9 +1,9 @@
 {
-  "version": "1.0.1",
+  "version": "1.1.0",
   "name": "@drumwork/call",
   "main": "form.js",
   "dependencies": {
-    "@lancejpollard/script-tree": "1.0.0"
+    "@lancejpollard/script-tree": "^1.0.0"
   },
   "files": [
     "form.js"

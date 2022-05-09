@@ -1,5 +1,5 @@
 
-const st = require('@mountbuild/script-tree')
+const st = require('@lancejpollard/script-tree')
 
 const m = {
   u: {
@@ -191,7 +191,7 @@ const ASCII_TO_UNICODE = [
   { i: '(u-)', o: `u${m.u.dot}${m.u.grave}` },
   { i: '(u)', o: `u${m.u.dot}` },
 
-  { i: 'M', o: `${m.d.tilde}` },
+  { i: '&', o: `${m.d.tilde}` },
   { i: 'm', o: `m` },
   { i: 'N', o: `n${m.d.dot}` },
   { i: 'n', o: `n` },
@@ -266,45 +266,45 @@ const ASCII_TO_UNICODE = [
 ]
 
 let VOWELS = [
-  { i: `i${m.u.tilde}`, o: 'i~' },
-  { i: `ɪ${m.u.tilde}`, o: 'I~' },
-  { i: `ʏ${m.u.tilde}`, o: 'i#~' },
-  { i: `ɨ${m.u.tilde}`, o: 'i#~' },
-  { i: `y${m.u.tilde}`, o: 'i#~' },
+  { i: `i${m.u.tilde}`, o: 'i&' },
+  { i: `ɪ${m.u.tilde}`, o: 'I&' },
+  { i: `ʏ${m.u.tilde}`, o: 'i#&' },
+  { i: `ɨ${m.u.tilde}`, o: 'i#&' },
+  { i: `y${m.u.tilde}`, o: 'i#&' },
 
-  { i: `e${m.u.tilde}`, o: 'e~' },
-  { i: `ɛ${m.u.tilde}`, o: 'E~' },
-  { i: `ε${m.u.tilde}`, o: 'E~' },
-  { i: `œ${m.u.tilde}`, o: 'e#~' },
-  { i: `ɶ${m.u.tilde}`, o: 'e#~' },
+  { i: `e${m.u.tilde}`, o: 'e&' },
+  { i: `ɛ${m.u.tilde}`, o: 'E&' },
+  { i: `ε${m.u.tilde}`, o: 'E&' },
+  { i: `œ${m.u.tilde}`, o: 'e#&' },
+  { i: `ɶ${m.u.tilde}`, o: 'e#&' },
 
-  { i: `a${m.u.tilde}`, o: 'a~' },
-  { i: `ɐ${m.u.tilde}`, o: 'a~' },
-  { i: `ɑ${m.u.tilde}`, o: 'a~' },
-  { i: `ɒ${m.u.tilde}`, o: 'a~' },
-  { i: `ä${m.u.tilde}`, o: 'a~' },
-  { i: `æ${m.u.tilde}`, o: 'A~' },
-  { i: `æ${m.u.tilde}`, o: 'A~' },
-  { i: `ø${m.u.tilde}`, o: 'a#~' },
+  { i: `a${m.u.tilde}`, o: 'a&' },
+  { i: `ɐ${m.u.tilde}`, o: 'a&' },
+  { i: `ɑ${m.u.tilde}`, o: 'a&' },
+  { i: `ɒ${m.u.tilde}`, o: 'a&' },
+  { i: `ä${m.u.tilde}`, o: 'a&' },
+  { i: `æ${m.u.tilde}`, o: 'A&' },
+  { i: `æ${m.u.tilde}`, o: 'A&' },
+  { i: `ø${m.u.tilde}`, o: 'a#&' },
 
-  { i: `o${m.u.tilde}`, o: 'o~' },
-  { i: `ɜ${m.u.tilde}`, o: 'O~' },
-  { i: `ɵ${m.u.tilde}`, o: 'O~' },
-  { i: `ʊ${m.u.tilde}`, o: 'O~' },
-  { i: `ɤ${m.u.tilde}`, o: 'O~' },
-  { i: `ɯ${m.u.tilde}`, o: 'O~' },
-  { i: `ɔ${m.u.tilde}`, o: 'o#~' },
+  { i: `o${m.u.tilde}`, o: 'o&' },
+  { i: `ɜ${m.u.tilde}`, o: 'O&' },
+  { i: `ɵ${m.u.tilde}`, o: 'O&' },
+  { i: `ʊ${m.u.tilde}`, o: 'O&' },
+  { i: `ɤ${m.u.tilde}`, o: 'O&' },
+  { i: `ɯ${m.u.tilde}`, o: 'O&' },
+  { i: `ɔ${m.u.tilde}`, o: 'o#&' },
 
-  { i: `u${m.u.tilde}`, o: 'u~' },
-  { i: `ʉ${m.u.tilde}`, o: 'u~' },
-  { i: `ʌ${m.u.tilde}`, o: 'U~' },
-  { i: `ə${m.u.tilde}`, o: 'U~' },
-  { i: `ɞ${m.u.tilde}`, o: 'U~' },
-  { i: `ɹ${m.u.tilde}`, o: 'u#~' },
+  { i: `u${m.u.tilde}`, o: 'u&' },
+  { i: `ʉ${m.u.tilde}`, o: 'u&' },
+  { i: `ʌ${m.u.tilde}`, o: 'U&' },
+  { i: `ə${m.u.tilde}`, o: 'U&' },
+  { i: `ɞ${m.u.tilde}`, o: 'U&' },
+  { i: `ɹ${m.u.tilde}`, o: 'u#&' },
 
-  { i: 'ũ', o: 'u~' },
-  { i: 'ĩ', o: 'i~' },
-  { i: 'ẽ', o: 'e~' },
+  { i: 'ũ', o: 'u&' },
+  { i: 'ĩ', o: 'i&' },
+  { i: 'ẽ', o: 'e&' },
 
   { i: 'i', o: 'i' },
   { i: 'ɪ', o: 'I' },
