@@ -7,14 +7,14 @@
 <br/>
 
 <p align='center'>
-  <img src='https://github.com/teamdrumwork/call/blob/make/view/view.svg?raw=true' height='312'>
+  <img src='https://github.com/teamtreesurf/call/blob/make/view/view.svg?raw=true' height='312'>
 </p>
 
 <h3 align='center'>
   call
 </h3>
 <p align='center'>
-  The <a href='https://github.com/teamdrumwork/tone'>Tone Text</a> Romanization Scheme
+  The <a href='https://github.com/teamtreesurf/tone'>Tone Text</a> Romanization Scheme
 </p>
 
 <br/>
@@ -25,14 +25,14 @@
 
 Call script uses the Latin script with diacritics to encode most of Earth's natural language features, enough so that you can write every language using the same Latin-oriented system and be close enough to a realistic pronunciation, including nasalized vowels, tense consonants, clicks, and tones, amongst other things. All of the symbols are shown large and on the left of each box in the tables below.
 
-In addition to a compact "Latin script with diacritics" version, there is also an ASCII version suitable for writing on a traditional keyboard. This is shown in a faint color in the upper right of each box in the tables below. It is also clearly mapped out in the [source code](https://github.com/teamdrumwork/call/blob/make/form.js#L29-L265) as well. You can easily transform this into [tone script](https://github.com/teamdrumwork/tone) by writing call script in ASCII, and running it through the tone script code, which is freely available and open source there.
+In addition to a compact "Latin script with diacritics" version, there is also an ASCII version suitable for writing on a traditional keyboard. This is shown in a faint color in the upper right of each box in the tables below. It is also clearly mapped out in the [source code](https://github.com/teamtreesurf/call/blob/make/form.js#L29-L265) as well. You can easily transform this into [tone script](https://github.com/teamtreesurf/tone) by writing call script in ASCII, and running it through the tone script code, which is freely available and open source there.
 
 ### Main Symbols
 
 Here are the consonants and vowels in their main form (without tone or stress markers).
 
 <p align="center">
-  <img src="https://github.com/teamdrumwork/call/blob/make/symbols.png?raw=true" />
+  <img src="https://github.com/teamtreesurf/call/blob/make/symbols.png?raw=true" />
 </p>
 
 Note, to add "aspiration" to a sound, you add the corresponding "h" symbol after the main symbol. To add nasalization to a vowel, you add a tilde below the vowel. Long vowels are made by writing two vowel letters.
@@ -68,7 +68,7 @@ Labial sounds are produced by rounding your lips when saying the sound.
 The `W` is for labialization, `Y` for palatalization, `h` for aspiration, `Q~` for phayrngeal stop, `~` for pharyngealization, `M` for nasalization, and `$` for non-aspirated stop.
 
 <p align="center">
-  <img src="https://github.com/teamdrumwork/call/blob/make/variations.png?raw=true" />
+  <img src="https://github.com/teamtreesurf/call/blob/make/variations.png?raw=true" />
 </p>
 
 ## Vowel Symbols
@@ -76,12 +76,12 @@ The `W` is for labialization, `Y` for palatalization, `h` for aspiration, `Q~` f
 Here are all the possible vowel combinations. The combination elements are: tone (1, 2, 3, 4, or 5, 1 being the lowest, 5 being the highest), nasality, and stress. In languages with only 3 tones you can just use tones 2, 3, and 4, but in languages with 5 tones you need all 5. Nasality is done with a tilde below the vowel. Stress is done with one dot above the vowel. Low tones tilt to the left, high tones to the right.
 
 <p align="center">
-  <img src="https://github.com/teamdrumwork/call/blob/make/vowels.png?raw=true" />
+  <img src="https://github.com/teamtreesurf/call/blob/make/vowels.png?raw=true" />
 </p>
 
 <h3 id="license">License</h3>
 
-Copyright 2021-2022 <a href='https://drum.work'>DrumWork</a>
+Copyright 2021-2022 <a href='https://drum.work'>TreeSurf</a>
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -95,6 +95,6 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-### DrumWork
+### TreeSurf
 
-This is being developed by the folks at [DrumWork](https://drum.work), a California-based project for helping humanity master information and computation. DrumWork started off in the winter of 2008 as a spark of an idea, to forming a company 10 years later in the winter of 2018, to a seed of a project just beginning its development phases. It is entirely bootstrapped by working full time and running [Etsy](https://etsy.com/shop/teamdrumwork) and [Amazon](https://www.amazon.com/s?rh=p_27%3AMount+Build) shops. Also find us on [Facebook](https://www.facebook.com/teamdrumwork), [Twitter](https://twitter.com/teamdrumwork), and [LinkedIn](https://www.linkedin.com/company/teamdrumwork). Check out our other GitHub projects as well!
+This is being developed by the folks at [TreeSurf](https://drum.work), a California-based project for helping humanity master information and computation. TreeSurf started off in the winter of 2008 as a spark of an idea, to forming a company 10 years later in the winter of 2018, to a seed of a project just beginning its development phases. It is entirely bootstrapped by working full time and running [Etsy](https://etsy.com/shop/teamtreesurf) and [Amazon](https://www.amazon.com/s?rh=p_27%3AMount+Build) shops. Also find us on [Facebook](https://www.facebook.com/teamtreesurf), [Twitter](https://twitter.com/teamtreesurf), and [LinkedIn](https://www.linkedin.com/company/teamtreesurf). Check out our other GitHub projects as well!

@@ -67,7 +67,6 @@ BASE_VOWEL_GLYPHS.forEach(g => {
         VARIANT_MARKS.forEach(v => {
           TONE_MARKS.forEach(t => {
             const i = `${g}${v}${n}${t}${l}${a}`
-            // these two are treated specially, not getting the variant mark
             const o = `${G[g]}${D[n]}${D[v]}${D[l]}${D[a]}${D[t]}`
             VOWELS.push({ i, o })
           })
