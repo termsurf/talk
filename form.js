@@ -77,11 +77,10 @@ BASE_VOWEL_GLYPHS.forEach(g => {
 })
 
 const CONSONANTS = [
-  { i: 'M', o: `ṃ`, o2: `m${m.u.dot}` },
+  { i: "h!", o: `ȟ` },
   { i: 'm', o: `m` },
   { i: 'N', o: `ṇ`, o2: `n${m.d.dot}` },
   { i: 'n', o: `n` },
-  { i: 'q~', o: `q${m.u.ddot}` },
   { i: 'q!', o: `q${m.u.grave}` },
   { i: 'q', o: `q` },
   { i: 'Q', o: `q${m.u.dot}` },
@@ -89,6 +88,7 @@ const CONSONANTS = [
   { i: 'G~', o: `ĝ`, o2: `g${m.u.ddot}` },
   { i: 'g?', o: `ɠ`, o2: `g${m.u.acute}` },
   { i: 'g@', o: `g${m.u.ring}` },
+  { i: "Q~", o: `ř` },
   { i: 'g', o: `g` },
   { i: '\'', o: `'` },
   { i: '\'~', o: `-` },
@@ -121,11 +121,12 @@ const CONSONANTS = [
   { i: 'k@', o: `k${m.d.ring}` },
   { i: 'k.', o: `k${m.d.ddot}` },
   { i: 'k', o: `k` },
-  { i: 'H!', o: `h${m.d.dot}${m.d.grave}` },
+  { i: 'H!', o: `ḥ${m.d.grave}` },
   { i: 'H', o: `ḥ`, o2: `h${m.d.dot}` },
   { i: 'h~', o: `ḩ`, o2: `h${m.d.ddot}` },
   { i: 'h', o: `h` },
   { i: 'J', o: `ȷ̈` },
+  { i: "j!", o: `j${m.d.grave}` },
   { i: 'j', o: `j` },
   { i: 'S!', o: `ş${m.u.grave}`, o2: `s${m.d.dot}${m.u.grave}` },
   { i: 's!', o: `s${m.u.grave}` },
@@ -133,11 +134,14 @@ const CONSONANTS = [
   { i: 's@', o: `s${m.d.ring}` },
   { i: 's', o: `s` },
   { i: 'F', o: `ḟ`, o2: `f${m.u.dot}` },
+  { i: "f!", o: `f${m.d.grave}` },
   { i: 'f', o: `f` },
   { i: 'V', o: `ṿ`, o2: `v${m.d.dot}` },
   { i: 'v', o: `v` },
+  { i: "z!", o: 'ź' },
   { i: 'z', o: `z` },
-  { i: 'Z', o: `ż`, o2: `z${m.u.dot}` },
+  { i: "Z!", o: `ź${m.d.dot}` },
+  { i: 'Z', o: `ẓ` },
   { i: 'C#', o: `ḉ`, o2: `c${m.d.ddot}` },
   { i: 'C', o: `ç`, o2: `c${m.d.dot}` },
   { i: 'c', o: `c` },
@@ -166,6 +170,8 @@ const form = text => st.form(text, tree)
 
 form.ASCII_TO_UNICODE = ASCII_TO_UNICODE
 form.map = m
+form.VOWELS = VOWELS
+form.CONSONANTS = CONSONANTS
 
 if (typeof module != 'undefined') {
   module.exports = form
