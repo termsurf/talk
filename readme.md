@@ -80,7 +80,7 @@ Here are all the possible vowel combinations. The combination elements are: tone
 
 <h3 id="license">License</h3>
 
-Copyright 2021-2022 <a href='https://drum.work'>TreeSurf</a>
+Copyright 2021-2023 <a href='https://drum.work'>TreeSurf</a>
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
