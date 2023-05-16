@@ -33,9 +33,11 @@ const D = {
   '++': m.u.dgrave,
   '+': m.u.grave,
   '^': m.u.dot, // accent mark
-  '#': m.d.ring,
+  '$': m.d.ring,
   '&': m.d.tilde,
   '_': m.u.macron, // long vowel
+  '@': m.d.ddot, // non-syllabic
+  '!': m.d.macron, // short vowel
   '': ''
 }
 
@@ -55,20 +57,25 @@ const G = {
 const VOWELS = []
 const BASE_VOWEL_GLYPHS = ['I', 'E', 'A', 'O', 'U', 'i', 'e', 'a', 'o', 'u']
 const TONE_MARKS = ['--', '-', '++', '+', '']
-const VARIANT_MARKS = ['#', '']
+const VARIANT_MARKS = ['$', '']
 const NASAL_MARKS = ['&', '']
-const LONG_MARKS = ['_', '']
+const DURATION_MARKS = ['_', '!', '']
+const SYLLABIC_MARKS = ['@', '']
 const ACCENT_MARKS = ['^', '']
 
 BASE_VOWEL_GLYPHS.forEach(g => {
   ACCENT_MARKS.forEach(a => {
-    LONG_MARKS.forEach(l => {
-      NASAL_MARKS.forEach(n => {
-        VARIANT_MARKS.forEach(v => {
-          TONE_MARKS.forEach(t => {
-            const i = `${g}${v}${n}${t}${l}${a}`
-            const o = `${G[g]}${D[n]}${D[v]}${D[l]}${D[a]}${D[t]}`
-            VOWELS.push({ i, o })
+    DURATION_MARKS.forEach(l => {
+      SYLLABIC_MARKS.forEach(s => {
+        NASAL_MARKS.forEach(n => {
+          VARIANT_MARKS.forEach(v => {
+            TONE_MARKS.forEach(t => {
+              const i = `${g}${v}${n}${s}${t}${l}${a}`
+              const o = l === '!'
+                ? `${G[g]}${D[l]}${D[n]}${D[s]}${D[v]}${D[a]}${D[t]}`
+                : `${G[g]}${D[n]}${D[s]}${D[v]}${D[l]}${D[a]}${D[t]}`
+              VOWELS.push({ i, o })
+            })
           })
         })
       })
@@ -77,10 +84,13 @@ BASE_VOWEL_GLYPHS.forEach(g => {
 })
 
 const CONSONANTS = [
-  { i: "h!", o: `ȟ` },
+  { i: 'mh!', o: `m${m.u.ring}` },
   { i: 'm', o: `m` },
+  { i: 'Nh!', o: `ṇ${m.u.ring}` },
   { i: 'N', o: `ṇ`, o2: `n${m.d.dot}` },
+  { i: 'nh!', o: `n${m.u.ring}` },
   { i: 'n', o: `n` },
+  { i: 'qh!', o: `q${m.u.ring}` },
   { i: 'q!', o: `q${m.u.grave}` },
   { i: 'q', o: `q` },
   { i: 'Q', o: `q${m.u.dot}` },
@@ -121,9 +131,11 @@ const CONSONANTS = [
   { i: 'k@', o: `k${m.d.ring}` },
   { i: 'k.', o: `k${m.d.ddot}` },
   { i: 'k', o: `k` },
+  { i: 'Hh!', o: `ḥ${m.d.down}` },
   { i: 'H!', o: `ḥ${m.d.grave}` },
   { i: 'H', o: `ḥ`, o2: `h${m.d.dot}` },
   { i: 'h~', o: `ḩ`, o2: `h${m.d.ddot}` },
+  { i: 'h!', o: `h${m.d.down}` },
   { i: 'h', o: `h` },
   { i: 'J', o: `ȷ̈` },
   { i: "j!", o: `j${m.d.grave}` },
@@ -147,8 +159,10 @@ const CONSONANTS = [
   { i: 'c', o: `c` },
   { i: 'L', o: `ḷ`, o2: `l${m.d.dot}` },
   { i: 'l*', o: `ḽ`, o2: `l${m.d.up}` },
+  { i: 'lh!', o: `l${m.d.ring}` },
   { i: 'l', o: `l` },
   { i: 'R', o: `ṛ`, o2: `r${m.d.dot}` },
+  { i: 'rh!', o: `r${m.u.ring}` },
   { i: 'r', o: `r` },
   { i: 'x!', o: `x${m.d.grave}` },
   { i: 'X!', o: `ẋ${m.d.grave}`, o2: `x${m.u.dot}${m.d.grave}` },

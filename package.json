@@ -3,7 +3,7 @@
   "name": "@drumwork/call",
   "main": "form.js",
   "dependencies": {
-    "@lancejpollard/script-tree": "^1.0.0"
+    "@lancejpollard/script-tree": "^1.1.1"
   },
   "files": [
     "form.js"
