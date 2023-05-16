@@ -131,7 +131,7 @@ const CONSONANTS = [
   { i: 'k@', o: `k${m.d.ring}` },
   { i: 'k.', o: `k${m.d.ddot}` },
   { i: 'k', o: `k` },
-  { i: 'Hh!', o: `ḥ${m.d.down}` },
+  { i: 'Hh!', o: `h${m.d.ring}` },
   { i: 'H!', o: `ḥ${m.d.grave}` },
   { i: 'H', o: `ḥ`, o2: `h${m.d.dot}` },
   { i: 'h~', o: `ḩ`, o2: `h${m.d.ddot}` },
