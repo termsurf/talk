@@ -23,7 +23,9 @@ const m = {
     'ddot': '\u0324',
     'down': '\u032C',
     'tilde': '\u0330',
-    'macron': '\u0331'
+    'macron': '\u0331',
+    'cedilla': '\u0327',
+    'up': '\u032D'
   }
 }
 
@@ -33,7 +35,7 @@ const D = {
   '++': m.u.dgrave,
   '+': m.u.grave,
   '^': m.u.dot, // accent mark
-  '$': m.d.ring,
+  '$': m.d.grave,
   '&': m.d.tilde,
   '_': m.u.macron, // long vowel
   '@': m.d.ddot, // non-syllabic
@@ -72,8 +74,8 @@ BASE_VOWEL_GLYPHS.forEach(g => {
             TONE_MARKS.forEach(t => {
               const i = `${g}${v}${n}${s}${t}${l}${a}`
               const o = l === '!'
-                ? `${G[g]}${D[l]}${D[n]}${D[s]}${D[v]}${D[a]}${D[t]}`
-                : `${G[g]}${D[n]}${D[s]}${D[v]}${D[l]}${D[a]}${D[t]}`
+                ? `${G[g]}${D[a]}${D[t]}${D[l]}${D[n]}${D[s]}${D[v]}`
+                : `${G[g]}${D[t]}${D[l]}${D[n]}${D[s]}${D[v]}${D[a]}`
               VOWELS.push({ i, o })
             })
           })
@@ -89,6 +91,7 @@ const CONSONANTS = [
   { i: 'Nh!', o: `ṇ${m.u.ring}` },
   { i: 'N', o: `ṇ`, o2: `n${m.d.dot}` },
   { i: 'nh!', o: `n${m.u.ring}` },
+  { i: 'n~', o: `n${m.u.up}` },
   { i: 'n', o: `n` },
   { i: 'qh!', o: `q${m.u.ring}` },
   { i: 'q!', o: `q${m.u.grave}` },
@@ -97,39 +100,43 @@ const CONSONANTS = [
   { i: 'G', o: `ġ`, o2: `g${m.u.dot}` },
   { i: 'G~', o: `ĝ`, o2: `g${m.u.ddot}` },
   { i: 'g?', o: `ɠ`, o2: `g${m.u.acute}` },
-  { i: 'g@', o: `g${m.u.ring}` },
+  { i: 'g@', o: `g${m.u.ddot}` },
   { i: "Q~", o: `ř` },
   { i: 'g', o: `g` },
   { i: '\'', o: `'` },
   { i: '\'~', o: `-` },
   { i: 'd?', o: `ɗ`, o2: `d${m.d.acute}` },
   { i: 'd!', o: `d${m.d.grave}` },
-  { i: 'd*', o: `ḓ`, o2: `d${m.d.up}` },
+  { i: 'd*', o: `ḍ${m.d.down}`, o2: `d${m.d.up}` },
   { i: 'D', o: `ḍ`, o2: `d${m.d.dot}` },
-  { i: 'd@', o: `d${m.d.ring}` },
+  { i: 'd@', o: `ḓ` },
+  { i: 'd.', o: `d${m.d.tilde}` },
+  { i: 'd~', o: `d${m.d.down}` },
   { i: 'd', o: `d` },
   { i: 'b?', o: `ɓ`, o2: `b${m.d.acute}` },
   { i: 'b!', o: `b${m.d.grave}` },
-  { i: 'b@', o: `b${m.d.ring}` },
+  { i: 'b@', o: `b${m.d.up}` },
+  { i: 'b.', o: `b${m.d.tilde}` },
   { i: 'b', o: `b` },
   { i: 'p!', o: `p${m.u.grave}` },
-  { i: 'p*', o: `p${m.u.up}` },
-  { i: 'p@', o: `p${m.u.ring}` },
-  { i: 'p.', o: `p${m.u.ddot}` },
+  { i: 'p*', o: `ṗ${m.u.up}` },
+  { i: 'p@', o: `p${m.u.down}` },
+  { i: 'p.', o: `p${m.u.tilde}` },
   { i: 'p', o: `p` },
   { i: 'T!', o: `ṭ${m.d.grave}`, o2: `t${m.d.dot}${m.d.grave}` },
   { i: 'T', o: `ṭ`, o2: `t${m.d.dot}` },
   { i: 't!', o: `t${m.d.grave}` },
-  { i: 't*', o: `ṱ`, o2: `t${m.d.up}` },
-  { i: 't@', o: `t${m.d.ring}` },
-  { i: 't.', o: `t${m.d.ddot}` },
+  { i: 't*', o: `ṭ${m.d.down}`, o2: `t${m.d.up}` },
+  { i: 't@', o: `ṱ` },
+  { i: 't.', o: `t${m.d.tilde}` },
+  { i: 't~', o: `t${m.d.down}` },
   { i: 't', o: `t` },
   { i: 'k!', o: `k${m.d.grave}` },
-  { i: 'k*', o: `k${m.d.down}` },
+  { i: 'k*', o: `ḳ${m.d.down}` },
   { i: 'K!', o: `k${m.d.dot}${m.d.grave}` },
   { i: 'K', o: `ḳ`, o2: `k${m.d.dot}` },
-  { i: 'k@', o: `k${m.d.ring}` },
-  { i: 'k.', o: `k${m.d.ddot}` },
+  { i: 'k@', o: `k${m.d.up}` },
+  { i: 'k.', o: `k${m.d.tilde}` },
   { i: 'k', o: `k` },
   { i: 'Hh!', o: `h${m.d.ring}` },
   { i: 'H!', o: `ḥ${m.d.grave}` },
@@ -143,7 +150,8 @@ const CONSONANTS = [
   { i: 'S!', o: `ş${m.u.grave}`, o2: `s${m.d.dot}${m.u.grave}` },
   { i: 's!', o: `s${m.u.grave}` },
   { i: 'S', o: 'ş', o2: `s${m.d.dot}` },
-  { i: 's@', o: `s${m.d.ring}` },
+  { i: 's@', o: `s${m.d.up}` },
+  { i: 's~', o: `s${m.d.down}` },
   { i: 's', o: `s` },
   { i: 'F', o: `ḟ`, o2: `f${m.u.dot}` },
   { i: "f!", o: `f${m.d.grave}` },
@@ -151,15 +159,17 @@ const CONSONANTS = [
   { i: 'V', o: `ṿ`, o2: `v${m.d.dot}` },
   { i: 'v', o: `v` },
   { i: "z!", o: 'ź' },
+  { i: 'z~', o: `z${m.d.down}` },
   { i: 'z', o: `z` },
   { i: "Z!", o: `ź${m.d.dot}` },
   { i: 'Z', o: `ẓ` },
-  { i: 'C#', o: `ḉ`, o2: `c${m.d.ddot}` },
+  { i: 'C~', o: `ḉ`, o2: `c${m.d.ddot}` },
   { i: 'C', o: `ç`, o2: `c${m.d.dot}` },
   { i: 'c', o: `c` },
   { i: 'L', o: `ḷ`, o2: `l${m.d.dot}` },
-  { i: 'l*', o: `ḽ`, o2: `l${m.d.up}` },
+  { i: 'l*', o: `ḷ${m.d.down}`, o2: `l${m.d.up}` },
   { i: 'lh!', o: `l${m.d.ring}` },
+  { i: 'l~', o: `l${m.d.down}` },
   { i: 'l', o: `l` },
   { i: 'R', o: `ṛ`, o2: `r${m.d.dot}` },
   { i: 'rh!', o: `r${m.u.ring}` },
