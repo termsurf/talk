@@ -86,6 +86,11 @@ BASE_VOWEL_GLYPHS.forEach(g => {
 })
 
 const CONSONANTS = [
+  { i: '=.', o: '.' },
+  { i: '=?', o: '?' },
+  { i: '=!', o: '!' },
+  { i: '=+', o: '+' },
+  { i: '=-', o: '-' },
   { i: 'mh!', o: `m${m.u.ring}` },
   { i: 'm', o: `m` },
   { i: 'Nh!', o: `ṇ${m.u.ring}` },
@@ -179,7 +184,8 @@ const CONSONANTS = [
   { i: 'X', o: `ẋ`, o2: `x${m.u.dot}` },
   { i: 'x@', o: `x${m.d.ring}` },
   { i: 'x', o: `x` },
-  { i: 'w!', o: `w${m.d.grave}` },
+  { i: 'W', o: `ẅ` },
+  { i: 'w!', o: `ẁ` },
   { i: 'w~', o: `ẇ`, o2: `w${m.u.dot}` },
   { i: 'w', o: `w` },
   { i: 'y~', o: `ẏ`, o2: `y${m.u.dot}` },
