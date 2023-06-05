@@ -13,7 +13,7 @@
   chat
 </h3>
 <p align='center'>
-  Easy to read and speak romanization scheme
+  A Cross-Cultural Romanization Scheme
 </p>
 
 <br/>
