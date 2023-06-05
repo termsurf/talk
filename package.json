@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "name": "@tunebond/call-text",
+  "name": "@tunebond/chat",
   "main": "form.js",
   "dependencies": {
     "@lancejpollard/script-tree": "^1.1.1"
