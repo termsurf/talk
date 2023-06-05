@@ -1,4 +1,4 @@
-const st = require('@lancejpollard/script-tree')
+import st from '@lancejpollard/script-tree'
 
 const m = {
   u: {
@@ -28,7 +28,7 @@ const m = {
   },
 }
 
-const D = {
+const D: Record<string, string> = {
   '--': m.u.dacute,
   '-': m.u.acute,
   '++': m.u.dgrave,
@@ -42,7 +42,7 @@ const D = {
   '': '',
 }
 
-const G = {
+const G: Record<string, string> = {
   I: `ı${m.d.dot}`,
   E: `e${m.d.dot}`,
   A: `a${m.d.dot}`,
@@ -55,7 +55,14 @@ const G = {
   u: `u`,
 }
 
-const VOWELS = []
+export type Take = {
+  i: string
+  o: string
+  name?: string
+  o2?: string
+}
+
+const VOWELS: Array<Take> = []
 const BASE_VOWEL_GLYPHS = [
   'I',
   'E',
@@ -206,14 +213,14 @@ const CONSONANTS = [
 
 const ASCII_TO_UNICODE = [...VOWELS, ...CONSONANTS]
 
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
 const tree = st.fork(ASCII_TO_UNICODE)
-const form = text => st.form(text, tree)
+// eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access
+const form = (text: string): string => st.form(text, tree)
 
 form.ASCII_TO_UNICODE = ASCII_TO_UNICODE
 form.map = m
 form.VOWELS = VOWELS
 form.CONSONANTS = CONSONANTS
 
-if (typeof module != 'undefined') {
-  module.exports = form
-}
+export default form
