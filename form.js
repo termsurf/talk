@@ -1,32 +1,31 @@
-
 const st = require('@lancejpollard/script-tree')
 
 const m = {
   u: {
-    'grave': '\u0300',
-    'acute': '\u0301',
-    'dacute': '\u030B',
-    'dgrave': '\u030F',
-    'up': '\u0302',
-    'down': '\u030C',
-    'dot': '\u0307',
-    'ddot': '\u0308',
-    'ring': '\u030A',
-    'tilde': '\u0303',
-    'macron': '\u0304'
+    grave: '\u0300',
+    acute: '\u0301',
+    dacute: '\u030B',
+    dgrave: '\u030F',
+    up: '\u0302',
+    down: '\u030C',
+    dot: '\u0307',
+    ddot: '\u0308',
+    ring: '\u030A',
+    tilde: '\u0303',
+    macron: '\u0304',
   },
   d: {
-    'grave': '\u0316',
-    'acute': '\u0317',
-    'ring': '\u0325',
-    'dot': '\u0323',
-    'ddot': '\u0324',
-    'down': '\u032C',
-    'tilde': '\u0330',
-    'macron': '\u0331',
-    'cedilla': '\u0327',
-    'up': '\u032D'
-  }
+    grave: '\u0316',
+    acute: '\u0317',
+    ring: '\u0325',
+    dot: '\u0323',
+    ddot: '\u0324',
+    down: '\u032C',
+    tilde: '\u0330',
+    macron: '\u0331',
+    cedilla: '\u0327',
+    up: '\u032D',
+  },
 }
 
 const D = {
@@ -35,29 +34,40 @@ const D = {
   '++': m.u.dgrave,
   '+': m.u.grave,
   '^': m.u.dot, // accent mark
-  '$': m.d.grave,
+  $: m.d.grave,
   '&': m.d.tilde,
-  '_': m.u.macron, // long vowel
+  _: m.u.macron, // long vowel
   '@': m.d.ddot, // non-syllabic
   '!': m.d.macron, // short vowel
-  '': ''
+  '': '',
 }
 
 const G = {
-  'I': `ı${m.d.dot}`,
-  'E': `e${m.d.dot}`,
-  'A': `a${m.d.dot}`,
-  'O': `o${m.d.dot}`,
-  'U': `u${m.d.dot}`,
-  'i': `ı`,
-  'e': `e`,
-  'a': `a`,
-  'o': `o`,
-  'u': `u`,
+  I: `ı${m.d.dot}`,
+  E: `e${m.d.dot}`,
+  A: `a${m.d.dot}`,
+  O: `o${m.d.dot}`,
+  U: `u${m.d.dot}`,
+  i: `ı`,
+  e: `e`,
+  a: `a`,
+  o: `o`,
+  u: `u`,
 }
 
 const VOWELS = []
-const BASE_VOWEL_GLYPHS = ['I', 'E', 'A', 'O', 'U', 'i', 'e', 'a', 'o', 'u']
+const BASE_VOWEL_GLYPHS = [
+  'I',
+  'E',
+  'A',
+  'O',
+  'U',
+  'i',
+  'e',
+  'a',
+  'o',
+  'u',
+]
 const TONE_MARKS = ['--', '-', '++', '+', '']
 const VARIANT_MARKS = ['$', '']
 const NASAL_MARKS = ['&', '']
@@ -73,9 +83,10 @@ BASE_VOWEL_GLYPHS.forEach(g => {
           VARIANT_MARKS.forEach(v => {
             TONE_MARKS.forEach(t => {
               const i = `${g}${v}${n}${s}${t}${l}${a}`
-              const o = l === '!'
-                ? `${G[g]}${D[a]}${D[t]}${D[l]}${D[n]}${D[s]}${D[v]}`
-                : `${G[g]}${D[t]}${D[l]}${D[n]}${D[s]}${D[v]}${D[a]}`
+              const o =
+                l === '!'
+                  ? `${G[g]}${D[a]}${D[t]}${D[l]}${D[n]}${D[s]}${D[v]}`
+                  : `${G[g]}${D[t]}${D[l]}${D[n]}${D[s]}${D[v]}${D[a]}`
               VOWELS.push({ i, o })
             })
           })
@@ -106,10 +117,10 @@ const CONSONANTS = [
   { i: 'G~', o: `ĝ`, o2: `g${m.u.ddot}` },
   { i: 'g?', o: `ɠ`, o2: `g${m.u.acute}` },
   { i: 'g@', o: `g${m.u.ddot}` },
-  { i: "Q~", o: `ř` },
+  { i: 'Q~', o: `ř` },
   { i: 'g', o: `g` },
-  { i: '\'', o: `'` },
-  { i: '\'~', o: `-` },
+  { i: "'", o: `'` },
+  { i: "'~", o: `-` },
   { i: 'd?', o: `ɗ`, o2: `d${m.d.acute}` },
   { i: 'd!', o: `d${m.d.grave}` },
   { i: 'd*', o: `ḍ${m.d.down}`, o2: `d${m.d.up}` },
@@ -150,7 +161,7 @@ const CONSONANTS = [
   { i: 'h!', o: `h${m.d.down}` },
   { i: 'h', o: `h` },
   { i: 'J', o: `ȷ̈` },
-  { i: "j!", o: `j${m.d.grave}` },
+  { i: 'j!', o: `j${m.d.grave}` },
   { i: 'j', o: `j` },
   { i: 'S!', o: `ş${m.u.grave}`, o2: `s${m.d.dot}${m.u.grave}` },
   { i: 's!', o: `s${m.u.grave}` },
@@ -159,14 +170,14 @@ const CONSONANTS = [
   { i: 's~', o: `s${m.d.down}` },
   { i: 's', o: `s` },
   { i: 'F', o: `ḟ`, o2: `f${m.u.dot}` },
-  { i: "f!", o: `f${m.d.grave}` },
+  { i: 'f!', o: `f${m.d.grave}` },
   { i: 'f', o: `f` },
   { i: 'V', o: `ṿ`, o2: `v${m.d.dot}` },
   { i: 'v', o: `v` },
-  { i: "z!", o: 'ź' },
+  { i: 'z!', o: 'ź' },
   { i: 'z~', o: `z${m.d.down}` },
   { i: 'z', o: `z` },
-  { i: "Z!", o: `ź${m.d.dot}` },
+  { i: 'Z!', o: `ź${m.d.dot}` },
   { i: 'Z', o: `ẓ` },
   { i: 'C~', o: `ḉ`, o2: `c${m.d.ddot}` },
   { i: 'C', o: `ç`, o2: `c${m.d.dot}` },
@@ -190,7 +201,7 @@ const CONSONANTS = [
   { i: 'w', o: `w` },
   { i: 'y~', o: `ẏ`, o2: `y${m.u.dot}` },
   { i: 'y', o: `y` },
-  { i: "'", o: '\'' },
+  { i: "'", o: "'" },
 ]
 
 const ASCII_TO_UNICODE = [...VOWELS, ...CONSONANTS]
