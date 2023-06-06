@@ -1,13 +1,21 @@
 {
-  "version": "1.0.0",
+  "version": "3.0.0",
   "name": "@tunebond/chat",
   "main": "host/index.js",
+  "license": "Apache 2.0",
   "dependencies": {
     "@lancejpollard/script-tree": "^1.1.1"
   },
   "files": [
     "./host/index.js",
-    "./host/index.d.ts"
+    "./host/index.js.map",
+    "./host/index.d.ts",
+    "./host/mark.js",
+    "./host/mark.js.map",
+    "./host/mark.d.ts",
+    "./host/talk.js",
+    "./host/talk.js.map",
+    "./host/talk.d.ts"
   ],
   "scripts": {
     "make": "tsc && tsc-alias",

@@ -1,4 +1,6 @@
 import st from '@lancejpollard/script-tree'
+import mark from './mark.js'
+import talk from './talk.js'
 
 const m = {
   u: {
@@ -216,11 +218,54 @@ const ASCII_TO_UNICODE = [...VOWELS, ...CONSONANTS]
 // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
 const tree = st.fork(ASCII_TO_UNICODE)
 // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access
-const form = (text: string): string => st.form(text, tree)
+const flow = (text: string): string => st.form(text, tree)
 
-form.ASCII_TO_UNICODE = ASCII_TO_UNICODE
-form.map = m
-form.VOWELS = VOWELS
-form.CONSONANTS = CONSONANTS
+const form = {
+  ASCII_TO_UNICODE: ASCII_TO_UNICODE,
+  VOWELS: VOWELS,
+  CONSONANTS: CONSONANTS,
+  flow,
+  read,
+  mark,
+  talk,
+}
 
 export default form
+
+/**
+ * Make it somewhat readable (simplified).
+ */
+
+function read(text: string) {
+  return text
+    .replace(/G(?!~)/g, 'r')
+    .replace(/G~/g, '')
+    .replace(/Q/g, "'")
+    .replace(/q(?!k)/g, 'ng')
+    .replace(/q/g, 'n')
+    .replace(/[Tt]h/g, 't')
+    .replace(/[C]/g, 'zh')
+    .replace(/[c]/g, 'th')
+    .replace(/[Tt]x/g, 'ch')
+    .replace(/[\^@~_&]/g, '')
+    .replace(/x/g, 'sh')
+    .replace(/h\!/g, '')
+    .replace(/(?<!=)\./g, '')
+    .replace(/(?<!=)[\+\-\!\?]/g, '')
+    .replace(/[I]+/g, 'i')
+    .replace(/[e]+/g, 'ae')
+    .replace(/[E]+/g, 'e')
+    .replace(/[i]+/g, 'ee')
+    .replace(/[a]+/g, 'a')
+    .replace(/[A]+/g, 'aa')
+    .replace(/o+/g, 'o')
+    .replace(/u\$/g, 'er')
+    .replace(/[u]+/g, 'oo')
+    .replace(/[U]+$/g, 'uh')
+    .replace(/[U]+/g, 'u')
+    .replace(/O/g, 'uu')
+    .replace(/[\$]/g, '')
+    .replace(/\*/g, '')
+    .replace(/=([\+\-\!\?])/, (_, $1: string) => $1)
+    .toLowerCase()
+}
