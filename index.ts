@@ -225,7 +225,7 @@ const form = {
   VOWELS: VOWELS,
   CONSONANTS: CONSONANTS,
   flow,
-  read,
+  ease,
   mark,
   talk,
 }
@@ -236,7 +236,7 @@ export default form
  * Make it somewhat readable (simplified).
  */
 
-function read(text: string) {
+function ease(text: string) {
   return text
     .replace(/G(?!~)/g, 'r')
     .replace(/G~/g, '')
