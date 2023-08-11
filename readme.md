@@ -6,7 +6,7 @@
 <br/>
 
 <p align='center'>
-  <img src='https://github.com/tunebond/read/blob/make/view/view.svg?raw=true' height='312'>
+  <img src='https://github.com/nerdbond/read/blob/make/view/view.svg?raw=true' height='312'>
 </p>
 
 <h3 align='center'>
@@ -61,19 +61,19 @@ of English intuition, but it's not meant to be perfect like it would
 represent the words in English.
 
 ```ts
-import read from '@tunebond/read'
+import read from '@nerdbond/read'
 
 read.ease('brUCu$') // => 'bruzher'
 ```
 
 You can combine this with
-[`@tunebond/text`](https://github.com/tunebond/text.js) to start from
+[`@nerdbond/text`](https://github.com/nerdbond/text.js) to start from
 native writing systems, and using that library convert to Call Text
 ASCII, then simplify the ASCII into a somewhat readable form!
 
 ```ts
-import text from '@tunebond/text'
-import read from '@tunebond/read'
+import text from '@nerdbond/text'
+import read from '@nerdbond/read'
 
 read.read(text.tibetan.read(someTibetan))
 ```
@@ -100,7 +100,7 @@ Flow Read Text.
 | `aiyuQaK`        | aıyuq̇aḳ      |
 
 ```ts
-import read from '@tunebond/read'
+import read from '@nerdbond/read'
 
 read.flow('eT!e_^mu') // => 'eṭ̖ē̇mu'
 ```
@@ -111,7 +111,7 @@ Using the library, you can also count the number of syllables in a word,
 and convert IPA text into ASCII Call Text.
 
 ```ts
-import read from '@tunebond/read'
+import read from '@nerdbond/read'
 
 read.talk('kxɯʎʎikʰa̠da̠') // => 'kHOly~ly~ikh~a@da@'
 read.mark('kHOly~ly~ikh~a@da@') // => { size: 4 }
@@ -120,12 +120,12 @@ read.mark('kHOly~ly~ikh~a@da@') // => { size: 4 }
 ## Tone Text
 
 You can also transform Read Text into
-[Tone Text](https://github.com/tunebond/tone) by writing it in ASCII,
+[Tone Text](https://github.com/nerdbond/tone) by writing it in ASCII,
 and running it through the tone text code, which is freely available and
 open source there.
 
 ```ts
-import tone from '@tunebond/tone'
+import tone from '@nerdbond/tone'
 
 // make it for the font.
 tone.make('a+a+si-kiri-imu-') // => 'a3a3si4kiri4imu4'
@@ -133,7 +133,7 @@ tone.make('a+a+si-kiri-imu-') // => 'a3a3si4kiri4imu4'
 
 ## License
 
-Copyright 2021-2023 <a href='https://tune.bond'>TuneBond</a>
+Copyright 2021-2023 <a href='https://nerd.bond'>NerdBond</a>
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may
 not use this file except in compliance with the License. You may obtain
@@ -147,11 +147,11 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-## TuneBond
+## NerdBond
 
-This is being developed by the folks at [TuneBond](https://tune.bond), a
+This is being developed by the folks at [NerdBond](https://nerd.bond), a
 California-based project for helping humanity master information and
-computation. Find us on [Twitter](https://twitter.com/tunebond),
-[LinkedIn](https://www.linkedin.com/company/tunebond), and
-[Facebook](https://www.facebook.com/tunebond). Check out our other
-[GitHub projects](https://github.com/tunebond) as well!
+computation. Find us on [Twitter](https://twitter.com/nerdbond),
+[LinkedIn](https://www.linkedin.com/company/nerdbond), and
+[Facebook](https://www.facebook.com/nerdbond). Check out our other
+[GitHub projects](https://github.com/nerdbond) as well!
