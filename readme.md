@@ -34,7 +34,7 @@ is also an ASCII version suitable for writing on a traditional keyboard.
 This is shown in a faint color in the upper right of each box in the
 tables below. It is also clearly mapped out in the source code as well.
 
-### Ease Chat
+## Ease Chat
 
 This is the simplified, diacritic-free version of Chat Text, as
 demonstrated with these example words. Since it is so minimal, it is
