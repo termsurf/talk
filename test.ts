@@ -82,7 +82,7 @@ talk('kxɯʎʎikʰa̠da̠')
 talk('ɔ̂ːi̯.on')
 
 function talk(a: string) {
-  const pron = chat.talk(a)
+  const pron = chat.talk.fromIPA(a)
   console.log('ipa => ' + a)
   console.log('  text => ' + pron)
   console.log('  ease => ' + chat.ease(pron))

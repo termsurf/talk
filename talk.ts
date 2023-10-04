@@ -51,7 +51,7 @@ const m: { d: TextList; u: TextList } = {
   },
 }
 
-export default talk
+export default { fromIPA, toIPA }
 
 type Make = {
   last: {
@@ -99,7 +99,106 @@ type Vowel = {
   value: string
 }
 
-function talk(ipa: string, options = { tones: true }) {
+// TODO: this only works for tune lang so far.
+function toIPA(text: string) {
+  const parts = [...text]
+  const out: Array<string> = []
+  let i = 0
+  while (i < parts.length) {
+    const part = parts[i++]
+    switch (part) {
+      case '^':
+        out[out.length - 1] = `ˈ${out[out.length - 1]}`
+        break
+      case 'a':
+        out.push('ɔ')
+        break
+      case 'b':
+        out.push('b')
+        break
+      case 'c':
+        out.push('θ')
+        break
+      case 'C':
+        out.push('ð')
+        break
+      case 'd':
+        out.push('d')
+        break
+      case 'e':
+        out.push('eɪ')
+        break
+      case 'f':
+        out.push('f')
+        break
+      case 'g':
+        out.push('g')
+        break
+      case 'h':
+        out.push('h')
+        break
+      case 'i':
+        out.push('i')
+        break
+      case 'j':
+        out.push('ʒ')
+        break
+      case 'k':
+        out.push('k')
+        break
+      case 'l':
+        out.push('l')
+        break
+      case 'm':
+        out.push('m')
+        break
+      case 'n':
+        out.push('n')
+        break
+      case 'o':
+        out.push('o')
+        break
+      case 'p':
+        out.push('p')
+        break
+      case 'q':
+        out.push('ŋ')
+        break
+      case 'r':
+        out.push('r')
+        break
+      case 's':
+        out.push('s')
+        break
+      case 't':
+        out.push('t')
+        break
+      case 'u':
+        out.push('u')
+        break
+      case 'v':
+        out.push('v')
+        break
+      case 'w':
+        out.push('w')
+        break
+      case 'x':
+        out.push('ʃ')
+        break
+      case 'y':
+        out.push('j')
+        break
+      case 'z':
+        out.push('z')
+        break
+      default:
+        throw new Error(part)
+    }
+  }
+  return out.join('')
+}
+
+function fromIPA(ipa: string, options = { tones: true }) {
   const result: Make = {
     last: {
       consonant: null,
