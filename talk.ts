@@ -106,12 +106,29 @@ function toIPA(text: string) {
   let i = 0
   while (i < parts.length) {
     const part = parts[i++]
+    const next = parts[i]
     switch (part) {
       case '^':
         out[out.length - 1] = `ˈ${out[out.length - 1]}`
         break
+      case '&':
+        out[out.length - 1] = `${out[out.length - 1]}${m.d.tilde}`
+        break
+      case '!': {
+        const last = out[out.length - 1]
+        if (last === 'h') {
+          out.pop()
+          out[out.length - 1] = `${out[out.length - 1]}${m.d.ring}`
+        } else {
+          throw new Error('Unimplemented')
+        }
+        break
+      }
       case 'a':
-        out.push('ɔ')
+        out.push('a')
+        break
+      case 'A':
+        out.push('A')
         break
       case 'b':
         out.push('b')
@@ -125,8 +142,17 @@ function toIPA(text: string) {
       case 'd':
         out.push('d')
         break
+      case 'D':
+        out.push('ɖ')
+        break
+      case 'T':
+        out.push('ʈ')
+        break
+      case 'E':
+        out.push('E')
+        break
       case 'e':
-        out.push('eɪ')
+        out.push('e')
         break
       case 'f':
         out.push('f')
@@ -135,7 +161,18 @@ function toIPA(text: string) {
         out.push('g')
         break
       case 'h':
-        out.push('h')
+        if (next === '~') {
+          i++
+          out.push(`ʰ`)
+        } else {
+          out.push('h')
+        }
+        break
+      case 'H':
+        out.push('χ')
+        break
+      case 'I':
+        out.push('I')
         break
       case 'i':
         out.push('i')
@@ -146,6 +183,9 @@ function toIPA(text: string) {
       case 'k':
         out.push('k')
         break
+      case 'K':
+        out.push('q')
+        break
       case 'l':
         out.push('l')
         break
@@ -154,6 +194,9 @@ function toIPA(text: string) {
         break
       case 'n':
         out.push('n')
+        break
+      case 'O':
+        out.push('O')
         break
       case 'o':
         out.push('o')
@@ -167,11 +210,17 @@ function toIPA(text: string) {
       case 'r':
         out.push('r')
         break
+      case 'R':
+        out.push('ɽ')
+        break
       case 's':
         out.push('s')
         break
       case 't':
         out.push('t')
+        break
+      case 'U':
+        out.push('U')
         break
       case 'u':
         out.push('u')
@@ -186,10 +235,18 @@ function toIPA(text: string) {
         out.push('ʃ')
         break
       case 'y':
-        out.push('j')
+        if (next === '~') {
+          i++
+          out.push(`ʲ`)
+        } else {
+          out.push('j')
+        }
         break
       case 'z':
         out.push('z')
+        break
+      case '_':
+        out.push('ː')
         break
       default:
         throw new Error(part)
@@ -247,7 +304,6 @@ function fromIPA(ipa: string, options = { tones: true }) {
       case 'y':
         addVowel('i$')
         break
-
       case 'e':
         addVowel('e')
         break
@@ -330,7 +386,7 @@ function fromIPA(ipa: string, options = { tones: true }) {
         addConsonant('bb')
         break
       case 'ɖ':
-        addConsonant('d!')
+        addConsonant('D')
         break
       case 'ǂ':
         addConsonant('d*')
@@ -365,10 +421,12 @@ function fromIPA(ipa: string, options = { tones: true }) {
         addFeature('palatalization')
         break
       case 'ħ':
-        addConsonant('Hh!')
+        addConsonant('H')
+        addFeature('aspiration')
         break
       case 'ɦ':
-        addConsonant('hh')
+        addConsonant('h')
+        addFeature('aspiration')
         break
       case 'x':
         addConsonant('H')
@@ -400,9 +458,6 @@ function fromIPA(ipa: string, options = { tones: true }) {
         addConsonant('j')
         addFeature('palatalization')
         break
-      case 'k':
-        addConsonant('k')
-        break
       case 'ǃ':
         addConsonant('k*')
         break
@@ -428,9 +483,6 @@ function fromIPA(ipa: string, options = { tones: true }) {
         addConsonant('n')
         addFeature('palatalization')
         break
-      case 'l':
-        addConsonant('l')
-        break
       case 'ɭ':
         addConsonant('L')
         break
@@ -440,9 +492,6 @@ function fromIPA(ipa: string, options = { tones: true }) {
         break
       case 'ǁ':
         addConsonant('l*')
-        break
-      case 'p':
-        addConsonant('p')
         break
       case 'ʘ':
         addConsonant('p*')
@@ -479,9 +528,6 @@ function fromIPA(ipa: string, options = { tones: true }) {
         break
       case 'ǀ':
         addConsonant('t*')
-        break
-      case 'v':
-        addConsonant('v')
         break
       case 'ʋ':
         addConsonant('V')
@@ -524,9 +570,6 @@ function fromIPA(ipa: string, options = { tones: true }) {
       case 'ɗ':
         addConsonant('d')
         addFeature('implosion')
-        break
-      case 'z':
-        addConsonant('z')
         break
       case 'ʔ':
         if (result.last.consonant?.value !== "'") {
@@ -629,10 +672,6 @@ function fromIPA(ipa: string, options = { tones: true }) {
         break
       case '\u0339':
         break
-      case '\u035c':
-        break
-      case '\u0361':
-        break
       case '\u0306': // extra short vowel
         addFeature('short')
         break
@@ -721,35 +760,17 @@ function fromIPA(ipa: string, options = { tones: true }) {
       case 'l':
         addConsonant('l')
         break
-      case 'm':
-        addConsonant('m')
-        break
-      case 'n':
-        addConsonant('n')
-        break
       case 'p':
         addConsonant('p')
         break
       case 'q':
         addConsonant('q')
         break
-      case 'r':
-        addConsonant('r')
-        break
-      case 's':
-        addConsonant('s')
-        break
       case 't':
         addConsonant('t')
         break
       case 'v':
         addConsonant('v')
-        break
-      case 'w':
-        addConsonant('w')
-        break
-      case 'x':
-        addConsonant('x')
         break
       case 'y':
         addConsonant('y')
