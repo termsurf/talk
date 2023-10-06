@@ -45,12 +45,12 @@ const D: Record<string, string> = {
 }
 
 const G: Record<string, string> = {
-  I: `ı${m.d.dot}`,
+  I: `i${m.d.dot}`,
   E: `e${m.d.dot}`,
   A: `a${m.d.dot}`,
   O: `o${m.d.dot}`,
   U: `u${m.d.dot}`,
-  i: `ı`,
+  i: `i`,
   e: `e`,
   a: `a`,
   o: `o`,
@@ -92,10 +92,12 @@ BASE_VOWEL_GLYPHS.forEach(g => {
           VARIANT_MARKS.forEach(v => {
             TONE_MARKS.forEach(t => {
               const i = `${g}${v}${n}${s}${t}${l}${a}`
+              const x = g.match(/i/i) && a === '^' ? 'ï' : G[g]
+              const y = x === 'ï' ? '' : D[a]
               const o =
                 l === '!'
-                  ? `${G[g]}${D[a]}${D[t]}${D[l]}${D[n]}${D[s]}${D[v]}`
-                  : `${G[g]}${D[t]}${D[l]}${D[n]}${D[s]}${D[v]}${D[a]}`
+                  ? `${x}${y}${D[t]}${D[l]}${D[n]}${D[s]}${D[v]}`
+                  : `${x}${D[t]}${D[l]}${D[n]}${D[s]}${D[v]}${y}`
               VOWELS.push({ i, o })
             })
           })
@@ -164,9 +166,9 @@ const CONSONANTS = [
   { i: 'k.', o: `k${m.d.tilde}` },
   { i: 'k', o: `k` },
   { i: 'Hh!', o: `h${m.d.ring}` },
-  { i: 'H!', o: `ḥ${m.d.grave}` },
-  { i: 'H', o: `ḥ`, o2: `h${m.d.dot}` },
-  { i: 'h~', o: `ḩ`, o2: `h${m.d.ddot}` },
+  { i: 'H!', o: `ḩ${m.d.grave}` },
+  { i: 'H', o: `ḩ`, o2: `h${m.d.dot}` },
+  { i: 'h~', o: `ḥ`, o2: `h${m.d.ddot}` },
   { i: 'h!', o: `h${m.d.down}` },
   { i: 'h', o: `h` },
   { i: 'J', o: `ȷ̈` },
