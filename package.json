@@ -18,6 +18,7 @@
     "./host/talk.d.ts"
   ],
   "scripts": {
+    "move": "pnpm make && git add . && git commit -am 'save' && npm version patch && pnpm host && git push",
     "make": "tsc && tsc-alias",
     "scan": "concurrently --kill-others \"tsc -w\" \"tsc-alias -w\"",
     "lint": "eslint --ext .ts ./make",

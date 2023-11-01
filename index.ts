@@ -108,11 +108,6 @@ BASE_VOWEL_GLYPHS.forEach(g => {
 })
 
 const CONSONANTS = [
-  { i: '=.', o: '.' },
-  { i: '=?', o: '?' },
-  { i: '=!', o: '!' },
-  { i: '=+', o: '+' },
-  { i: '=-', o: '-' },
   { i: 'mh!', o: `m${m.u.ring}` },
   { i: 'm', o: `m` },
   { i: 'Nh!', o: `ṇ${m.u.ring}` },
@@ -216,7 +211,42 @@ const CONSONANTS = [
   { i: "'", o: "'" },
 ]
 
-const ASCII_TO_UNICODE = [...VOWELS, ...CONSONANTS]
+const SYMBOLS = [
+  { i: '=.', o: '.' },
+  { i: '=?', o: '?' },
+  { i: '=!', o: '!' },
+  { i: '=+', o: '+' },
+  { i: '=-', o: '-' },
+  { i: '>', o: '>' },
+  { i: '<', o: '<' },
+  { i: '/', o: '/' },
+  { i: '\\', o: '\\' },
+  { i: '|', o: '|' },
+  { i: '(', o: '(' },
+  { i: ')', o: ')' },
+  { i: '[', o: '[' },
+  { i: ']', o: ']' },
+]
+
+const NUMERALS = [
+  { i: '0', o: '0' },
+  { i: '1', o: '1' },
+  { i: '2', o: '2' },
+  { i: '3', o: '3' },
+  { i: '4', o: '4' },
+  { i: '5', o: '5' },
+  { i: '6', o: '6' },
+  { i: '7', o: '7' },
+  { i: '8', o: '8' },
+  { i: '9', o: '9' },
+]
+
+const ASCII_TO_UNICODE = [
+  ...VOWELS,
+  ...CONSONANTS,
+  ...SYMBOLS,
+  ...NUMERALS,
+]
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
 const tree = st.fork(ASCII_TO_UNICODE)
@@ -227,6 +257,8 @@ const form = {
   ASCII_TO_UNICODE: ASCII_TO_UNICODE,
   VOWELS: VOWELS,
   CONSONANTS: CONSONANTS,
+  SYMBOLS,
+  NUMERALS,
   flow,
   ease,
   mark,
