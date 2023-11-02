@@ -4,7 +4,7 @@
   "main": "host/index.js",
   "license": "Apache 2.0",
   "dependencies": {
-    "@lancejpollard/script-tree": "^1.1.1"
+    "@lancejpollard/script-tree": "^1.1.2"
   },
   "scripts": {
     "move": "pnpm make && git add . && git commit -am 'save' && npm version patch && pnpm host && git push",
@@ -16,7 +16,6 @@
     "host": "pnpm make && npm publish --access=public"
   },
   "devDependencies": {
-    "tsx": "^3.12.7",
     "@trivago/prettier-plugin-sort-imports": "^4.0.0",
     "@types/lodash": "^4.14.194",
     "@types/node": "^18.11.17",
@@ -39,6 +38,7 @@
     "prettier": "^2.8.1",
     "ts-node": "^10.9.1",
     "tsc-alias": "^1.8.2",
+    "tsx": "^3.12.7",
     "typescript": "^4.9.4"
   }
 }

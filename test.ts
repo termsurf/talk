@@ -84,6 +84,7 @@ talk('ɔ̂ːi̯.on')
 read('by~oph~am')
 
 console.log(chat.slot('by~o ph~A_m'))
+console.log(chat.slot('a'))
 
 function read(a: string) {
   const viewList = chat.read(a)
