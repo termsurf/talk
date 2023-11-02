@@ -120,11 +120,18 @@ vowels_. There are 5 categories of things which get tinkered with when
 "refining" the pronunciation from its most accurate form, to the most
 basic form:
 
-- **vowel**: none, one, basic, all
-- **consonant**: all, simplified
-- **tone**: yes, no
-- **duration**: yes, no
-- **aspiration**: yes, no
+- **vowel**: none, one, basic, all. No vowels, the `a` vowel, the 5
+  basic vowels `i e a o u`, or any possible vowel allowed by ChatText.
+- **consonant**: all, simplified. All possible consonants allowed by
+  ChatText, or a simplified subset, where it basically merges bp, td,
+  xj, fv, sz, and kg, and gets rid of any consonant variants like click
+  consonants or stop/tense consonants (Korean).
+- **tone**: yes, no. Whether or not we include tone markers (useful in
+  Chinese).
+- **duration**: yes, no. Whether or not we include duration markers
+  (useful in Sanskrit).
+- **aspiration**: yes, no. Whether or not we include aspiration markers
+  (useful in Indian languages).
 
 By combining all these characteristics, we end up with something like
 this (for the word `by~oph~am`, which has palatalization, aspiration,
