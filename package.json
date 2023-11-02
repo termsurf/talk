@@ -6,17 +6,6 @@
   "dependencies": {
     "@lancejpollard/script-tree": "^1.1.1"
   },
-  "files": [
-    "./host/index.js",
-    "./host/index.js.map",
-    "./host/index.d.ts",
-    "./host/mark.js",
-    "./host/mark.js.map",
-    "./host/mark.d.ts",
-    "./host/talk.js",
-    "./host/talk.js.map",
-    "./host/talk.d.ts"
-  ],
   "scripts": {
     "move": "pnpm make && git add . && git commit -am 'save' && npm version patch && pnpm host && git push",
     "make": "tsc && tsc-alias",
