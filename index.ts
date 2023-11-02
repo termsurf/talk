@@ -3,6 +3,8 @@ import mark from './mark.js'
 import talk from './talk.js'
 import { read, readCase } from './read.js'
 
+export type { ViewType } from './read.js'
+
 const m = {
   u: {
     grave: '\u0300',
