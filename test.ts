@@ -81,9 +81,9 @@ talk('kxɯnsʰo̞ɾit͡ɕʰida̠')
 talk('kxɯʎʎikʰa̠da̠')
 talk('ɔ̂ːi̯.on')
 
-read('by~oph~am')
+read('by~u$oph~am')
 
-console.log(chat.slot('by~o ph~A_m'))
+console.log(chat.slot('by~ou$f ph~A_m'))
 console.log(chat.slot('a'))
 
 function read(a: string) {
