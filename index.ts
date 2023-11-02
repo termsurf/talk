@@ -255,6 +255,9 @@ const ASCII_TO_UNICODE = [
 const tree = st.fork(ASCII_TO_UNICODE)
 // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access
 const flow = (text: string): string => st.form(text, tree)
+const slot = (text: string): Array<string> =>
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-return
+  st.list(text, tree).map((x: any) => x.i)
 
 const form = {
   ASCII_TO_UNICODE: ASCII_TO_UNICODE,
@@ -268,6 +271,7 @@ const form = {
   talk,
   readCase,
   read,
+  slot,
 }
 
 export default form
