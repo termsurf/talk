@@ -20,7 +20,7 @@ flow('mh!im', 'm\u030Aim')
 flow('nh!iqh!lh!', 'n\u030Aiq\u030Al̥')
 flow('p*at@', 'ṗ̂aṱ')
 flow('t*et.', 'ṭ̬et̰')
-flow('n~ul~t~', 'n̂ul̬t̬')
+flow('n~ulQ~tQ~', 'n̂ul̬t̬')
 flow('b?ad?', 'ɓaɗ')
 flow('p*od*h~t*ak*el*', 'ṗ̂oḍ̬ḥṭ̬aḳ̬eḷ̬')
 
@@ -80,6 +80,13 @@ talk('ɸʷo̞')
 talk('kxɯnsʰo̞ɾit͡ɕʰida̠')
 talk('kxɯʎʎikʰa̠da̠')
 talk('ɔ̂ːi̯.on')
+
+read('by~oph~am')
+
+function read(a: string) {
+  const viewList = chat.read(a)
+  console.log(viewList)
+}
 
 function talk(a: string) {
   const pron = chat.talk.fromIPA(a)

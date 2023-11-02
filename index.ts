@@ -1,6 +1,7 @@
 import st from '@lancejpollard/script-tree'
 import mark from './mark.js'
 import talk from './talk.js'
+import { read, readCase } from './read.js'
 
 const m = {
   u: {
@@ -263,6 +264,8 @@ const form = {
   ease,
   mark,
   talk,
+  readCase,
+  read,
 }
 
 export default form

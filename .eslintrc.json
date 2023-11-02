@@ -78,7 +78,7 @@
     "import/no-duplicates": "error",
     "prettier/prettier": 2,
     "@typescript-eslint/no-unused-vars": "off",
-    "default-case": "error",
-    "default-case-last": "error"
+    "default-case": "off",
+    "default-case-last": "off"
   }
 }
