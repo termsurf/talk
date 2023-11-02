@@ -229,6 +229,7 @@ const SYMBOLS = [
   { i: ')', o: ')' },
   { i: '[', o: '[' },
   { i: ']', o: ']' },
+  { i: ' ', o: ' ' },
 ]
 
 const NUMERALS = [
