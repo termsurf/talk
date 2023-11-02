@@ -1,5 +1,5 @@
 {
-  "version": "1.2.10",
+  "version": "1.2.11",
   "name": "@wavebond/chat",
   "main": "host/index.js",
   "license": "Apache 2.0",
