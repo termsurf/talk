@@ -26,8 +26,8 @@ Chat Text uses the Latin script with diacritics to encode most of
 Earth's natural language features, enough so that you can write every
 language using the same Latin-oriented system and be close enough to a
 realistic pronunciation, including nasalized vowels, tense consonants,
-clicks, and tones, amongst other things. All of the symbols are shown
-large and on the left of each box in the tables below.
+clicks, and tones, amongst other things. See the `index.ts` for a list
+of all the possible symbols and their representation.
 
 In addition to a compact "Latin script with diacritics" version, there
 is also an ASCII version suitable for writing on a traditional keyboard.
