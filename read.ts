@@ -191,7 +191,7 @@ function moveToYesToneText(view: ViewType) {
 }
 
 function moveToNoVowelText(view: ViewType) {
-  const text = view.text.replace(/[aeiou][\^&_\+\-]+/gi, '')
+  const text = view.text.replace(/[aeiou][\^&_\+\-]*/gi, '')
   if (text !== view.text) {
     view.mass *= Ease.VowelNone
     view.load.vowel = 'none'
@@ -201,7 +201,7 @@ function moveToNoVowelText(view: ViewType) {
 
 function moveToOneVowelText(view: ViewType) {
   const text = view.text
-    .replace(/[aeiou][\^&]+/gi, 'a')
+    .replace(/[aeiou][\^&]*/gi, 'a')
     .replace(/a+/g, 'a')
 
   if (text !== view.text) {
@@ -213,7 +213,7 @@ function moveToOneVowelText(view: ViewType) {
 
 function moveToBasicVowelText(view: ViewType) {
   const text = view.text
-    .replace(/([aeiou])[\^&]+/gi, (_, $1: string) => $1.toLowerCase())
+    .replace(/([aeiou])[\^&]*/gi, (_, $1: string) => $1.toLowerCase())
     .replace(/a+/g, '')
     .replace(/e+/g, '')
     .replace(/i+/g, '')
