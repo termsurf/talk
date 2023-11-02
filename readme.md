@@ -138,7 +138,8 @@ this (for the word `by~oph~am`, which has palatalization, aspiration,
 and a few vowels and non-simplified consonants):
 
 ```js
-const list = [
+const list = chat.read('by~oph~am')
+[
   {
     text: 'by~oph~am',
     mass: 405,
