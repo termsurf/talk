@@ -67,7 +67,7 @@ chat.ease('brUCu$') // => 'bruzher'
 ```
 
 You can combine this with
-[`@wavebond/text`](https://github.com/wavebond/text.js) to start from
+[`@wavebond/talk`](https://github.com/wavebond/talk.js) to start from
 native writing systems, and using that library convert to Chat Text
 ASCII, then simplify the ASCII into a somewhat readable form!
 
