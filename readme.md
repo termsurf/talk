@@ -34,12 +34,12 @@ is also an ASCII version suitable for writing on a traditional keyboard.
 This is shown in a faint color in the upper right of each box in the
 tables below. It is also clearly mapped out in the source code as well.
 
-## Ease Chat
+## EaseChat
 
-This is the simplified, diacritic-free version of Chat Text, as
+This is the simplified, diacritic-free version of ChatText, as
 demonstrated with these example words. Since it is so minimal, it is
 much _easier_ for an English speaker to _read_, hence calling it the
-Ease Chat Text. It's not perfect, but it gets the job done.
+EaseChat. It's not perfect, but it gets the job done.
 
 | english    | ascii        | simplified  |
 | :--------- | :----------- | :---------- |
@@ -78,12 +78,12 @@ import chat from '@wavebond/chat'
 chat.read(talk.tibetan.read(someTibetan))
 ```
 
-## Flow Chat
+## FlowChat
 
 This is the more rich formatting of the ASCII characters, using
 diacritics and trying to keep things relatively minimal while still
 being reasonably accurate with pronunciation. That is why we call it
-Flow Chat Text.
+FlowChat.
 
 | ascii            | simplified   |
 | :--------------- | :----------- |
@@ -104,6 +104,113 @@ import chat from '@wavebond/chat'
 
 chat.flow('eT!e_^mu') // => 'eṭ̖ē̇mu'
 ```
+
+## ReadChat
+
+Here we have included a system inspired by the
+[Double Metaphone algorithm](https://github.com/words/double-metaphone/blob/main/index.js),
+which is an algorithm which creates a simplified pronunciation "hash" of
+some input text, usually English or other Indo-European languages.
+
+Since ChatText is itself a simplified ASCII pronunciation system for any
+of the world's languages (like X-SAMPA or IPA, but easier to write), it
+was straightforward to make a system where we _progressively simplify
+the pronunciation from accurate to only simplified consonants and no
+vowels_. There are 5 categories of things which get tinkered with when
+"refining" the pronunciation from its most accurate form, to the most
+basic form:
+
+- **vowel**: none, one, basic, all
+- **consonant**: all, simplified
+- **tone**: yes, no
+- **duration**: yes, no
+- **aspiration**: yes, no
+
+By combining all these characteristics, we end up with something like
+this (for the word `by~oph~am`, which has palatalization, aspiration,
+and a few vowels and non-simplified consonants):
+
+```js
+const list = [
+  {
+    text: 'by~oph~am',
+    mass: 405,
+    load: {
+      consonant: 'all',
+      vowel: 'all',
+      tone: 'yes',
+      aspiration: 'yes',
+      duration: 'yes',
+    },
+  },
+  {
+    text: 'by~ph~m',
+    mass: 324,
+    load: {
+      consonant: 'all',
+      vowel: 'basic',
+      tone: 'yes',
+      aspiration: 'yes',
+      duration: 'yes',
+    },
+  },
+  {
+    text: 'by~opam',
+    mass: 270,
+    load: {
+      consonant: 'all',
+      vowel: 'all',
+      tone: 'yes',
+      aspiration: 'no',
+      duration: 'yes',
+    },
+  },
+  {
+    text: 'pyopham',
+    mass: 270,
+    load: {
+      consonant: 'simplified',
+      vowel: 'all',
+      tone: 'yes',
+      aspiration: 'yes',
+      duration: 'yes',
+    },
+  },
+  {
+    text: 'by~pm',
+    mass: 216,
+    load: {
+      consonant: 'all',
+      vowel: 'basic',
+      tone: 'yes',
+      aspiration: 'no',
+      duration: 'yes',
+    },
+  },
+  {
+    text: 'pyphm',
+    mass: 216,
+    load: {
+      consonant: 'simplified',
+      vowel: 'basic',
+      tone: 'yes',
+      aspiration: 'yes',
+      duration: 'yes',
+    },
+  },
+]
+```
+
+The `mass` is basically a "weight" for now, to say how many features it
+included, i.e. how close to the actual pronunciation it was. The smaller
+the mass, the less it is like the original pronunciation.
+
+You then use the `text` as a key in a lookup table to find words
+matching that refined text pronunciation. You likely will find the same
+term in several spots, but you can just filter those at at query time.
+
+That's about it! Now have to play with this in production to see how
+useful it is in practice for building pseudo-fuzzy dictionary search.
 
 ## Syllables and Pronunciation
 
