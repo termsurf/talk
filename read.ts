@@ -214,11 +214,11 @@ function moveToOneVowelText(view: ViewType) {
 function moveToBasicVowelText(view: ViewType) {
   const text = view.text
     .replace(/([aeiou])[\^&]*/gi, (_, $1: string) => $1.toLowerCase())
-    .replace(/a+/g, '')
-    .replace(/e+/g, '')
-    .replace(/i+/g, '')
-    .replace(/o+/g, '')
-    .replace(/u+/g, '')
+    .replace(/a+/g, 'a')
+    .replace(/e+/g, 'e')
+    .replace(/i+/g, 'i')
+    .replace(/o+/g, 'o')
+    .replace(/u+/g, 'u')
     .replace(/ai/g, 'a')
     .replace(/au/g, 'a')
     .replace(/ao/g, 'o')
