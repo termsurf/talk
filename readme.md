@@ -6,11 +6,11 @@
 <br/>
 
 <p align='center'>
-  <img src='https://github.com/wavebond/chat.js/blob/make/view/view.svg?raw=true' height='312'>
+  <img src='https://github.com/textsurf/chat.js/blob/make/view/view.svg?raw=true' height='312'>
 </p>
 
 <h3 align='center'>
-  @wavebond/chat
+  @textsurf/chat
 </h3>
 <p align='center'>
   A Cross-Cultural Romanization Scheme
@@ -61,19 +61,19 @@ of English intuition, but it's not meant to be perfect like it would
 represent the words in English.
 
 ```ts
-import chat from '@wavebond/chat'
+import chat from '@textsurf/chat'
 
 chat.ease('brUCu$') // => 'bruzher'
 ```
 
 You can combine this with
-[`@wavebond/talk`](https://github.com/wavebond/talk.js) to start from
+[`@textsurf/talk`](https://github.com/textsurf/talk.js) to start from
 native writing systems, and using that library convert to Chat Text
 ASCII, then simplify the ASCII into a somewhat readable form!
 
 ```ts
-import talk from '@wavebond/talk'
-import chat from '@wavebond/chat'
+import talk from '@textsurf/talk'
+import chat from '@textsurf/chat'
 
 chat.read(talk.tibetan.read(someTibetan))
 ```
@@ -100,7 +100,7 @@ FlowChat.
 | `aiyuQaK`        | aıyuq̇aḳ      |
 
 ```ts
-import chat from '@wavebond/chat'
+import chat from '@textsurf/chat'
 
 chat.flow('eT!e_^mu') // => 'eṭ̖ē̇mu'
 ```
@@ -226,7 +226,7 @@ Using the library, you can also count the number of syllables in a word,
 and convert IPA text into ASCII Call Text.
 
 ```ts
-import chat from '@wavebond/chat'
+import chat from '@textsurf/chat'
 
 chat.talk('kxɯʎʎikʰa̠da̠') // => 'kHOly~ly~ikh~a@da@'
 chat.mark('kHOly~ly~ikh~a@da@') // => { size: 4 }
@@ -235,12 +235,12 @@ chat.mark('kHOly~ly~ikh~a@da@') // => { size: 4 }
 ## Tone Text
 
 You can also transform Chat Text into
-[Tone Text](https://github.com/wavebond/tone) by writing it in ASCII,
+[Tone Text](https://github.com/textsurf/tone) by writing it in ASCII,
 and running it through the tone text code, which is freely available and
 open source there.
 
 ```ts
-import tone from '@wavebond/tone'
+import tone from '@textsurf/tone'
 
 // make it for the font.
 tone.make('a+a+si-kiri-imu-') // => 'a3a3si4kiri4imu4'
@@ -248,7 +248,7 @@ tone.make('a+a+si-kiri-imu-') // => 'a3a3si4kiri4imu4'
 
 ## License
 
-Copyright 2021-2023 <a href='https://wave.bond'>WaveBond</a>
+Copyright 2021-2023 <a href='https://text.surf'>TextSurf</a>
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may
 not use this file except in compliance with the License. You may obtain
@@ -262,11 +262,11 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-## WaveBond
+## TextSurf
 
-This is being developed by the folks at [WaveBond](https://wave.bond), a
+This is being developed by the folks at [TextSurf](https://text.surf), a
 California-based project for helping humanity master information and
-computation. Find us on [Twitter](https://twitter.com/_wavebond),
-[LinkedIn](https://www.linkedin.com/company/wavebond), and
-[Facebook](https://www.facebook.com/wavebond). Check out our other
-[GitHub projects](https://github.com/wavebond) as well!
+computation. Find us on [Twitter](https://twitter.com/_textsurf),
+[LinkedIn](https://www.linkedin.com/company/textsurf), and
+[Facebook](https://www.facebook.com/textsurf). Check out our other
+[GitHub projects](https://github.com/textsurf) as well!

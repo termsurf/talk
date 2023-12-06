@@ -84,7 +84,7 @@ talk('ɔ̂ːi̯.on')
 read('by~u$oph~am')
 
 console.log(chat.slot('by~ou$f ph~A_m'))
-console.log(chat.slot('a'))
+const viewList = chat.read('aikagaVika_bh~yah')
 
 function read(a: string) {
   const viewList = chat.read(a)
@@ -98,6 +98,7 @@ function talk(a: string) {
   console.log('  ease => ' + chat.ease(pron))
   console.log('  flow => ' + chat.flow(pron))
   const markList = chat.mark(pron)
+  console.log(markList)
   console.log('  mark => ' + markList.size)
   console.log('  fold => ' + markList.fold)
 }
