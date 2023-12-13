@@ -22,12 +22,12 @@
 
 ## Overview
 
-Chat Text uses the Latin script with diacritics to encode most of
-Earth's natural language features, enough so that you can write every
-language using the same Latin-oriented system and be close enough to a
-realistic pronunciation, including nasalized vowels, tense consonants,
-clicks, and tones, amongst other things. See the `index.ts` for a list
-of all the possible symbols and their representation.
+ChatText uses the Latin script with diacritics to encode most of Earth's
+natural language features, enough so that you can write every language
+using the same Latin-oriented system and be close enough to a realistic
+pronunciation, including nasalized vowels, tense consonants, clicks, and
+tones, amongst other things. See the `index.ts` for a list of all the
+possible symbols and their representation.
 
 In addition to a compact "Latin script with diacritics" version, there
 is also an ASCII version suitable for writing on a traditional keyboard.
@@ -68,7 +68,7 @@ chat.ease('brUCu$') // => 'bruzher'
 
 You can combine this with
 [`@termsurf/talk`](https://github.com/termsurf/talk.js) to start from
-native writing systems, and using that library convert to Chat Text
+native writing systems, and using that library convert to ChatText
 ASCII, then simplify the ASCII into a somewhat readable form!
 
 ```ts
@@ -234,7 +234,7 @@ chat.mark('kHOly~ly~ikh~a@da@') // => { size: 4 }
 
 ## Tone Text
 
-You can also transform Chat Text into
+You can also transform ChatText into
 [Tone Text](https://github.com/termsurf/tone) by writing it in ASCII,
 and running it through the tone text code, which is freely available and
 open source there.
@@ -266,7 +266,7 @@ limitations under the License.
 
 This is being developed by the folks at [TermSurf](https://term.surf), a
 California-based project for helping humanity master information and
-computation. Find us on [Twitter](https://twitter.com/termsurfcode),
+computation. Find us on [Twitter](https://twitter.com/termsurf),
 [LinkedIn](https://www.linkedin.com/company/termsurf), and
 [Facebook](https://www.facebook.com/termsurf). Check out our other
 [GitHub projects](https://github.com/termsurf) as well!
