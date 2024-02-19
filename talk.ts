@@ -266,7 +266,7 @@ function toIPA(text: string) {
         out.push('n')
         break
       case 'O':
-        out.push('ɯ')
+        out.push('ʊ')
         captureAllTones()
         break
       case 'o':
