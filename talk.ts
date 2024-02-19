@@ -134,7 +134,7 @@ function toIPA(text: string) {
         captureAllTones()
         break
       case 'A':
-        out.push('A')
+        out.push('æ')
         captureAllTones()
         break
       case 'b':
@@ -205,7 +205,7 @@ function toIPA(text: string) {
         out.push('ɬ')
         break
       case 'E':
-        out.push('E')
+        out.push('ɛ')
         captureAllTones()
         break
       case 'e':
@@ -235,7 +235,7 @@ function toIPA(text: string) {
         out.push('χ')
         break
       case 'I':
-        out.push('I')
+        out.push('ɪ')
         captureAllTones()
         break
       case 'i':
@@ -266,7 +266,7 @@ function toIPA(text: string) {
         out.push('n')
         break
       case 'O':
-        out.push('O')
+        out.push('ɯ')
         captureAllTones()
         break
       case 'o':
@@ -297,7 +297,7 @@ function toIPA(text: string) {
         out.push('t')
         break
       case 'U':
-        out.push('U')
+        out.push('ə')
         captureAllTones()
         break
       case 'u':
