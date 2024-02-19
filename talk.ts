@@ -144,7 +144,13 @@ function toIPA(text: string) {
         out.push('θ')
         break
       case 'C':
-        out.push('ð')
+        if (next === '~') {
+          i++
+          // TODO: better handle this?
+          out.push('ð')
+        } else {
+          out.push('ð')
+        }
         break
       case 'd':
         out.push('d')
