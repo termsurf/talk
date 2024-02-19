@@ -158,6 +158,12 @@ function toIPA(text: string) {
       case '@': // tense
         out.push('͈')
         break
+      case 'L':
+        out.push('ɭ')
+        break
+      case 'J':
+        out.push('ʐ')
+        break
       case 'G':
         if (next === '~') {
           i++
