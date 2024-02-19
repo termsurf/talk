@@ -125,10 +125,17 @@ function toIPA(text: string) {
         break
       }
       case 'a':
-        out.push('a')
+        if (next === '$') {
+          i++
+          out.push('œ')
+        } else {
+          out.push('a')
+        }
+        captureAllTones()
         break
       case 'A':
         out.push('A')
+        captureAllTones()
         break
       case 'b':
         out.push('b')
@@ -145,14 +152,40 @@ function toIPA(text: string) {
       case 'D':
         out.push('ɖ')
         break
+      case 'G':
+        if (next === '~') {
+          i++
+          out[out.length - 1] = `${out[out.length - 1]}ˠ`
+        } else {
+          out.push('ʁ')
+        }
+        break
+      case "'":
+        out.push('ʔ')
+        break
       case 'T':
         out.push('ʈ')
         break
+      case 'Q':
+        if (next === '~') {
+          i++
+          out[out.length - 1] = `${out[out.length - 1]}ˤ`
+        } else {
+          out.push('ʕ')
+        }
+        break
       case 'E':
         out.push('E')
+        captureAllTones()
         break
       case 'e':
-        out.push('e')
+        if (next === '$') {
+          i++
+          out.push('ø')
+        } else {
+          out.push('e')
+        }
+        captureAllTones()
         break
       case 'f':
         out.push('f')
@@ -173,9 +206,16 @@ function toIPA(text: string) {
         break
       case 'I':
         out.push('I')
+        captureAllTones()
         break
       case 'i':
-        out.push('i')
+        if (next === '$') {
+          i++
+          out.push('ɨ')
+        } else {
+          out.push('i')
+        }
+        captureAllTones()
         break
       case 'j':
         out.push('ʒ')
@@ -197,9 +237,16 @@ function toIPA(text: string) {
         break
       case 'O':
         out.push('O')
+        captureAllTones()
         break
       case 'o':
-        out.push('o')
+        if (next === '$') {
+          i++
+          out.push('ɔ')
+        } else {
+          out.push('o')
+        }
+        captureAllTones()
         break
       case 'p':
         out.push('p')
@@ -221,9 +268,16 @@ function toIPA(text: string) {
         break
       case 'U':
         out.push('U')
+        captureAllTones()
         break
       case 'u':
-        out.push('u')
+        if (next === '$') {
+          i++
+          out.push('ɹ')
+        } else {
+          out.push('u')
+        }
+        captureAllTones()
         break
       case 'v':
         out.push('v')
@@ -250,6 +304,30 @@ function toIPA(text: string) {
         break
       default:
         throw new Error(part)
+    }
+
+    function captureAllTones() {
+      if (next?.startsWith('-')) {
+        next.match(/(\-+)/)
+        const size = RegExp.$1.length
+        i += size
+
+        if (size === 1) {
+          out.push('˨')
+        } else {
+          out.push('˩')
+        }
+      } else if (next?.startsWith('+')) {
+        next.match(/(\++)/)
+        const size = RegExp.$1.length
+        i += size
+
+        if (size === 1) {
+          out.push('˦')
+        } else {
+          out.push('˥')
+        }
+      }
     }
   }
   return out.join('')
