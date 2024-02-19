@@ -195,6 +195,9 @@ function toIPA(text: string) {
           out.push('ʕ')
         }
         break
+      case 'S':
+        out.push('ɬ')
+        break
       case 'E':
         out.push('E')
         captureAllTones()
