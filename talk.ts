@@ -152,6 +152,12 @@ function toIPA(text: string) {
       case 'D':
         out.push('ɖ')
         break
+      case '.': // stop
+        out.push('̚')
+        break
+      case '@': // tense
+        out.push('͈')
+        break
       case 'G':
         if (next === '~') {
           i++
@@ -163,8 +169,17 @@ function toIPA(text: string) {
       case "'":
         out.push('ʔ')
         break
+      case 'X':
+        out.push('ʂ')
+        break
       case 'T':
         out.push('ʈ')
+        break
+      case 'V':
+        out.push('ʋ')
+        break
+      case 'N':
+        out.push('ɳ')
         break
       case 'Q':
         if (next === '~') {
@@ -307,8 +322,9 @@ function toIPA(text: string) {
     }
 
     function captureAllTones() {
+      const next = parts[i]
       if (next?.startsWith('-')) {
-        next.match(/(\-+)/)
+        text.slice(i).match(/^(\-+)/)
         const size = RegExp.$1.length
         i += size
 
@@ -318,7 +334,7 @@ function toIPA(text: string) {
           out.push('˩')
         }
       } else if (next?.startsWith('+')) {
-        next.match(/(\++)/)
+        text.slice(i).match(/^(\++)/)
         const size = RegExp.$1.length
         i += size
 
