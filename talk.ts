@@ -328,7 +328,13 @@ function toIPA(text: string) {
     }
 
     function captureAllTones() {
-      const next = parts[i]
+      let next = parts[i]
+      if (next?.startsWith('&')) {
+        out[out.length - 1] = `${out[out.length - 1]}${m.d.tilde}`
+        i++
+        next = parts[i]
+      }
+
       if (next?.startsWith('-')) {
         text.slice(i).match(/^(\-+)/)
         const size = RegExp.$1.length
