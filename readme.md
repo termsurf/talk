@@ -6,7 +6,7 @@
 <br/>
 
 <p align='center'>
-  <img src='https://github.com/termsurf/talk.js/blob/make/view/view.svg?raw=true' height='312'>
+  <img src='https://github.com/termsurf/talk/blob/make/view/view.svg?raw=true' height='312'>
 </p>
 
 <h3 align='center'>
