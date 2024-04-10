@@ -6,11 +6,11 @@
 <br/>
 
 <p align='center'>
-  <img src='https://github.com/termsurf/chat.js/blob/make/view/view.svg?raw=true' height='312'>
+  <img src='https://github.com/termsurf/talk.js/blob/make/view/view.svg?raw=true' height='312'>
 </p>
 
 <h3 align='center'>
-  @termsurf/chat
+  @termsurf/talk
 </h3>
 <p align='center'>
   A Cross-Cultural Romanization Scheme
@@ -22,7 +22,7 @@
 
 ## Overview
 
-ChatText uses the Latin script with diacritics to encode most of Earth's
+TalkText uses the Latin script with diacritics to encode most of Earth's
 natural language features, enough so that you can write every language
 using the same Latin-oriented system and be close enough to a realistic
 pronunciation, including nasalized vowels, tense consonants, clicks, and
@@ -34,12 +34,12 @@ is also an ASCII version suitable for writing on a traditional keyboard.
 This is shown in a faint color in the upper right of each box in the
 tables below. It is also clearly mapped out in the source code as well.
 
-## EaseChat
+## EaseTalk
 
-This is the simplified, diacritic-free version of ChatText, as
+This is the simplified, diacritic-free version of TalkText, as
 demonstrated with these example words. Since it is so minimal, it is
 much _easier_ for an English speaker to _read_, hence calling it the
-EaseChat. It's not perfect, but it gets the job done.
+EaseTalk. It's not perfect, but it gets the job done.
 
 | english    | ascii        | simplified  |
 | :--------- | :----------- | :---------- |
@@ -61,29 +61,17 @@ of English intuition, but it's not meant to be perfect like it would
 represent the words in English.
 
 ```ts
-import chat from '@termsurf/chat'
-
-chat.ease('brUCu$') // => 'bruzher'
-```
-
-You can combine this with
-[`@termsurf/talk`](https://github.com/termsurf/talk.js) to start from
-native writing systems, and using that library convert to ChatText
-ASCII, then simplify the ASCII into a somewhat readable form!
-
-```ts
 import talk from '@termsurf/talk'
-import chat from '@termsurf/chat'
 
-chat.read(talk.tibetan.read(someTibetan))
+talk.ease('brUCu$') // => 'bruzher'
 ```
 
-## FlowChat
+## FlowTalk
 
 This is the more rich formatting of the ASCII characters, using
 diacritics and trying to keep things relatively minimal while still
 being reasonably accurate with pronunciation. That is why we call it
-FlowChat.
+FlowTalk.
 
 | ascii            | simplified   |
 | :--------------- | :----------- |
@@ -100,19 +88,19 @@ FlowChat.
 | `aiyuQaK`        | aıyuq̇aḳ      |
 
 ```ts
-import chat from '@termsurf/chat'
+import talk from '@termsurf/talk'
 
-chat.flow('eT!e_^mu') // => 'eṭ̖ē̇mu'
+talk.flow('eT!e_^mu') // => 'eṭ̖ē̇mu'
 ```
 
-## ReadChat
+## ReadTalk
 
 Here we have included a system inspired by the
 [Double Metaphone algorithm](https://github.com/words/double-metaphone/blob/main/index.js),
 which is an algorithm which creates a simplified pronunciation "hash" of
 some input text, usually English or other Indo-European languages.
 
-Since ChatText is itself a simplified ASCII pronunciation system for any
+Since TalkText is itself a simplified ASCII pronunciation system for any
 of the world's languages (like X-SAMPA or IPA, but easier to write), it
 was straightforward to make a system where we _progressively simplify
 the pronunciation from accurate to only simplified consonants and no
@@ -121,9 +109,9 @@ vowels_. There are 5 categories of things which get tinkered with when
 basic form:
 
 - **vowel**: none, one, basic, all. No vowels, the `a` vowel, the 5
-  basic vowels `i e a o u`, or any possible vowel allowed by ChatText.
+  basic vowels `i e a o u`, or any possible vowel allowed by TalkText.
 - **consonant**: all, simplified. All possible consonants allowed by
-  ChatText, or a simplified subset, where it basically merges bp, td,
+  TalkText, or a simplified subset, where it basically merges bp, td,
   xj, fv, sz, and kg, and gets rid of any consonant variants like click
   consonants or stop/tense consonants (Korean).
 - **tone**: yes, no. Whether or not we include tone markers (useful in
@@ -138,7 +126,7 @@ this (for the word `by~oph~am`, which has palatalization, aspiration,
 and a few vowels and non-simplified consonants):
 
 ```js
-const list = chat.read('by~oph~am')
+const list = talk.read('by~oph~am')
 [
   {
     text: 'by~oph~am',
@@ -226,15 +214,15 @@ Using the library, you can also count the number of syllables in a word,
 and convert IPA text into ASCII Call Text.
 
 ```ts
-import chat from '@termsurf/chat'
+import talk from '@termsurf/talk'
 
-chat.talk('kxɯʎʎikʰa̠da̠') // => 'kHOly~ly~ikh~a@da@'
-chat.mark('kHOly~ly~ikh~a@da@') // => { size: 4 }
+talk.talk('kxɯʎʎikʰa̠da̠') // => 'kHOly~ly~ikh~a@da@'
+talk.mark('kHOly~ly~ikh~a@da@') // => { size: 4 }
 ```
 
 ## Tone Text
 
-You can also transform ChatText into
+You can also transform TalkText into
 [Tone Text](https://github.com/termsurf/tone) by writing it in ASCII,
 and running it through the tone text code, which is freely available and
 open source there.

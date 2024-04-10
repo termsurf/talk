@@ -83,7 +83,9 @@ talk('ɔ̂ːi̯.on')
 
 read('by~u$oph~am')
 
-console.log(chat.slot('by~ou$f ph~A_m'))
+console.log('slot', chat.slot('by~ou$f ph~A_m'))
+console.log('mark', chat.mark('by~ou$f'))
+console.log('mark', chat.mark('by~ou$fa'))
 const viewList = chat.read('aikagaVika_bh~yah')
 
 function read(a: string) {
