@@ -333,7 +333,7 @@ function toIPA(text: string) {
         out.push('ː')
         break
       default:
-        throw new Error(part)
+        throw new Error(`Error with part: ${part}`)
     }
 
     function captureAllTones() {
@@ -387,13 +387,39 @@ function fromIPA(ipa: string, options = { tones: true }) {
   while (i < parts.length) {
     const part = parts[i++]
     switch (part) {
+      case ' ':
+        throw new Error(
+          `Space not supported: (${parts.slice(0, i).join('')})`,
+        )
       case '\u200c': // non-width joiner
         break
       case 'ʰ':
         addFeature('aspiration')
         break
+      case '\u0331': // macron below
+      case '\u0320': // minus below
+        if (result.last?.out?.type === 'consonant') {
+          switch (result.last.out.value) {
+            case 's':
+              replaceLastConsonantIfMatch('x', 's')
+              break
+            case 'n':
+            case 'l': // https://en.wikipedia.org/wiki/Voiced_dental,_alveolar_and_postalveolar_lateral_approximants
+              break
+            default:
+              throw new Error(
+                `Unknown macron: (${parts.slice(0, i).join('')})`,
+              )
+          }
+        } else {
+          addFeature('long')
+        }
       case 'ũ':
         addVowel('u')
+        addFeature('nasalization')
+        break
+      case 'õ':
+        addVowel('o')
         addFeature('nasalization')
         break
       case 'ĩ':
@@ -790,6 +816,10 @@ function fromIPA(ipa: string, options = { tones: true }) {
       case '\u0306': // extra short vowel
         addFeature('short')
         break
+      case 'ɱ':
+        addConsonant('m')
+        addFeature('dental')
+        break
       case '\u032A': // dental
         addFeature('dental')
         break
@@ -825,7 +855,17 @@ function fromIPA(ipa: string, options = { tones: true }) {
       case 'ˤ':
         addFeature('pharyngealization')
         break
-      case 'ː':
+      case '\u032C': // voicing unvoiced
+        // https://en.wiktionary.org/wiki/%E2%97%8C%CC%AC
+        replaceLastConsonantIfMatch('v', 'f')
+        replaceLastConsonantIfMatch('z', 's')
+        replaceLastConsonantIfMatch('g', 'k')
+        replaceLastConsonantIfMatch('b', 'p')
+        replaceLastConsonantIfMatch('d', 't')
+        replaceLastConsonantIfMatch('j', 'x')
+        break
+      case 'ː': // full-long
+      case 'ˑ': // half-long
         addFeature('long')
         break
       case '-':
@@ -992,7 +1032,7 @@ function fromIPA(ipa: string, options = { tones: true }) {
         result.last.vowels = []
         break
       default:
-        throw new Error(part)
+        throw new Error(`Error with part: ${part}`)
     }
   }
 
@@ -1039,13 +1079,13 @@ function fromIPA(ipa: string, options = { tones: true }) {
     while (i < vowels.length - 1 && tones.length) {
       const tone = tones.shift()
       const vowel = vowels[i]
-      assert(vowel)
+      assert(vowel, 'vowel')
       vowel.tone = tone
       i++
     }
 
     const lastVowel = vowels[vowels.length - 1]
-    assert(lastVowel)
+    assert(lastVowel, 'lastVowel')
 
     if (tones.length) {
       lastVowel.tone = tones.shift()
@@ -1061,7 +1101,7 @@ function fromIPA(ipa: string, options = { tones: true }) {
 
     if (newVowels.length && lastVowel.long) {
       const newLastVowel = newVowels[newVowels.length - 1]
-      assert(newLastVowel)
+      assert(newLastVowel, 'newLastVowel')
       newLastVowel.long = true
       lastVowel.long = false
     }
@@ -1069,7 +1109,7 @@ function fromIPA(ipa: string, options = { tones: true }) {
     if (newVowels.length) {
       result.last.vowels.push(...newVowels)
       const newVowel = newVowels[newVowels.length - 1]
-      assert(newVowel)
+      assert(newVowel, 'newVowel')
       result.last.vowel = result.last.out = newVowel
     }
   }
@@ -1106,11 +1146,11 @@ function fromIPA(ipa: string, options = { tones: true }) {
   function addFeature(type: Feature) {
     switch (type) {
       case 'implosion':
-        assert(result.last.consonant)
+        assert(result.last.consonant, 'implosion:last-consonant')
         result.last.consonant.implosion = true
         break
       case 'voiceless': {
-        assert(result.last.consonant)
+        assert(result.last.consonant, 'voiceless:last-consonant')
         switch (result.last.consonant.value) {
           case 'b':
             result.last.consonant.value = 'p'
@@ -1128,47 +1168,50 @@ function fromIPA(ipa: string, options = { tones: true }) {
         break
       }
       case 'aspiration':
-        assert(result.last.consonant)
+        assert(result.last.consonant, 'aspiration:last-consonant')
         result.last.consonant.aspiration = true
         break
       case 'dental':
-        assert(result.last.consonant)
+        assert(result.last.consonant, 'dental:last-consonant')
         result.last.consonant.dental = true
         break
       case 'pharyngealization':
-        assert(result.last.consonant)
+        assert(
+          result.last.consonant,
+          'pharyngealization:last-consonant',
+        )
         result.last.consonant.pharyngealization = true
         break
       case 'palatalization':
-        assert(result.last.consonant)
+        assert(result.last.consonant, 'palatalization:last-consonant')
         result.last.consonant.palatalization = true
         break
       case 'glottalization':
-        assert(result.last.consonant)
+        assert(result.last.consonant, 'glottalization:last-consonant')
         result.last.consonant.glottalization = true
         break
       case 'velarization':
-        assert(result.last.consonant)
+        assert(result.last.consonant, 'velarization:last-consonant')
         result.last.consonant.velarization = true
         break
       case 'nasalization':
-        assert(result.last.vowel)
+        assert(result.last.vowel, 'nasalization:last-vowel')
         result.last.vowel.nasalization = true
         break
       case 'labialization':
-        assert(result.last.consonant)
+        assert(result.last.consonant, 'labialization:last-consonant')
         result.last.consonant.labialization = true
         break
       case 'ejection':
-        assert(result.last.consonant)
+        assert(result.last.consonant, 'ejection:last-consonant')
         result.last.consonant.ejection = true
         break
       case 'stop':
-        assert(result.last.consonant)
+        assert(result.last.consonant, 'stop:last-consonant')
         result.last.consonant.stop = true
         break
       case 'tense':
-        assert(result.last.consonant)
+        assert(result.last.consonant, 'tense:last-consonant')
         if (result.last.consonant.value.match('x')) {
           const second =
             result.last.consonants[result.last.consonants.length - 2]
@@ -1180,21 +1223,33 @@ function fromIPA(ipa: string, options = { tones: true }) {
         result.last.consonant.tense = true
         break
       case 'long':
-        assert(result.last.out)
+        assert(result.last.out, 'long:last')
         if (result.last.out.type !== 'punctuation') {
           result.last.out.long = true
         }
         break
       case 'short':
-        assert(result.last.vowel)
+        assert(result.last.vowel, 'short:last-vowel')
         result.last.vowel.short = true
         break
       case 'non-syllabic':
-        assert(result.last.vowel)
+        assert(result.last.vowel, 'non-syllabic:last-vowel')
         result.last.vowel.syllabic = false
         break
       default:
-        throw new Error(type)
+        throw new Error(`Error with type: ${type}`)
+    }
+  }
+
+  function assert(x: unknown, label: string): asserts x {
+    if (!x) {
+      throw new Error(
+        `assertion failed: ${label} (${parts
+          .slice(0, i + 1)
+          .join('')} + ${parts[i]!.codePointAt(0)
+          ?.toString(16)
+          .padStart(4, '0')})`,
+      )
     }
   }
 
@@ -1214,6 +1269,15 @@ function fromIPA(ipa: string, options = { tones: true }) {
 
     result.last.out = letter
     result.last.consonant = letter
+  }
+
+  function replaceLastConsonantIfMatch(x: string, match: string) {
+    if (result.last.consonant?.value === x) {
+      const letter: Consonant = { type: 'consonant', value: x }
+      result.last.consonants[result.last.consonants.length - 1] = letter
+      result.last.out = letter
+      result.last.consonant = letter
+    }
   }
 
   function addPunctuation(type: string) {
@@ -1297,10 +1361,4 @@ function serialize(result: Make) {
   })
 
   return out.join('')
-}
-
-function assert(x: unknown): asserts x {
-  if (!x) {
-    throw new Error('assertion failed')
-  }
 }
