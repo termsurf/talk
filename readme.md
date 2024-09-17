@@ -30,8 +30,8 @@ tones, amongst other things.
 
 There are two forms:
 
-- ASCII: For writing in a text editor without fancy symbols.
-- Simplified: For reading with condensed characters and diacritics.
+- **ASCII**: For writing in a text editor without fancy symbols.
+- **Simplified**: For reading with condensed characters and diacritics.
 
 The goal of the simplified version is to make it as easy as possible to
 read text given basic knowledge of today's standard English writing
