@@ -1,5 +1,5 @@
 {
-  "version": "3.0.6",
+  "version": "3.1.0",
   "name": "@termsurf/talk",
   "main": "index.js",
   "license": "Apache 2.0",
@@ -12,7 +12,7 @@
     "lint": "eslint --ext .ts ./make",
     "lint:fix": "npm run lint -- --fix",
     "test": "npx tsx test.ts",
-    "host": "pnpm make && npm publish --access=public"
+    "host": "pnpm make && cd host && npm publish --access=public"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.0.0",

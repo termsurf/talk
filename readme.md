@@ -278,6 +278,14 @@ import make from '@termsurf/talk'
 make('aiyuQaK') // => 'aiyuq̇aḳ'
 ```
 
+## Libraries
+
+- [`@termsurf/text`](https://github.com/termsurf/text.js): Builds off
+  Talk spec to convert different scripts/orthographies into TalkText.
+- [`@termsurf/tone`](https://github.com/termsurf/tone): Takes the Talk
+  formatted ASCII text and [renders it](https://tone.surf) using
+  ToneText.
+
 ## ReadTalk
 
 Here we have included a system inspired by the
