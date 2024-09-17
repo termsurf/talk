@@ -9,6 +9,44 @@ export default function make(text: string) {
     const part = parts[i++]
     const next = parts[i]
     switch (part) {
+      case '-':
+        if (next === '-') {
+          i++
+          out.push('˩')
+        } else {
+          out.push('˨')
+        }
+        break
+      case '+':
+        if (next === '+') {
+          i++
+          out.push('˥')
+        } else {
+          out.push('˦')
+        }
+        break
+      case '/':
+        if (next === '/') {
+          i++
+          out.push('˩˥')
+        } else if (next === '\\') {
+          i++
+          out.push('˩˥˩')
+        } else {
+          out.push('˧˥')
+        }
+        break
+      case '\\':
+        if (next === '\\') {
+          i++
+          out.push('˥˩')
+        } else if (next === '/') {
+          i++
+          out.push('˥˩˥')
+        } else {
+          out.push('˥˧')
+        }
+        break
       case '^':
         out[out.length - 1] = `ˈ${out[out.length - 1]}`
         break
