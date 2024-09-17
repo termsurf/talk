@@ -22,7 +22,7 @@
 
 ## Overview
 
-Talk uses the Latin script with diacritics to encode most of Earth's
+**Talk** uses the Latin script with diacritics to encode most of Earth's
 natural language features, enough so that you can write every language
 using the same Latin-oriented system and be close enough to a realistic
 pronunciation, including nasalized vowels, tense consonants, clicks, and
