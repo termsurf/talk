@@ -196,7 +196,7 @@ export const CONSONANTS = [
   { i: 'Z', o: `z${m.d.dot}` },
   { i: 'CQ~', o: `c${m.d.dot}${m.u.tilde}` },
   { i: 'C', o: `c${m.d.dot}` },
-  { i: 'cQ~', o: `c${m.u.up}` },
+  { i: 'cQ~', o: `c${m.u.tilde}` },
   { i: 'c', o: `c` },
   { i: 'L', o: `l${m.d.dot}` },
   { i: 'l*', o: `l${m.d.down}` },
