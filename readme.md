@@ -86,7 +86,22 @@ of a language, and so being as exact as IPA is kind of misleading. If
 Talk is not exact enough for a specific rendering, you can use IPA, but
 otherwise Talk will be much easier to understand and use on both sides.
 
-See the following guides for more information on the mappings.
+_We are aware of [competing standards](https://xkcd.com/927/) haha. But
+for the websites we are planning on making, thinking of showing the
+gneral public IPA has (in our experiments / customer testing) so far
+revealed that it is either ignored or misunderstood, so we are making
+something that we think will be used and not misunderstood._
+
+Almost every language learning resource on the web has their own version
+of writing the pronunciations of words, often like this:
+
+```
+pruh-nuhn-see-EY-shuhn
+```
+
+They use that because it's easier for people without linguistics
+knowledge to understand. So we sort of normalized things against a
+siplified system like this.
 
 ## Encoding
 
