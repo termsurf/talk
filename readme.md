@@ -212,7 +212,7 @@ These are all the combos for the letter `a`, same applies to all vowels.
 | a˥˧  | a\    | ą̀          |
 | a˥˩  | a\\   | ą̏          |
 | a˩˥˩ | a/\   | â          |
-| a˥˩˥ | a\/   | ǎ          |
+| a˥˩˥ | a\\/  | ǎ          |
 
 ## ReadTalk
 
