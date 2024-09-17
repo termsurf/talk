@@ -75,8 +75,9 @@ English speaker, and XSampa is too foreign for the same group of people
 
 Our goal with Talk is to make an easy to write and easy to understand
 3rd encoding which requires less expert knowledge. And a readable
-romanization form ("simplified" form) which an average English speaker
-can get close to intuiting without special knowledge.
+romanization form ("simplified" form) which an average English
+reader/speaker can get close to intuiting without more than a small
+handful of key notes, not requiring tons of special knowledge.
 
 See the following guides for more information on the mappings.
 
