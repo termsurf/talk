@@ -59,12 +59,6 @@ the gist of it.
 | txy\~h\~im      | txẏɦim       |
 | mh!im           | mħim         |
 
-```ts
-import make from '@termsurf/talk'
-
-make('aiyuQaK') // => 'aiyuq̇aḳ'
-```
-
 ## Why not IPA or XSampa?
 
 IPA and XSampa are useful because they are widespread amongst the
@@ -269,6 +263,20 @@ _Note: Exact tone sequences can be represented with sequences like
 `a+a++a--`, where one vowel is spread across multiple tones. But common
 tones, across languages, can take advantage of the shortened
 syntax/encoding._
+
+## Installation
+
+```bash
+npm install @termsurf/talk
+```
+
+## Usage
+
+```ts
+import make from '@termsurf/talk'
+
+make('aiyuQaK') // => 'aiyuq̇aḳ'
+```
 
 ## ReadTalk
 
