@@ -165,7 +165,7 @@ some are misaligned. We will have a font to remedy this for websites._
 | ʁ   | G     | ġ          |
 | ɠ   | g?    | g̀          |
 | g   | g     | g          |
-| ʔ   | '     | q          |
+| ʔ   | '     | '          |
 | ʕ   | Q     | q̇          |
 | ɗ   | d?    | d̖          |
 | dʼ  | d!    | d̗          |

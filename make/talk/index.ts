@@ -139,7 +139,7 @@ export const CONSONANTS = [
   { i: 'G', o: `g${m.u.dot}` },
   { i: 'g?', o: `g${m.u.grave}` },
   { i: 'g', o: `g` },
-  { i: "'", o: `q` },
+  { i: "'", o: `'` },
   { i: 'Q', o: `q${m.u.dot}` },
   { i: 'd?', o: `d${m.d.grave}` },
   { i: 'd!', o: `d${m.d.acute}` },
