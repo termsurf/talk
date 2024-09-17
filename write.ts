@@ -12,7 +12,10 @@ console.log('')
 
 console.log(
   VOWELS.filter(
-    ({ i }) => i.match(/a/) && !i.match(new RegExp(`a${m.d.dot}`)),
+    ({ i }) =>
+      i.match(/a/) &&
+      !i.match(new RegExp(`a${m.d.dot}`)) &&
+      !i.match(new RegExp(`\\$`)),
   )
     .sort((a, b) => a.o.localeCompare(b.o))
     .map(({ i, o }) => {

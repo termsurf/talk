@@ -114,8 +114,8 @@ BASE_VOWEL_GLYPHS.forEach(g => {
               const v2 = v === '$' && g === 'u' ? '' : `${D[v]}`
               const o =
                 l === '!'
-                  ? `${x2}${y}${D[t]}${D[l]}${D[n]}${D[s]}${v2}`
-                  : `${x2}${D[t]}${D[l]}${D[n]}${D[s]}${v2}${y}`
+                  ? `${x2}${y}${D[l]}${D[n]}${D[s]}${D[t]}${v2}`
+                  : `${x2}${D[l]}${D[n]}${D[s]}${D[t]}${v2}${y}`
               VOWELS.push({ i, o })
             })
           })
