@@ -1,14 +1,6 @@
-type TextList = Record<string, string>
+import { m, TextList } from '~/make/constants'
 
-const TONE: TextList = {
-  '˥': '++',
-  '˦': '+',
-  '˧': '',
-  '˨': '-',
-  '˩': '--',
-}
-
-type Feature =
+export type Feature =
   | 'implosion'
   | 'voiceless'
   | 'aspiration'
@@ -26,34 +18,7 @@ type Feature =
   | 'long'
   | 'tense'
 
-const m: { d: TextList; u: TextList } = {
-  d: {
-    acute: '\u0317',
-    ddot: '\u0324',
-    dot: '\u0323',
-    down: '\u032C',
-    grave: '\u0316',
-    ring: '\u0325',
-    tilde: '\u0330',
-  },
-  u: {
-    acute: '\u0301',
-    dacute: '\u030B',
-    ddot: '\u0308',
-    dgrave: '\u030F',
-    dot: '\u0307',
-    down: '\u030C',
-    grave: '\u0300',
-    macron: '\u0304',
-    ring: '\u030A',
-    tilde: '\u0303',
-    up: '\u0302',
-  },
-}
-
-export default { fromIPA, toIPA }
-
-type Make = {
+export type Make = {
   last: {
     consonant: Consonant | null
     consonants: Array<Consonant>
@@ -65,12 +30,12 @@ type Make = {
   pendingStress?: boolean
 }
 
-type Punctuation = {
+export type Punctuation = {
   type: 'punctuation'
   value: string
 }
 
-type Consonant = {
+export type Consonant = {
   aspiration?: boolean
   dental?: boolean
   ejection?: boolean
@@ -88,7 +53,7 @@ type Consonant = {
   voice?: boolean
 }
 
-type Vowel = {
+export type Vowel = {
   long?: boolean
   nasalization?: boolean
   short?: boolean
@@ -99,278 +64,15 @@ type Vowel = {
   value: string
 }
 
-// TODO: this only works for tune lang so far.
-function toIPA(text: string) {
-  const parts = [...text]
-  const out: Array<string> = []
-  let i = 0
-  while (i < parts.length) {
-    const part = parts[i++]
-    const next = parts[i]
-    switch (part) {
-      case '^':
-        out[out.length - 1] = `ˈ${out[out.length - 1]}`
-        break
-      case '&':
-        out[out.length - 1] = `${out[out.length - 1]}${m.d.tilde}`
-        break
-      case '!': {
-        const last = out[out.length - 1]
-        if (last === 'h') {
-          out.pop()
-          out[out.length - 1] = `${out[out.length - 1]}${m.d.ring}`
-        } else {
-          throw new Error('Unimplemented')
-        }
-        break
-      }
-      case 'a':
-        if (next === '$') {
-          i++
-          out.push('œ')
-        } else {
-          out.push('a')
-        }
-        captureAllTones()
-        break
-      case 'A':
-        out.push('æ')
-        captureAllTones()
-        break
-      case 'b':
-        out.push('b')
-        break
-      case 'c':
-        out.push('θ')
-        break
-      case 'C':
-        if (next === '~') {
-          i++
-          // TODO: better handle this?
-          out.push('ð')
-        } else {
-          out.push('ð')
-        }
-        break
-      case 'd':
-        out.push('d')
-        break
-      case 'D':
-        out.push('ɖ')
-        break
-      case '.': // stop
-        out.push('̚')
-        break
-      case '@': // tense
-        out.push('͈')
-        break
-      case 'L':
-        out.push('ɭ')
-        break
-      case 'J':
-        out.push('ʐ')
-        break
-      case 'G':
-        if (next === '~') {
-          i++
-          out[out.length - 1] = `${out[out.length - 1]}ˠ`
-        } else {
-          out.push('ʁ')
-        }
-        break
-      case "'":
-        out.push('ʔ')
-        break
-      case 'X':
-        out.push('ʂ')
-        break
-      case 'T':
-        out.push('ʈ')
-        break
-      case 'V':
-        out.push('ʋ')
-        break
-      case 'N':
-        out.push('ɳ')
-        break
-      case 'Q':
-        if (next === '~') {
-          i++
-          out[out.length - 1] = `${out[out.length - 1]}ˤ`
-        } else {
-          out.push('ʕ')
-        }
-        break
-      case 'S':
-        out.push('ɬ')
-        break
-      case 'E':
-        out.push('ɛ')
-        captureAllTones()
-        break
-      case 'e':
-        if (next === '$') {
-          i++
-          out.push('ø')
-        } else {
-          out.push('e')
-        }
-        captureAllTones()
-        break
-      case 'f':
-        out.push('f')
-        break
-      case 'g':
-        out.push('g')
-        break
-      case 'h':
-        if (next === '~') {
-          i++
-          out.push(`ʰ`)
-        } else {
-          out.push('h')
-        }
-        break
-      case 'H':
-        out.push('χ')
-        break
-      case 'I':
-        out.push('ɪ')
-        captureAllTones()
-        break
-      case 'i':
-        if (next === '$') {
-          i++
-          out.push('ɨ')
-        } else {
-          out.push('i')
-        }
-        captureAllTones()
-        break
-      case 'j':
-        out.push('ʒ')
-        break
-      case 'k':
-        out.push('k')
-        break
-      case 'K':
-        out.push('q')
-        break
-      case 'l':
-        out.push('l')
-        break
-      case 'm':
-        out.push('m')
-        break
-      case 'n':
-        out.push('n')
-        break
-      case 'O':
-        out.push('ʊ')
-        captureAllTones()
-        break
-      case 'o':
-        if (next === '$') {
-          i++
-          out.push('ɔ')
-        } else {
-          out.push('o')
-        }
-        captureAllTones()
-        break
-      case 'p':
-        out.push('p')
-        break
-      case 'q':
-        out.push('ŋ')
-        break
-      case 'r':
-        out.push('r')
-        break
-      case 'R':
-        out.push('ɽ')
-        break
-      case 's':
-        out.push('s')
-        break
-      case 't':
-        out.push('t')
-        break
-      case 'U':
-        out.push('ə')
-        captureAllTones()
-        break
-      case 'u':
-        if (next === '$') {
-          i++
-          out.push('ɹ')
-        } else {
-          out.push('u')
-        }
-        captureAllTones()
-        break
-      case 'v':
-        out.push('v')
-        break
-      case 'w':
-        out.push('w')
-        break
-      case 'x':
-        out.push('ʃ')
-        break
-      case 'y':
-        if (next === '~') {
-          i++
-          out.push(`ʲ`)
-        } else {
-          out.push('j')
-        }
-        break
-      case 'z':
-        out.push('z')
-        break
-      case '_':
-        out.push('ː')
-        break
-      default:
-        throw new Error(`Error with part: ${part}`)
-    }
-
-    function captureAllTones() {
-      let next = parts[i]
-      if (next?.startsWith('&')) {
-        out[out.length - 1] = `${out[out.length - 1]}${m.d.tilde}`
-        i++
-        next = parts[i]
-      }
-
-      if (next?.startsWith('-')) {
-        text.slice(i).match(/^(\-+)/)
-        const size = RegExp.$1.length
-        i += size
-
-        if (size === 1) {
-          out.push('˨')
-        } else {
-          out.push('˩')
-        }
-      } else if (next?.startsWith('+')) {
-        text.slice(i).match(/^(\++)/)
-        const size = RegExp.$1.length
-        i += size
-
-        if (size === 1) {
-          out.push('˦')
-        } else {
-          out.push('˥')
-        }
-      }
-    }
-  }
-  return out.join('')
+const TONE: TextList = {
+  '˥': '++',
+  '˦': '+',
+  '˧': '',
+  '˨': '-',
+  '˩': '--',
 }
 
-function fromIPA(ipa: string, options = { tones: true }) {
+export default function make(ipa: string, options = { tones: true }) {
   const result: Make = {
     last: {
       consonant: null,
@@ -575,9 +277,6 @@ function fromIPA(ipa: string, options = { tones: true }) {
       case 'χ':
         addConsonant('H')
         break
-      case 'χ':
-        addConsonant('H')
-        break
       case 'ç':
         addConsonant('h')
         addFeature('palatalization')
@@ -762,9 +461,6 @@ function fromIPA(ipa: string, options = { tones: true }) {
       case '̚':
         addFeature('stop')
         break
-      case '\u031a':
-        addPunctuation('=.')
-        break
       case '-':
         addPunctuation('=-')
         break
@@ -804,12 +500,7 @@ function fromIPA(ipa: string, options = { tones: true }) {
         break
       case '\u031e':
         break
-      case '\u0320':
-        addFeature('non-syllabic')
-        break
       case '\u0326':
-        break
-      case '\u032a':
         break
       case '\u0339':
         break
@@ -868,31 +559,14 @@ function fromIPA(ipa: string, options = { tones: true }) {
       case 'ˑ': // half-long
         addFeature('long')
         break
-      case '-':
-        break
-      case 'a':
-        addVowel('a')
-        break
-      case 'e':
-        addVowel('e')
-        break
       case 'o':
         addVowel('o')
         break
       case 'i':
         addVowel('i')
         break
-      case 'ɛ':
-        addVowel('E')
-        break
-      case 'ŋ':
-        addConsonant('q')
-        break
       case 'b':
         addConsonant('b')
-        break
-      case 'c':
-        addConsonant('c')
         break
       case 'd':
         addConsonant('d')
@@ -906,9 +580,6 @@ function fromIPA(ipa: string, options = { tones: true }) {
       case 'h':
         addConsonant('h')
         break
-      case 'j':
-        addConsonant('j')
-        break
       case 'k':
         addConsonant('k')
         break
@@ -918,17 +589,8 @@ function fromIPA(ipa: string, options = { tones: true }) {
       case 'p':
         addConsonant('p')
         break
-      case 'q':
-        addConsonant('q')
-        break
-      case 't':
-        addConsonant('t')
-        break
       case 'v':
         addConsonant('v')
-        break
-      case 'y':
-        addConsonant('y')
         break
       case 'z':
         addConsonant('z')

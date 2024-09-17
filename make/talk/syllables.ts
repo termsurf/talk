@@ -121,9 +121,7 @@ const MARK: Record<string, Mark> = {
   '&': { nasalization: true },
 }
 
-export default mark
-
-function mark(string: string) {
+export default function make(string: string) {
   let x = string
   const chunks: Array<Mark> = []
   let i = 0

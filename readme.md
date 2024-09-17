@@ -34,63 +34,30 @@ is also an ASCII version suitable for writing on a traditional keyboard.
 This is shown in a faint color in the upper right of each box in the
 tables below. It is also clearly mapped out in the source code as well.
 
-## EaseTalk
+## TalkText
 
-This is the simplified, diacritic-free version of TalkText, as
-demonstrated with these example words. Since it is so minimal, it is
-much _easier_ for an English speaker to _read_, hence calling it the
-EaseTalk. It's not perfect, but it gets the job done.
-
-| english    | ascii        | simplified  |
-| :--------- | :----------- | :---------- |
-| think      | `ciqk`       | theenk      |
-| these      | `Ciz`        | zheez       |
-| brother    | `brUCu$`     | bruzher     |
-| bend       | `bEnd`       | bend        |
-| date       | `det`        | daet        |
-| cat        | `kAt`        | kaat        |
-| father     | `faCu$`      | fazher      |
-| eventually | `UvE^ntxOli` | uvenchuulee |
-| cool       | `kul`        | kool        |
-| lately     | `letli`      | laetlee     |
-| koala      | `kOwalU`     | kuuwaluh    |
-| creature   | `kritxu$`    | kreecher    |
-
-The _simplified_ version is meant to be readable if you have some degree
-of English intuition, but it's not meant to be perfect like it would
-represent the words in English.
+| ascii           | simplified   |
+| :-------------- | :----------- |
+| txaando^        | txaandȯ      |
+| surdjyo^        | suṙdjyȯ      |
+| HEth~Ah         | ḥẹtɦạh       |
+| siqk            | siṅk         |
+| txya@+a-a++u    | txyà̤áȁu      |
+| hwpo$kUi^mUno$s | hwpo̖kụïmụno̖s |
+| sinho^rEsi      | sinhȯṙẹsi    |
+| batO\_'aH       | batọ̄qaḥ      |
+| aiyuQaK         | aiyuq̇aḳ      |
+| s'oQya&te       | sqoq̇ya̰te     |
+| t!arEba         | t̖aṙẹba       |
+| txhaK!EnEba     | txhaḳ̖ẹnẹba   |
+| txh~im          | txɦim        |
+| txy~h~im        | txẏɦim       |
+| mh!im           | mħim         |
 
 ```ts
-import talk from '@termsurf/talk'
+import make from '@termsurf/talk'
 
-talk.ease('brUCu$') // => 'bruzher'
-```
-
-## FlowTalk
-
-This is the more rich formatting of the ASCII characters, using
-diacritics and trying to keep things relatively minimal while still
-being reasonably accurate with pronunciation. That is why we call it
-FlowTalk.
-
-| ascii            | simplified   |
-| :--------------- | :----------- |
-| `txaando^`       | txaandȯ      |
-| `surdjyo^`       | surdjyȯ      |
-| `Ha$!a$@!^rijE`  | ḥa̱̖ȧ̱̤̖rıjẹ      |
-| `H!u&_^th~`      | ḥ̖ṵ̄̇tḩ         |
-| `eT!e_^mu`       | eṭ̖ē̇mu        |
-| `txya@+a-a++u`   | txyà̤áȁu      |
-| `hwpo$kUimUno$s` | hwpo̖kụımụno̖s |
-| `sinho^rEsi`     | sınhȯrẹsı    |
-| `batoo'aH`       | batoo'aḥ     |
-| `batoo'aHh!`     | batoo'ah̥     |
-| `aiyuQaK`        | aıyuq̇aḳ      |
-
-```ts
-import talk from '@termsurf/talk'
-
-talk.flow('eT!e_^mu') // => 'eṭ̖ē̇mu'
+make('aiyuQaK') // => 'aiyuq̇aḳ'
 ```
 
 ## ReadTalk
@@ -126,7 +93,9 @@ this (for the word `by~oph~am`, which has palatalization, aspiration,
 and a few vowels and non-simplified consonants):
 
 ```js
-const list = talk.read('by~oph~am')
+import read from '@termsurf/talk/make/read'
+
+const list = read('by~oph~am')
 [
   {
     text: 'by~oph~am',
@@ -214,10 +183,19 @@ Using the library, you can also count the number of syllables in a word,
 and convert IPA text into ASCII Call Text.
 
 ```ts
-import talk from '@termsurf/talk'
+import talk from '@termsurf/talk/make/talk'
+import syllables from '@termsurf/talk/make/talk/syllables'
 
-talk.talk('kxɯʎʎikʰa̠da̠') // => 'kHOly~ly~ikh~a@da@'
-talk.mark('kHOly~ly~ikh~a@da@') // => { size: 4 }
+talk('kxɯʎʎikʰa̠da̠') // => 'kHOly~ly~ikh~a@da@'
+syllables('kHOly~ly~ikh~a@da@') // => { size: 4 }
+```
+
+## IPA and XSampa
+
+```ts
+import talkToIPA from '@termsurf/talk/make/talk/ipa'
+import talkToXSampa from '@termsurf/talk/make/talk/xsampa'
+import ipaToTalk from '@termsurf/talk/make/ipa/talk'
 ```
 
 ## Tone Text
