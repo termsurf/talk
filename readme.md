@@ -41,7 +41,7 @@ practices.
 
 | ascii           | simplified   |
 | :-------------- | :----------- |
-| txaando^        | txaandȯ      |
+| txando^         | txandȯ       |
 | surdjyo^        | suṙdjyȯ      |
 | HEth~Ah         | ḥẹtɦạh       |
 | siqk            | siṅk         |

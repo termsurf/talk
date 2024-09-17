@@ -2,7 +2,7 @@ import makeTalk from '~/make/talk/index.js'
 import makeIpaToTalk from '~/make/ipa/talk.js'
 import makeIpaToXSampa from '~/make/ipa/xsampa.js'
 
-talk('txaando^', 'txaandȯ')
+talk('txando^', 'txandȯ')
 talk('surdjyo^', 'suṙdjyȯ')
 talk('HEth~Ah', 'ḥẹtɦạh')
 talk('siqk', 'siṅk')
