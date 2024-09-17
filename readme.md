@@ -22,7 +22,7 @@
 
 ## Overview
 
-TalkText uses the Latin script with diacritics to encode most of Earth's
+Talk uses the Latin script with diacritics to encode most of Earth's
 natural language features, enough so that you can write every language
 using the same Latin-oriented system and be close enough to a realistic
 pronunciation, including nasalized vowels, tense consonants, clicks, and
@@ -34,7 +34,7 @@ is also an ASCII version suitable for writing on a traditional keyboard.
 This is shown in a faint color in the upper right of each box in the
 tables below. It is also clearly mapped out in the source code as well.
 
-## TalkText
+## Examples
 
 | ascii           | simplified   |
 | :-------------- | :----------- |
@@ -403,19 +403,19 @@ Here we have included a system inspired by the
 which is an algorithm which creates a simplified pronunciation "hash" of
 some input text, usually English or other Indo-European languages.
 
-Since TalkText is itself a simplified ASCII pronunciation system for any
-of the world's languages (like X-SAMPA or IPA, but easier to write), it
-was straightforward to make a system where we _progressively simplify
-the pronunciation from accurate to only simplified consonants and no
+Since Talk is itself a simplified ASCII pronunciation system for any of
+the world's languages (like X-SAMPA or IPA, but easier to write), it was
+straightforward to make a system where we _progressively simplify the
+pronunciation from accurate to only simplified consonants and no
 vowels_. There are 5 categories of things which get tinkered with when
 "refining" the pronunciation from its most accurate form, to the most
 basic form:
 
 - **vowel**: none, one, basic, all. No vowels, the `a` vowel, the 5
-  basic vowels `i e a o u`, or any possible vowel allowed by TalkText.
+  basic vowels `i e a o u`, or any possible vowel allowed by Talk.
 - **consonant**: all, simplified. All possible consonants allowed by
-  TalkText, or a simplified subset, where it basically merges bp, td,
-  xj, fv, sz, and kg, and gets rid of any consonant variants like click
+  Talk, or a simplified subset, where it basically merges bp, td, xj,
+  fv, sz, and kg, and gets rid of any consonant variants like click
   consonants or stop/tense consonants (Korean).
 - **tone**: yes, no. Whether or not we include tone markers (useful in
   Chinese).
@@ -536,7 +536,7 @@ import ipaToTalk from '@termsurf/talk/make/ipa/talk'
 
 ## Tone Text
 
-You can also transform TalkText into
+You can also transform Talk into
 [Tone Text](https://github.com/termsurf/tone) by writing it in ASCII,
 and running it through the tone text code, which is freely available and
 open source there.
