@@ -125,6 +125,9 @@ combined in standard ways.
 
 ### Consonants
 
+_Note: GitHub markdown doesn't really render the diacritics that nicely,
+some are misaligned. We will have a font to remedy this for websites._
+
 | IPA | ascii | simplified |
 | :-- | :---- | :--------- |
 | ʰ   | h~    | ɦ          |
