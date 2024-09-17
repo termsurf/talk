@@ -26,13 +26,16 @@ Talk uses the Latin script with diacritics to encode most of Earth's
 natural language features, enough so that you can write every language
 using the same Latin-oriented system and be close enough to a realistic
 pronunciation, including nasalized vowels, tense consonants, clicks, and
-tones, amongst other things. See the `index.ts` for a list of all the
-possible symbols and their representation.
+tones, amongst other things.
 
-In addition to a compact "Latin script with diacritics" version, there
-is also an ASCII version suitable for writing on a traditional keyboard.
-This is shown in a faint color in the upper right of each box in the
-tables below. It is also clearly mapped out in the source code as well.
+There are two forms:
+
+- ASCII: For writing in a text editor without fancy symbols.
+- Simplified: For reading with condensed characters and diacritics.
+
+The goal of the simplified version is to make it as easy as possible to
+read text given basic knowledge of today's standard English writing
+practices.
 
 ## Examples
 
@@ -59,6 +62,44 @@ import make from '@termsurf/talk'
 
 make('aiyuQaK') // => 'aiyuq̇aḳ'
 ```
+
+### Modifiers
+
+There are a few affixes on consonants and vowels. There are 5 tone
+affixes (extra low, low, neutral, high, and extra high), which can be
+combined in standard ways.
+
+| category  | symbol  | meaning                                                                                                                               |
+| :-------- | :------ | :------------------------------------------------------------------------------------------------------------------------------------ |
+| consonant | h~      | Aspiration (when added after a consonant)                                                                                             |
+| consonant | w~      | Labialization (when added after a consonant)                                                                                          |
+| consonant | y~      | Palatalization (when added after a consonant)                                                                                         |
+| consonant | G~      | Velarization (when added after a consonant)                                                                                           |
+| consonant | Q~      | Pharyngealization (when added after a consonant)                                                                                      |
+| consonant | !       | Makes consonant ejective                                                                                                              |
+| consonant | ?       | Makes consonant implosive                                                                                                             |
+| consonant | @       | Makes consonant tense (korean)                                                                                                        |
+| consonant | .       | Makes consonant a stop consonant (korean, so when you end on `t.`, it is making the mouth shape of `t` but not really pronouncing it) |
+| consonant | \*      | Finds the closes "click consonant" mapping (there are 5, d, p, k, l, t)                                                               |
+| consonant | capital | Consonant variant                                                                                                                     |
+| vowel     | ^       | Stressed vowel                                                                                                                        |
+| vowel     | \_      | Long vowel                                                                                                                            |
+| vowel     | !       | Short vowel                                                                                                                           |
+| vowel     | &       | Nasal vowel                                                                                                                           |
+| vowel     | @       | Non-syllablic vowel                                                                                                                   |
+| vowel     | capital | Vowel variant                                                                                                                         |
+| vowel     | $       | Vowel variant                                                                                                                         |
+| vowel     | +       | High tone                                                                                                                             |
+| vowel     | ++      | Extra high tone                                                                                                                       |
+| vowel     | -       | Low tone                                                                                                                              |
+| vowel     | --      | Extra low tone                                                                                                                        |
+| vowel     | /       | Rising tone (vietnamese sắc, mandarin )                                                                                               |
+| vowel     | //      | Rising tone 2 (vietnamese ngã)                                                                                                        |
+| vowel     | \\      | Falling tone (vietnamese huyền)                                                                                                       |
+| vowel     | \\\\    | Falling tone 2 (vietnamese nặng)                                                                                                      |
+| vowel     | /\\     | Rising falling tone                                                                                                                   |
+| vowel     | \\/     | Falling rising tone (vietnamese hỏi)                                                                                                  |
+| symbol    | =       | When preceding, can write a literal symbol, like `=.` is a period, `=+` is a plus, etc..                                              |
 
 ### Consonants
 
@@ -153,248 +194,25 @@ make('aiyuQaK') // => 'aiyuq̇aḳ'
 
 These are all the combos for the letter `a`, same applies to all vowels.
 
-| IPA    | ascii    | simplified |
-| :----- | :------- | :--------- |
-| a      | a        | a          |
-| a˨     | a-       | á          |
-| aˈ˨    | a-^      | á̇          |
-| a˦     | a+       | à          |
-| a˥˧    | a\       | à          |
-| aˈ˦    | a+^      | à̇          |
-| aˈ˥˧   | a\^      | à̇          |
-| a˩˥˩   | a/\      | â          |
-| aˈ˩˥˩  | a/\^     | â̇          |
-| a˥˩˥   | a\/      | ǎ          |
-| aˈ˥˩˥  | a\/^     | ǎ̇          |
-| a˩     | a--      | a̋          |
-| a˩˥    | a//      | a̋          |
-| aˈ˩    | a--^     | a̋̇          |
-| aˈ˩˥   | a//^     | a̋̇          |
-| ˈa     | a^       | ȧ          |
-| aː     | a\_      | ā          |
-| a˨ː    | a-\_     | ā́          |
-| a˨ˈː   | a-\_^    | ā́̇          |
-| a˦ː    | a+\_     | ā̀          |
-| a˥˧ː   | a\_      | ā̀          |
-| a˦ˈː   | a+\_^    | ā̀̇          |
-| a˥˧ˈː  | a\_^     | ā̀̇          |
-| a˩˥˩ː  | a/\_     | ā̂          |
-| a˩˥˩ˈː | a/\_^    | ā̂̇          |
-| a˥˩˥ː  | a\/\_    | ā̌          |
-| a˥˩˥ˈː | a\/\_^   | ā̌̇          |
-| a˩ː    | a--\_    | ā̋          |
-| a˩˥ː   | a//\_    | ā̋          |
-| a˩ˈː   | a--\_^   | ā̋̇          |
-| a˩˥ˈː  | a//\_^   | ā̋̇          |
-| aˈː    | a\_^     | ā̇          |
-| a˥ː    | a++\_    | ā̏          |
-| a˥˩ː   | a\\\_    | ā̏          |
-| a˥ˈː   | a++\_^   | ā̏̇          |
-| a˥˩ˈː  | a\\\_^   | ā̏̇          |
-| a˥     | a++      | ȁ          |
-| a˥˩    | a\\      | ȁ          |
-| aˈ˥    | a++^     | ȁ̇          |
-| aˈ˥˩   | a\\^     | ȁ̇          |
-| a͈      | a@       | a̤          |
-| a͈˨     | a@-      | á̤          |
-| a͈ˈ˨    | a@-^     | á̤̇          |
-| a͈˦     | a@+      | à̤          |
-| a͈˥˧    | a@\      | à̤          |
-| a͈ˈ˦    | a@+^     | à̤̇          |
-| a͈ˈ˥˧   | a@\^     | à̤̇          |
-| a͈˩˥˩   | a@/\     | â̤          |
-| a͈ˈ˩˥˩  | a@/\^    | â̤̇          |
-| a͈˥˩˥   | a@\/     | ǎ̤          |
-| a͈ˈ˥˩˥  | a@\/^    | ǎ̤̇          |
-| a͈˩     | a@--     | a̤̋          |
-| a͈˩˥    | a@//     | a̤̋          |
-| a͈ˈ˩    | a@--^    | a̤̋̇          |
-| a͈ˈ˩˥   | a@//^    | a̤̋̇          |
-| aˈ͈     | a@^      | ȧ̤          |
-| a͈ː     | a@\_     | ā̤          |
-| a͈˨ː    | a@-\_    | ā̤́          |
-| a͈˨ˈː   | a@-\_^   | ā̤́̇          |
-| a͈˦ː    | a@+\_    | ā̤̀          |
-| a͈˥˧ː   | a@\_     | ā̤̀          |
-| a͈˦ˈː   | a@+\_^   | ā̤̀̇          |
-| a͈˥˧ˈː  | a@\_^    | ā̤̀̇          |
-| a͈˩˥˩ː  | a@/\_    | ā̤̂          |
-| a͈˩˥˩ˈː | a@/\_^   | ā̤̂̇          |
-| a͈˥˩˥ː  | a@\/\_   | ā̤̌          |
-| a͈˥˩˥ˈː | a@\/\_^  | ā̤̌̇          |
-| a͈˩ː    | a@--\_   | ā̤̋          |
-| a͈˩˥ː   | a@//\_   | ā̤̋          |
-| a͈˩ˈː   | a@--\_^  | ā̤̋̇          |
-| a͈˩˥ˈː  | a@//\_^  | ā̤̋̇          |
-| a͈ˈː    | a@\_^    | ā̤̇          |
-| a͈˥ː    | a@++\_   | ā̤̏          |
-| a͈˥˩ː   | a@\\\_   | ā̤̏          |
-| a͈˥ˈː   | a@++\_^  | ā̤̏̇          |
-| a͈˥˩ˈː  | a@\\\_^  | ā̤̏̇          |
-| a͈˥     | a@++     | ȁ̤          |
-| a͈˥˩    | a@\\     | ȁ̤          |
-| a͈ˈ˥    | a@++^    | ȁ̤̇          |
-| a͈ˈ˥˩   | a@\\^    | ȁ̤̇          |
-| a̰      | a&       | a̰          |
-| a̰˨     | a&-      | á̰          |
-| a̰ˈ˨    | a&-^     | á̰̇          |
-| a̰˦     | a&+      | à̰          |
-| a̰˥˧    | a&\      | à̰          |
-| a̰ˈ˦    | a&+^     | à̰̇          |
-| a̰ˈ˥˧   | a&\^     | à̰̇          |
-| a̰˩˥˩   | a&/\     | â̰          |
-| a̰ˈ˩˥˩  | a&/\^    | â̰̇          |
-| a̰˥˩˥   | a&\/     | ǎ̰          |
-| a̰ˈ˥˩˥  | a&\/^    | ǎ̰̇          |
-| a̰˩     | a&--     | a̰̋          |
-| a̰˩˥    | a&//     | a̰̋          |
-| a̰ˈ˩    | a&--^    | a̰̋̇          |
-| a̰ˈ˩˥   | a&//^    | a̰̋̇          |
-| ˈa̰     | a&^      | ȧ̰          |
-| a̰ː     | a&\_     | ā̰          |
-| a̰˨ː    | a&-\_    | ā̰́          |
-| a̰˨ˈː   | a&-\_^   | ā̰́̇          |
-| a̰˦ː    | a&+\_    | ā̰̀          |
-| a̰˥˧ː   | a&\_     | ā̰̀          |
-| a̰˦ˈː   | a&+\_^   | ā̰̀̇          |
-| a̰˥˧ˈː  | a&\_^    | ā̰̀̇          |
-| a̰˩˥˩ː  | a&/\_    | ā̰̂          |
-| a̰˩˥˩ˈː | a&/\_^   | ā̰̂̇          |
-| a̰˥˩˥ː  | a&\/\_   | ā̰̌          |
-| a̰˥˩˥ˈː | a&\/\_^  | ā̰̌̇          |
-| a̰˩ː    | a&--\_   | ā̰̋          |
-| a̰˩˥ː   | a&//\_   | ā̰̋          |
-| a̰˩ˈː   | a&--\_^  | ā̰̋̇          |
-| a̰˩˥ˈː  | a&//\_^  | ā̰̋̇          |
-| a̰ˈː    | a&\_^    | ā̰̇          |
-| a̰˥ː    | a&++\_   | ā̰̏          |
-| a̰˥˩ː   | a&\\\_   | ā̰̏          |
-| a̰˥ˈː   | a&++\_^  | ā̰̏̇          |
-| a̰˥˩ˈː  | a&\\\_^  | ā̰̏̇          |
-| a̰˥     | a&++     | ȁ̰          |
-| a̰˥˩    | a&\\     | ȁ̰          |
-| a̰ˈ˥    | a&++^    | ȁ̰̇          |
-| a̰ˈ˥˩   | a&\\^    | ȁ̰̇          |
-| a̰͈      | a&@      | a̰̤          |
-| a̰͈˨     | a&@-     | á̰̤          |
-| a̰͈ˈ˨    | a&@-^    | á̰̤̇          |
-| a̰͈˦     | a&@+     | à̰̤          |
-| a̰͈˥˧    | a&@\     | à̰̤          |
-| a̰͈ˈ˦    | a&@+^    | à̰̤̇          |
-| a̰͈ˈ˥˧   | a&@\^    | à̰̤̇          |
-| a̰͈˩˥˩   | a&@/\    | â̰̤          |
-| a̰͈ˈ˩˥˩  | a&@/\^   | â̰̤̇          |
-| a̰͈˥˩˥   | a&@\/    | ǎ̰̤          |
-| a̰͈ˈ˥˩˥  | a&@\/^   | ǎ̰̤̇          |
-| a̰͈˩     | a&@--    | a̰̤̋          |
-| a̰͈˩˥    | a&@//    | a̰̤̋          |
-| a̰͈ˈ˩    | a&@--^   | a̰̤̋̇          |
-| a̰͈ˈ˩˥   | a&@//^   | a̰̤̋̇          |
-| a̰ˈ͈     | a&@^     | ȧ̰̤          |
-| a̰͈ː     | a&@\_    | ā̰̤          |
-| a̰͈˨ː    | a&@-\_   | ā̰̤́          |
-| a̰͈˨ˈː   | a&@-\_^  | ā̰̤́̇          |
-| a̰͈˦ː    | a&@+\_   | ā̰̤̀          |
-| a̰͈˥˧ː   | a&@\_    | ā̰̤̀          |
-| a̰͈˦ˈː   | a&@+\_^  | ā̰̤̀̇          |
-| a̰͈˥˧ˈː  | a&@\_^   | ā̰̤̀̇          |
-| a̰͈˩˥˩ː  | a&@/\_   | ā̰̤̂          |
-| a̰͈˩˥˩ˈː | a&@/\_^  | ā̰̤̂̇          |
-| a̰͈˥˩˥ː  | a&@\/\_  | ā̰̤̌          |
-| a̰͈˥˩˥ˈː | a&@\/\_^ | ā̰̤̌̇          |
-| a̰͈˩ː    | a&@--\_  | ā̰̤̋          |
-| a̰͈˩˥ː   | a&@//\_  | ā̰̤̋          |
-| a̰͈˩ˈː   | a&@--\_^ | ā̰̤̋̇          |
-| a̰͈˩˥ˈː  | a&@//\_^ | ā̰̤̋̇          |
-| a̰͈ˈː    | a&@\_^   | ā̰̤̇          |
-| a̰͈˥ː    | a&@++\_  | ā̰̤̏          |
-| a̰͈˥˩ː   | a&@\\\_  | ā̰̤̏          |
-| a̰͈˥ˈː   | a&@++\_^ | ā̰̤̏̇          |
-| a̰͈˥˩ˈː  | a&@\\\_^ | ā̰̤̏̇          |
-| a̰͈˥     | a&@++    | ȁ̰̤          |
-| a̰͈˥˩    | a&@\\    | ȁ̰̤          |
-| a̰͈ˈ˥    | a&@++^   | ȁ̰̤̇          |
-| a̰͈ˈ˥˩   | a&@\\^   | ȁ̰̤̇          |
-| aʼ     | a!       | a̱          |
-| a˨ʼ    | a-!      | á̱          |
-| a˦ʼ    | a+!      | à̱          |
-| a˥˧ʼ   | a\!      | à̱          |
-| a˩˥˩ʼ  | a/\!     | â̱          |
-| a˥˩˥ʼ  | a\/!     | ǎ̱          |
-| a˩ʼ    | a--!     | a̱̋          |
-| a˩˥ʼ   | a//!     | a̱̋          |
-| aˈʼ    | a!^      | ȧ̱          |
-| a˨ˈʼ   | a-!^     | ȧ̱́          |
-| a˦ˈʼ   | a+!^     | ȧ̱̀          |
-| a˥˧ˈʼ  | a\!^     | ȧ̱̀          |
-| a˩˥˩ˈʼ | a/\!^    | ȧ̱̂          |
-| a˥˩˥ˈʼ | a\/!^    | ȧ̱̌          |
-| a˩ˈʼ   | a--!^    | ȧ̱̋          |
-| a˩˥ˈʼ  | a//!^    | ȧ̱̋          |
-| a˥ˈʼ   | a++!^    | ȧ̱̏          |
-| a˥˩ˈʼ  | a\\!^    | ȧ̱̏          |
-| a˥ʼ    | a++!     | ȁ̱          |
-| a˥˩ʼ   | a\\!     | ȁ̱          |
-| a͈ʼ     | a@!      | a̱̤          |
-| a͈˨ʼ    | a@-!     | á̱̤          |
-| a͈˦ʼ    | a@+!     | à̱̤          |
-| a͈˥˧ʼ   | a@\!     | à̱̤          |
-| a͈˩˥˩ʼ  | a@/\!    | â̱̤          |
-| a͈˥˩˥ʼ  | a@\/!    | ǎ̱̤          |
-| a͈˩ʼ    | a@--!    | a̱̤̋          |
-| a͈˩˥ʼ   | a@//!    | a̱̤̋          |
-| a͈ˈʼ    | a@!^     | ȧ̱̤          |
-| a͈˨ˈʼ   | a@-!^    | ȧ̱̤́          |
-| a͈˦ˈʼ   | a@+!^    | ȧ̱̤̀          |
-| a͈˥˧ˈʼ  | a@\!^    | ȧ̱̤̀          |
-| a͈˩˥˩ˈʼ | a@/\!^   | ȧ̱̤̂          |
-| a͈˥˩˥ˈʼ | a@\/!^   | ȧ̱̤̌          |
-| a͈˩ˈʼ   | a@--!^   | ȧ̱̤̋          |
-| a͈˩˥ˈʼ  | a@//!^   | ȧ̱̤̋          |
-| a͈˥ˈʼ   | a@++!^   | ȧ̱̤̏          |
-| a͈˥˩ˈʼ  | a@\\!^   | ȧ̱̤̏          |
-| a͈˥ʼ    | a@++!    | ȁ̱̤          |
-| a͈˥˩ʼ   | a@\\!    | ȁ̱̤          |
-| a̰ʼ     | a&!      | a̱̰          |
-| a̰˨ʼ    | a&-!     | á̱̰          |
-| a̰˦ʼ    | a&+!     | à̱̰          |
-| a̰˥˧ʼ   | a&\!     | à̱̰          |
-| a̰˩˥˩ʼ  | a&/\!    | â̱̰          |
-| a̰˥˩˥ʼ  | a&\/!    | ǎ̱̰          |
-| a̰˩ʼ    | a&--!    | a̱̰̋          |
-| a̰˩˥ʼ   | a&//!    | a̱̰̋          |
-| a̰ˈʼ    | a&!^     | ȧ̱̰          |
-| a̰˨ˈʼ   | a&-!^    | ȧ̱̰́          |
-| a̰˦ˈʼ   | a&+!^    | ȧ̱̰̀          |
-| a̰˥˧ˈʼ  | a&\!^    | ȧ̱̰̀          |
-| a̰˩˥˩ˈʼ | a&/\!^   | ȧ̱̰̂          |
-| a̰˥˩˥ˈʼ | a&\/!^   | ȧ̱̰̌          |
-| a̰˩ˈʼ   | a&--!^   | ȧ̱̰̋          |
-| a̰˩˥ˈʼ  | a&//!^   | ȧ̱̰̋          |
-| a̰˥ˈʼ   | a&++!^   | ȧ̱̰̏          |
-| a̰˥˩ˈʼ  | a&\\!^   | ȧ̱̰̏          |
-| a̰˥ʼ    | a&++!    | ȁ̱̰          |
-| a̰˥˩ʼ   | a&\\!    | ȁ̱̰          |
-| a̰͈ʼ     | a&@!     | a̱̰̤          |
-| a̰͈˨ʼ    | a&@-!    | á̱̰̤          |
-| a̰͈˦ʼ    | a&@+!    | à̱̰̤          |
-| a̰͈˥˧ʼ   | a&@\!    | à̱̰̤          |
-| a̰͈˩˥˩ʼ  | a&@/\!   | â̱̰̤          |
-| a̰͈˥˩˥ʼ  | a&@\/!   | ǎ̱̰̤          |
-| a̰͈˩ʼ    | a&@--!   | a̱̰̤̋          |
-| a̰͈˩˥ʼ   | a&@//!   | a̱̰̤̋          |
-| a̰͈ˈʼ    | a&@!^    | ȧ̱̰̤          |
-| a̰͈˨ˈʼ   | a&@-!^   | ȧ̱̰̤́          |
-| a̰͈˦ˈʼ   | a&@+!^   | ȧ̱̰̤̀          |
-| a̰͈˥˧ˈʼ  | a&@\!^   | ȧ̱̰̤̀          |
-| a̰͈˩˥˩ˈʼ | a&@/\!^  | ȧ̱̰̤̂          |
-| a̰͈˥˩˥ˈʼ | a&@\/!^  | ȧ̱̰̤̌          |
-| a̰͈˩ˈʼ   | a&@--!^  | ȧ̱̰̤̋          |
-| a̰͈˩˥ˈʼ  | a&@//!^  | ȧ̱̰̤̋          |
-| a̰͈˥ˈʼ   | a&@++!^  | ȧ̱̰̤̏          |
-| a̰͈˥˩ˈʼ  | a&@\\!^  | ȧ̱̰̤̏          |
-| a̰͈˥ʼ    | a&@++!   | ȁ̱̰̤          |
-| a̰͈˥˩ʼ   | a&@\\!   | ȁ̱̰̤          |
+| IPA  | ascii | simplified |
+| :--- | :---- | :--------- |
+| ˈa   | a^    | ȧ          |
+| aː   | a\_   | ā          |
+| aʼ   | a!    | a̱          |
+| a̰    | a&    | a̰          |
+| a͈    | a@    | a̤          |
+| æ    | A     | ạ          |
+| œ    | a$    | a̖          |
+| a˦   | a+    | á          |
+| a˥   | a++   | a̋          |
+| a˨   | a-    | à          |
+| a˩   | a--   | ȁ          |
+| a˧˥  | a/    | ą́          |
+| a˩˥  | a//   | ą̋          |
+| a˥˧  | a\    | ą̀          |
+| a˥˩  | a\\   | ą̏          |
+| a˩˥˩ | a/\   | â          |
+| a˥˩˥ | a\/   | ǎ          |
 
 ## ReadTalk
 

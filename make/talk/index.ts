@@ -13,6 +13,7 @@ const m = {
     ring: '\u030A',
     tilde: '\u0303',
     macron: '\u0304',
+    hook: '\u0309',
   },
   d: {
     grave: '\u0316',
@@ -25,21 +26,22 @@ const m = {
     macron: '\u0331',
     cedilla: '\u0327',
     up: '\u032D',
+    hook: '\u0328',
   },
 }
 
 const D: Record<string, string> = {
-  '--': m.u.dacute,
-  '-': m.u.acute,
-  '++': m.u.dgrave,
-  '/': m.u.acute, // rising (vietnamese sắc)
-  '//': m.u.dacute, // rising 2 (vietnamese ngã)
+  '--': m.u.dgrave,
+  '-': m.u.grave,
+  '++': m.u.dacute,
+  '+': m.u.acute,
+  '//': `${m.d.hook}${m.u.dacute}`, // rising 2 (vietnamese ngã)
+  '/': `${m.d.hook}${m.u.acute}`, // rising (vietnamese sắc)
   '\\/': m.u.down, // falling rising (vietnamese hỏi)
-  '/\\': m.u.up, // falling rising
-  '\\': m.u.grave, // falling (vietnamese huyền)
-  '\\\\': m.u.dgrave, // falling 2 (vietnamese nặng)
-  '+': m.u.grave,
-  '^': m.u.dot, // accent mark
+  '/\\': m.u.up, // rising falling
+  '\\\\': `${m.d.hook}${m.u.dgrave}`, // falling 2 (vietnamese nặng)
+  '\\': `${m.d.hook}${m.u.grave}`, // falling (vietnamese huyền)
+  '^': m.u.dot, // accent/stress mark
   $: m.d.grave,
   '&': m.d.tilde,
   _: m.u.macron, // long vowel
@@ -87,11 +89,12 @@ const TONE_MARKS = [
   '-',
   '++',
   '+',
+  '/',
   '//',
   '\\/',
   '/\\',
-  '\\',
   '\\\\',
+  '\\',
   '',
 ]
 const VARIANT_MARKS = ['$', '']
