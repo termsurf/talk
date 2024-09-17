@@ -21,7 +21,7 @@ export default function make(text: string) {
           out.pop()
           out[out.length - 1] = `${out[out.length - 1]}${m.d.ring}`
         } else {
-          throw new Error('Unimplemented')
+          out.push('ʼ')
         }
         break
       }
@@ -39,7 +39,12 @@ export default function make(text: string) {
         captureAllTones()
         break
       case 'b':
-        out.push('b')
+        if (next === '?') {
+          i++
+          out.push('ɓ')
+        } else {
+          out.push('b')
+        }
         break
       case 'c':
         out.push('θ')
@@ -54,7 +59,16 @@ export default function make(text: string) {
         }
         break
       case 'd':
-        out.push('d')
+        if (next === '?') {
+          i++
+          // TODO: better handle this?
+          out.push('ɗ')
+        } else if (next === '*') {
+          i++
+          out.push('ǂ')
+        } else {
+          out.push('d')
+        }
         break
       case 'D':
         out.push('ɖ')
@@ -122,7 +136,12 @@ export default function make(text: string) {
         out.push('f')
         break
       case 'g':
-        out.push('g')
+        if (next === '?') {
+          i++
+          out.push(`ɠ`)
+        } else {
+          out.push('g')
+        }
         break
       case 'h':
         if (next === '~') {
@@ -152,13 +171,23 @@ export default function make(text: string) {
         out.push('ʒ')
         break
       case 'k':
-        out.push('k')
+        if (next === '*') {
+          i++
+          out.push('ǃ')
+        } else {
+          out.push('k')
+        }
         break
       case 'K':
         out.push('q')
         break
       case 'l':
-        out.push('l')
+        if (next === '*') {
+          i++
+          out.push('ǁ')
+        } else {
+          out.push('l')
+        }
         break
       case 'm':
         out.push('m')
@@ -180,7 +209,21 @@ export default function make(text: string) {
         captureAllTones()
         break
       case 'p':
-        out.push('p')
+        if (next === '*') {
+          i++
+          out.push('ʘ')
+        } else {
+          out.push('p')
+        }
+        break
+      case 'F':
+        out.push('ɸ')
+        break
+      case 'W':
+        out.push('ɰ')
+        break
+      case 'Z':
+        out.push('ɮ')
         break
       case 'q':
         out.push('ŋ')
@@ -195,7 +238,12 @@ export default function make(text: string) {
         out.push('s')
         break
       case 't':
-        out.push('t')
+        if (next === '*') {
+          i++
+          out.push('ǀ')
+        } else {
+          out.push('t')
+        }
         break
       case 'U':
         out.push('ə')
@@ -214,7 +262,12 @@ export default function make(text: string) {
         out.push('v')
         break
       case 'w':
-        out.push('w')
+        if (next === '~') {
+          i++
+          out.push(`ʷ`)
+        } else {
+          out.push('w')
+        }
         break
       case 'x':
         out.push('ʃ')

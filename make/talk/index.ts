@@ -131,7 +131,6 @@ export const CONSONANTS = [
   { i: 'm', o: `m` },
   { i: 'N', o: `n${m.d.dot}` },
   { i: 'n', o: `n` },
-  { i: 'q!', o: `n${m.u.dot}${m.u.grave}` },
   { i: 'q', o: `n${m.u.dot}` },
   { i: 'G~', o: `g${m.u.tilde}` },
   { i: 'G', o: `g${m.u.dot}` },
@@ -156,7 +155,7 @@ export const CONSONANTS = [
   { i: 'p', o: `p` },
   {
     i: 'T!',
-    o: `${m.d.dot}${m.d.grave}`,
+    o: `t${m.d.dot}${m.d.grave}`,
   },
   { i: 'T', o: `t${m.d.dot}` },
   { i: 't!', o: `t${m.d.grave}` },

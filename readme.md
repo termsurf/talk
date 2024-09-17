@@ -60,6 +60,95 @@ import make from '@termsurf/talk'
 make('aiyuQaK') // => 'aiyuq̇aḳ'
 ```
 
+## Consonants
+
+| IPA | ascii | simplified |
+| :-- | :---- | :--------- |
+| ʰ   | h~    | ɦ          |
+| m   | m     | m          |
+| ɳ   | N     | ṇ          |
+| n   | n     | n          |
+| ŋ   | q     | ṅ          |
+| ˤ   | G~    | g̃          |
+| ʁ   | G     | ġ          |
+| ɠ   | g?    | ǵ          |
+| g   | g     | g          |
+| ʔ   | '     | q          |
+| ʕ   | Q     | q̇          |
+| ɗ   | d?    | d̗          |
+| dʼ  | d!    | d̖          |
+| ǂ   | d\*   | d̬          |
+| d̚   | d.    | ḏ          |
+| ɖ   | D     | ḍ          |
+| dˤ  | dQ~   | d̰          |
+| d   | d     | d          |
+| ɓ   | b?    | b̗          |
+| bʼ  | b!    | b̖          |
+| b   | b     | b          |
+| pʼ  | p!    | p̀          |
+| ʘ   | p\*   | p̂          |
+| p̚   | p.    | t̄          |
+| p͈   | p@    | x̌          |
+| p   | p     | p          |
+| ʈʼ  | T!    | ṭ̖          |
+| ʈ   | T     | ṭ          |
+| tʼ  | t!    | t̖          |
+| ǀ   | t\*   | t̬          |
+| tˤ  | tQ~   | t̰          |
+| t͈   | t@    | ṱ          |
+| t̚   | t.    | ṯ          |
+| t   | t     | t          |
+| kʼ  | k!    | k̖          |
+| k̚   | k.    | ḵ          |
+| ǃ   | k\*   | k̬          |
+| qʼ  | K!    | ḳ̖          |
+| q   | K     | ḳ          |
+| k   | k     | k          |
+| χʼ  | H!    | ḥ̖          |
+| χ   | H     | ḥ          |
+|     | h!    | ħ          |
+| h   | h     | h          |
+| ʐ   | J     | ȷ̈          |
+| ʒʼ  | j!    | j̀          |
+| ʒ   | j     | j          |
+| ɬʼ  | S!    | ṣ̀          |
+| sʼ  | s!    | s̀          |
+| ɬ   | S     | ṣ          |
+| sˤ  | sQ~   | s̰          |
+| s͈   | s@    | s̭          |
+| s   | s     | s          |
+| ɸ   | F     | f̣          |
+| fʼ  | f!    | f̖          |
+| f   | f     | f          |
+| ʋ   | V     | ṿ          |
+| v   | v     | v          |
+| zʼ  | z!    | z̀          |
+| zˤ  | zQ~   | z̰          |
+| z   | z     | z          |
+| ɮʼ  | Z!    | ẓ̀          |
+| ɮ   | Z     | ẓ          |
+| ðˤ  | CQ~   | c̣̃          |
+| ð   | C     | c̣          |
+| θˤ  | cQ~   | ĉ          |
+| θ   | c     | c          |
+| ɭ   | L     | ḷ          |
+| ǁ   | l\*   | l̬          |
+| lˤ  | lQ~   | l̰          |
+| l   | l     | l          |
+| ɽ   | R     | ṛ          |
+| r   | r     | ṙ          |
+| ʃʼ  | x!    | x̀          |
+| ʂʼ  | X!    | x̣̀          |
+| ʂ   | X     | x̣          |
+| ʃ͈   | x@    | x̭          |
+| ʃ   | x     | x          |
+| ɰ   | W     | ẇ          |
+| wʼ  | w!    | ẁ          |
+| ʷ   | w~    | ẉ          |
+| w   | w     | w          |
+| ʲ   | y~    | ẏ          |
+| j   | y     | y          |
+
 ## ReadTalk
 
 Here we have included a system inspired by the
