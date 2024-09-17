@@ -14,6 +14,7 @@ console.log(
   VOWELS.filter(
     ({ i }) => i.match(/a/) && !i.match(new RegExp(`a${m.d.dot}`)),
   )
+    .sort((a, b) => a.o.localeCompare(b.o))
     .map(({ i, o }) => {
       return `| ${talkToIpa(i)} | ${i} | ${o} |`
     })
