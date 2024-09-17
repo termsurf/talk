@@ -80,6 +80,11 @@ can get close to intuiting without special knowledge.
 
 See the following guides for more information on the mappings.
 
+## Encoding
+
+Here are the modifiers on consonants, vowels, and symbols (like
+punctuation), and how they look in ASCII and simplified form.
+
 ### Modifiers
 
 There are a few affixes on consonants and vowels. There are 5 tone
