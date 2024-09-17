@@ -83,10 +83,11 @@ handful of key notes, not requiring tons of special knowledge.
 
 Also, Talk is not meant to replace the level-of-detail ("exactness") of
 IPA, it's goal is to only get like ~95% accuracy. This is because we
-believe real-world pronunciations a highly varied within a single word
-of a language, and so being as exact as IPA is kind of misleading. If
-Talk is not exact enough for a specific rendering, you can use IPA, but
-otherwise Talk will be much easier to understand and use on both sides.
+believe real-world pronunciations a highly varied within even a single
+word of a language, and so being as exact as IPA is kind of misleading.
+If Talk is not exact enough for a specific rendering, you can use IPA,
+but otherwise Talk will be much easier to understand and use on both
+sides.
 
 _We are aware of [competing standards](https://xkcd.com/927/) haha. But
 for the websites we are planning on making, thinking of showing the
