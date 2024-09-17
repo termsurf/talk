@@ -52,7 +52,7 @@ the gist of it.
 | sinho^rEsi      | sinhȯṙẹsi    |
 | batO\_'aH       | batọ̄qaḥ      |
 | aiyuQaK         | aiyuq̇aḳ      |
-| s'oQya&te       | sqoq̇ya̰te     |
+| s'oQya&te       | s'oq̇ya̰te     |
 | t!arEba         | t̖aṙẹba       |
 | txhaK!EnEba     | txhaḳ̖ẹnẹba   |
 | txh~im          | txɦim        |
