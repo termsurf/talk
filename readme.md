@@ -103,7 +103,7 @@ pruh-nuhn-see-EY-shuhn
 
 They use that because it's easier for people without linguistics
 knowledge to understand. So we sort of normalized things against a
-siplified system like this.
+simplified system like this.
 
 ## Encoding
 
