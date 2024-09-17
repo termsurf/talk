@@ -56,7 +56,7 @@ the gist of it.
 | t!arEba         | t̖aṙẹba       |
 | txhaK!EnEba     | txhaḳ̖ẹnẹba   |
 | txh~im          | txɦim        |
-| txy~h~im        | txẏɦim       |
+| txy\~h\~im      | txẏɦim       |
 | mh!im           | mħim         |
 
 ```ts
