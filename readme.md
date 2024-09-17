@@ -374,11 +374,11 @@ import talkToXSampa from '@termsurf/talk/make/talk/xsampa'
 import ipaToTalk from '@termsurf/talk/make/ipa/talk'
 ```
 
-## Tone Text
+## ToneText
 
 You can also transform Talk into
-[Tone Text](https://github.com/termsurf/tone) by writing it in ASCII,
-and running it through the tone text code, which is freely available and
+[ToneText](https://github.com/termsurf/tone) by writing it in ASCII, and
+running it through the tone text code, which is freely available and
 open source there.
 
 ```ts
