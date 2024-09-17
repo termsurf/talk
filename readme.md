@@ -219,6 +219,21 @@ _Note: Exact tone sequences can be represented with sequences like
 tones, across languages, can take advantage of the shortened
 syntax/encoding._
 
+## Why not IPA or XSampa?
+
+IPA and XSampa are useful because they are widespread amongst the
+linguistic community, and much has been encoded using (at least) the IPA
+encoding.
+
+However, IPA is not that easy to understand or write for the average
+English speaker, and XSampa is too foreign for the same group of people
+(even though it's easy to write on a keyboard).
+
+Our goal with Talk is to make an easy to write and easy to understand
+3rd encoding which requires less expert knowledge. And a readable
+romanization form ("simplified" form) which an average English speaker
+can get close to intuiting without special knowledge.
+
 ## ReadTalk
 
 Here we have included a system inspired by the
