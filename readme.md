@@ -79,6 +79,13 @@ romanization form ("simplified" form) which an average English
 reader/speaker can get close to intuiting without more than a small
 handful of key notes, not requiring tons of special knowledge.
 
+Also, Talk is not meant to replace the level-of-detail ("exactness") of
+IPA, it's goal is to only get like ~95% accuracy. This is because we
+believe real-world pronunciations a highly varied within a single word
+of a language, and so being as exact as IPA is kind of misleading. If
+Talk is not exact enough for a specific rendering, you can use IPA, but
+otherwise Talk will be much easier to understand and use on both sides.
+
 See the following guides for more information on the mappings.
 
 ## Encoding
