@@ -90,7 +90,7 @@ otherwise Talk will be much easier to understand and use on both sides.
 
 _We are aware of [competing standards](https://xkcd.com/927/) haha. But
 for the websites we are planning on making, thinking of showing the
-gneral public IPA has (in our experiments / customer testing) so far
+general public IPA has (in our experiments / customer testing) so far
 revealed that it is either ignored or misunderstood, so we are making
 something that we think will be used and not misunderstood._
 
