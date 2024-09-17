@@ -1,14 +1,13 @@
 {
   "version": "3.0.0",
   "name": "@termsurf/talk",
-  "main": "host/index.js",
+  "main": "index.js",
   "license": "Apache 2.0",
   "dependencies": {
     "@lancejpollard/script-tree": "^1.1.2"
   },
   "scripts": {
-    "move": "pnpm make && git add . && git commit -am 'save' && npm version patch && pnpm host && git push",
-    "make": "tsc && tsc-alias",
+    "make": "rm -rf host && tsc && tsc-alias && cp package.json host/package.json",
     "scan": "concurrently --kill-others \"tsc -w\" \"tsc-alias -w\"",
     "lint": "eslint --ext .ts ./make",
     "lint:fix": "npm run lint -- --fix",
