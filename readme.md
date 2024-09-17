@@ -35,7 +35,9 @@ There are two forms:
 
 The goal of the simplified version is to make it as easy as possible to
 read text given basic knowledge of today's standard English writing
-practices.
+practices. Of course you need to learn the basics if you really want to
+take advantage of it, but without learning anything, you still can get
+the gist of it.
 
 ## Examples
 
