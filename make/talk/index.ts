@@ -42,10 +42,10 @@ const D: Record<string, string> = {
   '\\\\': `${m.d.hook}${m.u.dgrave}`, // falling 2 (vietnamese nặng)
   '\\': `${m.d.hook}${m.u.grave}`, // falling (vietnamese huyền)
   '^': m.u.dot, // accent/stress mark
-  $: m.d.grave,
+  $: m.d.ddot,
   '&': m.d.tilde,
   _: m.u.macron, // long vowel
-  '@': m.d.ddot, // non-syllabic
+  '@': m.d.grave, // non-syllabic
   '!': m.d.macron, // short vowel
   '': '',
 }

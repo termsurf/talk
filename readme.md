@@ -196,13 +196,13 @@ These are all the combos for the letter `a`, same applies to all vowels.
 
 | IPA  | ascii | simplified |
 | :--- | :---- | :--------- |
+| æ    | A     | ạ          |
+| œ    | a$    | a̤          |
 | ˈa   | a^    | ȧ          |
 | aː   | a\_   | ā          |
 | aʼ   | a!    | a̱          |
 | a̰    | a&    | a̰          |
-| a͈    | a@    | a̤          |
-| æ    | A     | ạ          |
-| œ    | a$    | a̖          |
+| a͈    | a@    | a̖          |
 | a˦   | a+    | á          |
 | a˥   | a++   | a̋          |
 | a˨   | a-    | à          |
@@ -213,6 +213,11 @@ These are all the combos for the letter `a`, same applies to all vowels.
 | a˥˩  | a\\   | ą̏          |
 | a˩˥˩ | a/\   | â          |
 | a˥˩˥ | a\\/  | ǎ          |
+
+_Note: Exact tone sequences can be represented with sequences like
+`a+a++a--`, where one vowel is spread across multiple tones. But common
+tones, across languages, can take advantage of the shortened
+syntax/encoding._
 
 ## ReadTalk
 
