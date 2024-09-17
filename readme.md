@@ -106,13 +106,13 @@ combined in standard ways.
 | vowel     | @       | Non-syllablic vowel                                                                                                                   |
 | vowel     | capital | Vowel variant                                                                                                                         |
 | vowel     | $       | Vowel variant                                                                                                                         |
-| vowel     | +       | High tone                                                                                                                             |
+| vowel     | +       | High tone (mandarin high)                                                                                                             |
 | vowel     | ++      | Extra high tone                                                                                                                       |
-| vowel     | -       | Low tone                                                                                                                              |
+| vowel     | -       | Low tone (mandarin low)                                                                                                               |
 | vowel     | --      | Extra low tone                                                                                                                        |
-| vowel     | /       | Rising tone (vietnamese sắc, mandarin )                                                                                               |
+| vowel     | /       | Rising tone (vietnamese sắc, mandarin rising)                                                                                         |
 | vowel     | //      | Rising tone 2 (vietnamese ngã)                                                                                                        |
-| vowel     | \\      | Falling tone (vietnamese huyền)                                                                                                       |
+| vowel     | \\      | Falling tone (vietnamese huyền, mandarin falling)                                                                                     |
 | vowel     | \\\\    | Falling tone 2 (vietnamese nặng)                                                                                                      |
 | vowel     | /\\     | Rising falling tone                                                                                                                   |
 | vowel     | \\/     | Falling rising tone (vietnamese hỏi)                                                                                                  |
