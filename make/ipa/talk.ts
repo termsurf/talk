@@ -381,6 +381,13 @@ export default function make(ipa: string, options = { tones: true }) {
       case 'w':
         addConsonant('w')
         break
+      case 'ã':
+        addVowel('a')
+        addFeature('nasalization')
+        break
+      case 'ɻ':
+        addVowel('u$')
+        break
       case 'ʍ':
         addConsonant('w')
         addFeature('voiceless')

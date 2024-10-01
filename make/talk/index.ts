@@ -206,6 +206,7 @@ export const CONSONANTS = [
   { i: 'lQ~', o: `l${m.d.tilde}` },
   { i: 'l', o: `l` },
   { i: 'R', o: `r${m.d.dot}` },
+  { i: 'rQ~', o: `r${m.u.tilde}` },
   { i: 'r', o: `r${m.u.dot}` },
   { i: 'x!', o: `x${m.u.acute}` },
   { i: 'X!', o: `x${m.d.dot}${m.u.acute}` },
