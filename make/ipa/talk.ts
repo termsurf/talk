@@ -378,12 +378,32 @@ export default function make(ipa: string, options = { tones: true }) {
       case 'β':
         addConsonant('V')
         break
+      case 'ŭ':
+        addConsonant('u')
+        captureAllTones('˧˥')
+        break
       case 'w':
         addConsonant('w')
+        break
+      case '!':
+        break
+      case '–':
+        addPunctuation('=-')
+        break
+      case '|':
         break
       case 'ã':
         addVowel('a')
         addFeature('nasalization')
+        break
+      case 'ɧ':
+        addConsonant('H')
+        break
+      case 'ọ':
+        addVowel('o')
+        break
+      case 'ÿ':
+        addVowel('i$')
         break
       case 'ɻ':
         addVowel('u$')
@@ -562,6 +582,60 @@ export default function make(ipa: string, options = { tones: true }) {
         replaceLastConsonantIfMatch('d', 't')
         replaceLastConsonantIfMatch('j', 'x')
         break
+      case 'ⁿ':
+        addConsonant('n')
+        break
+      case 'ō':
+        addVowel('o')
+        addFeature('long')
+        break
+      case 'ē':
+        addVowel('e')
+        addFeature('long')
+        break
+      case 'ᵊ':
+        addVowel('U')
+        break
+      case 'ɺ': // https://en.wikipedia.org/wiki/Voiced_dental_and_alveolar_lateral_flaps
+        addConsonant('l')
+        break
+      case '\u0318': // https://en.wikipedia.org/wiki/Advanced_and_retracted_tongue_root
+        break
+      case '\u0319': // https://en.wikipedia.org/wiki/Advanced_and_retracted_tongue_root
+        break
+      case ' ͉'.trim(): // weak articulation https://en.wikipedia.org/wiki/Extensions_to_the_International_Phonetic_Alphabet
+        break
+      case ' ̻'.trim(): // laminal consonant
+        break
+      case ' ̼'.trim(): // linguolabial consonant
+        break
+      case '˖':
+        break
+      case 'ḁ': // voiceless vowel
+        break
+      case 'ŕ':
+        addConsonant('r')
+        break
+      case 'ʴ':
+        addVowel('u$')
+        break
+      case 'ü':
+        addVowel('O')
+        break
+      case 'ˢ':
+        addConsonant('s')
+        break
+      case ' ̽'.trim():
+        break
+      case '\u0324': // breathy voice
+        break
+      case '\u0308': // central vowel, combining diaresis
+        break
+      case 'ū':
+        addVowel('u')
+        addFeature('long')
+        break
+      case ':':
       case 'ː': // full-long
       case 'ˑ': // half-long
         addFeature('long')
@@ -815,8 +889,10 @@ export default function make(ipa: string, options = { tones: true }) {
   function addFeature(type: Feature) {
     switch (type) {
       case 'implosion':
-        assert(result.last.consonant, 'implosion:last-consonant')
-        result.last.consonant.implosion = true
+        if (result.last.consonant) {
+          assert(result.last.consonant, 'implosion:last-consonant')
+          result.last.consonant.implosion = true
+        }
         break
       case 'voiceless': {
         assert(result.last.consonant, 'voiceless:last-consonant')
@@ -837,59 +913,80 @@ export default function make(ipa: string, options = { tones: true }) {
         break
       }
       case 'aspiration':
-        assert(result.last.consonant, 'aspiration:last-consonant')
-        result.last.consonant.aspiration = true
+        if (result.last.consonant) {
+          assert(result.last.consonant, 'aspiration:last-consonant')
+          result.last.consonant.aspiration = true
+        }
         break
       case 'dental':
-        assert(result.last.consonant, 'dental:last-consonant')
-        result.last.consonant.dental = true
+        if (result.last.consonant) {
+          assert(result.last.consonant, 'dental:last-consonant')
+          result.last.consonant.dental = true
+        }
         break
       case 'pharyngealization':
-        assert(
-          result.last.consonant,
-          'pharyngealization:last-consonant',
-        )
-        result.last.consonant.pharyngealization = true
+        if (result.last.consonant) {
+          assert(
+            result.last.consonant,
+            'pharyngealization:last-consonant',
+          )
+          result.last.consonant.pharyngealization = true
+        }
         break
       case 'palatalization':
-        assert(result.last.consonant, 'palatalization:last-consonant')
-        result.last.consonant.palatalization = true
+        if (result.last.consonant) {
+          assert(result.last.consonant, 'palatalization:last-consonant')
+          result.last.consonant.palatalization = true
+        }
         break
       case 'glottalization':
-        assert(result.last.consonant, 'glottalization:last-consonant')
-        result.last.consonant.glottalization = true
+        if (result.last.consonant) {
+          assert(result.last.consonant, 'glottalization:last-consonant')
+          result.last.consonant.glottalization = true
+        }
         break
       case 'velarization':
-        assert(result.last.consonant, 'velarization:last-consonant')
-        result.last.consonant.velarization = true
+        if (result.last.consonant) {
+          assert(result.last.consonant, 'velarization:last-consonant')
+          result.last.consonant.velarization = true
+        }
         break
       case 'nasalization':
         assert(result.last.vowel, 'nasalization:last-vowel')
         result.last.vowel.nasalization = true
         break
       case 'labialization':
-        assert(result.last.consonant, 'labialization:last-consonant')
-        result.last.consonant.labialization = true
+        if (result.last.consonant) {
+          assert(result.last.consonant, 'labialization:last-consonant')
+          result.last.consonant.labialization = true
+        }
         break
       case 'ejection':
-        assert(result.last.consonant, 'ejection:last-consonant')
-        result.last.consonant.ejection = true
+        if (result.last.consonant) {
+          assert(result.last.consonant, 'ejection:last-consonant')
+          result.last.consonant.ejection = true
+        }
         break
       case 'stop':
-        assert(result.last.consonant, 'stop:last-consonant')
-        result.last.consonant.stop = true
+        if (result.last.consonant) {
+          assert(result.last.consonant, 'stop:last-consonant')
+          result.last.consonant.stop = true
+        }
         break
       case 'tense':
-        assert(result.last.consonant, 'tense:last-consonant')
-        if (result.last.consonant.value.match('x')) {
+        if (result.last.consonant) {
+          assert(result.last.consonant, 'tense:last-consonant')
+          if (result.last.consonant.value.match('x')) {
+          }
           const second =
             result.last.consonants[result.last.consonants.length - 2]
           if (second && second.value.match(/[ptk]/)) {
             second.tense = true
             break
           }
+
+          result.last.consonant.tense = true
         }
-        result.last.consonant.tense = true
         break
       case 'long':
         assert(result.last.out, 'long:last')
