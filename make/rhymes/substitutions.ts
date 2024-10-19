@@ -1,7 +1,6 @@
 import fs from 'fs'
 import { CONSONANT_KEYS } from './features'
 import { weightedJaccard } from '../tools/jaccard'
-import { combineConsonantClusterVectors } from '../tools/vectors'
 
 const startingConsonants = CONSONANT_KEYS.map(key => [{ key }]).concat(
   `bl
@@ -173,9 +172,10 @@ function stringify(substitutions: Substitutions) {
 //   return { key: symbols.map(({ key }) => key).join(''), vector }
 // }
 function consonant(symbols: Array<Cluster>) {
-  const vector = combineConsonantClusterVectors(
-    symbols.map(symbol => symbol.key),
-  )
+  const vector = new Float32Array()
+  // combineConsonantClusterVectors(
+  //   symbols.map(symbol => symbol.key),
+  // )
 
   return { key: symbols.map(({ key }) => key).join(''), vector }
 }

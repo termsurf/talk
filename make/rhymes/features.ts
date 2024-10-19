@@ -1,139 +1,131 @@
 import merge from 'lodash/merge'
 import {
-  CONSONANT_FEATURE_NAMES,
+  CONSONANT_FEATURE_WEIGHTS,
   ConsonantFeatureName,
-  VOWEL_FEATURE_NAMES,
+  VECTOR_DIMENSION,
+  VOWEL_FEATURE_WEIGHTS,
   VowelFeatureName,
 } from '~/make/tools/features'
 
 export const VOWELS: Record<string, Float32Array> = {}
 
-const NASALS = [0, 0.4]
-const STRESSES = [0, 0.3]
+const NASALS = ['oral', 'nasal']
+const STRESSES = ['standard', 'stress']
 
-NASALS.forEach(nasalization => {
-  STRESSES.forEach(stress => {
+NASALS.forEach(nose => {
+  STRESSES.forEach(kick => {
     const keys: Array<string> = []
-    if (nasalization) {
+    if (nose === 'nasal') {
       keys.push(`&`)
     }
-    if (stress) {
+    if (kick === 'stress') {
       keys.push('^')
     }
     const key = keys.join('')
     merge(VOWELS, {
       [`i${key}`]: vowel({
-        closed: 1.0,
-        front: 1.0,
-        unrounded: 1.0,
-        nasalization,
-        stress,
+        room: 'closed',
+        site: 'front',
+        flex: 'unrounded',
+        nose,
+        kick,
       }),
       [`e${key}`]: vowel({
-        mid: 1.0,
-        front: 1.0,
-        unrounded: 1.0,
-        nasalization,
-        stress,
+        room: 'middle',
+        site: 'front',
+        flex: 'unrounded',
+        nose,
+        kick,
       }),
       [`a${key}`]: vowel({
-        open: 1.0,
-        front: 0.5,
-        unrounded: 1.0,
-        nasalization,
-        stress,
+        room: 'open',
+        site: 'front',
+        flex: 'unrounded',
+        nose,
+        kick,
       }),
       [`o${key}`]: vowel({
-        closed: 1.0,
-        mid: 1.0,
-        back: 1.0,
-        rounded: 1.0,
-        nasalization,
-        stress,
+        room: 'middle-closed',
+        site: 'back',
+        flex: 'rounded',
+        nose,
+        kick,
       }),
       [`u${key}`]: vowel({
-        closed: 1.0,
-        back: 1.0,
-        rounded: 1.0,
-        nasalization,
-        stress,
+        room: 'closed',
+        site: 'back',
+        flex: 'rounded',
+        nose,
+        kick,
       }),
       [`I${key}`]: vowel({
-        near: 1.0,
-        closed: 1.0,
-        front: 1.0,
-        unrounded: 1.0,
-        nasalization,
-        stress,
+        room: 'near-closed',
+        site: 'front',
+        flex: 'unrounded',
+        nose,
+        kick,
       }),
       [`E${key}`]: vowel({
-        open: 1.0,
-        mid: 1.0,
-        front: 1.0,
-        unrounded: 1.0,
-        nasalization,
-        stress,
+        room: 'middle-open',
+        site: 'front',
+        flex: 'unrounded',
+        nose,
+        kick,
       }),
       [`A${key}`]: vowel({
-        near: 1.0,
-        open: 1.0,
-        front: 1.0,
-        unrounded: 0.9,
-        nasalization,
-        stress,
+        room: 'near-open',
+        site: 'front',
+        flex: 'unrounded',
+        nose,
+        kick,
       }),
       [`O${key}`]: vowel({
-        near: 1.0,
-        mid: 1.0,
-        back: 1.0,
-        unrounded: 1.0,
-        nasalization,
-        stress,
+        room: 'near-closed',
+        site: 'back',
+        flex: 'unrounded',
+        nose,
+        kick,
       }),
       [`U${key}`]: vowel({
-        mid: 1.0,
-        central: 1.0,
-        nasalization,
-        stress,
+        room: 'middle',
+        site: 'center',
+        nose,
+        kick,
       }),
       [`i$${key}`]: vowel({
-        front: 1.0,
-        closed: 1.0,
-        rounded: 1.0,
-        nasalization,
-        stress,
+        site: 'front',
+        room: 'closed',
+        flex: 'rounded',
+        nose,
+        kick,
       }),
       [`e$${key}`]: vowel({
-        closed: 1.0,
-        mid: 1.0,
-        front: 1.0,
-        rounded: 1.0,
-        nasalization,
-        stress,
+        room: 'middle-closed',
+        site: 'front',
+        flex: 'rounded',
+        nose,
+        kick,
       }),
       [`a$${key}`]: vowel({
-        open: 1.0,
-        mid: 1.0,
-        front: 1.0,
-        rounded: 1.0,
-        nasalization,
-        stress,
+        room: 'middle-open',
+        site: 'front',
+        flex: 'rounded',
+        nose,
+        kick,
       }),
       [`o$${key}`]: vowel({
-        open: 1.0,
-        mid: 1.0,
-        back: 1.0,
-        rounded: 1.0,
-        nasalization,
-        stress,
+        room: 'middle-open',
+        site: 'back',
+        flex: 'rounded',
+        nose,
+        kick,
       }),
       [`u$${key}`]: vowel({
-        open: 1.0,
-        mid: 1.0,
-        central: 1.0,
-        unrounded: 1.0,
-        nasalization,
-        stress,
+        room: 'middle-open',
+        site: 'center',
+        flex: 'unrounded',
+        nose,
+        kick,
       }),
     })
   })
@@ -141,237 +133,460 @@ NASALS.forEach(nasalization => {
 
 export const VOWEL_KEYS = Object.keys(VOWELS)
 
-export const VOWEL_VECTOR_PLACEHOLDER = vowel()
-
 // https://en.wikipedia.org/wiki/IPA_consonant_chart_with_audio
 export const CONSONANTS: Record<string, Float32Array> = {
-  m: consonant({ bilabial: 0.9, nasal: 1.0 }),
-  N: consonant({ retroflex: 1.0, nasal: 0.8 }),
-  n: consonant({ alveolar: 1.0, nasal: 0.9 }),
-  q: consonant({ velar: 1.0, nasal: 0.8 }),
-  'G~': consonant({ velarization: 1.0 }),
-  G: consonant({ velar: 1.0, fricative: 0.8 }),
-  'g?': consonant({ plosive: 1.0, velar: 1.0, implosive: 0.5 }),
-  g: consonant({ plosive: 1.0, velar: 1.0 }),
-  "'": consonant({ plosive: 1.0, glottal: 0.9 }),
-  Q: consonant({ pharyngeal: 1.0, fricative: 0.9 }),
-  'd?': consonant({ dental: 1.0, plosive: 1.0, implosive: 0.5 }),
-  'd!': consonant({ dental: 1.0, plosive: 1.0, ejective: 0.5 }),
-  'd*': consonant({ click: 1.0 }),
-  'd.': consonant({ dental: 1.0, plosive: 1.0, stop: 0.2 }),
-  D: consonant({ dental: 1.0, retroflex: 0.9, plosive: 1.0 }),
-  'dQ~': consonant({
-    dental: 1.0,
-    plosive: 1.0,
-    pharyngealization: 0.8,
+  m: consonant({ site: 'bilabial', mold: 'nasal' }),
+  N: consonant({ site: 'retroflex', mold: 'nasal' }),
+  n: consonant({ site: 'alveolar', mold: 'nasal' }),
+  q: consonant({ site: 'velar', mold: 'nasal' }),
+  G: consonant({ site: 'velar', mold: 'fricative' }),
+  'g?': consonant({
+    mold: 'plosive',
+    site: 'velar',
+    flow: 'implosive',
   }),
-  d: consonant({ dental: 1.0, plosive: 1.0 }),
+  'gG~': consonant({
+    mold: 'plosive',
+    site: 'velar',
+    form: 'velarization',
+  }),
+  'gh~': consonant({
+    mold: 'plosive',
+    site: 'velar',
+    form: 'aspiration',
+  }),
+  'gy~': consonant({
+    mold: 'plosive',
+    site: 'velar',
+    form: 'palatalization',
+  }),
+  'gw~': consonant({
+    mold: 'plosive',
+    site: 'velar',
+    form: 'labialization',
+  }),
+  g: consonant({ mold: 'plosive', site: 'velar' }),
+  "'": consonant({ mold: 'plosive', site: 'glottal' }),
+  Q: consonant({ site: 'pharyngeal', mold: 'fricative' }),
+  'd?': consonant({
+    site: 'dental',
+    mold: 'plosive',
+    flow: 'implosive',
+  }),
+  'd!': consonant({
+    site: 'dental',
+    mold: 'plosive',
+    flow: 'ejective',
+  }),
+  'd*': consonant({ flow: 'click' }),
+  'dG~': consonant({ site: 'dental', form: 'velarization' }),
+  'dh~': consonant({
+    site: 'dental',
+    mold: 'plosive',
+    form: 'aspiration',
+  }),
+  'dy~': consonant({
+    site: 'dental',
+    mold: 'plosive',
+    form: 'palatalization',
+  }),
+  'dw~': consonant({
+    site: 'dental',
+    mold: 'plosive',
+    form: 'labialization',
+  }),
+  'd.': consonant({ site: 'dental', mold: 'plosive', form: 'stop' }),
+  D: consonant({ site: 'retroflex', mold: 'plosive' }),
+  'dQ~': consonant({
+    site: 'dental',
+    mold: 'plosive',
+    form: 'pharyngealization',
+  }),
+  d: consonant({ site: 'dental', mold: 'plosive' }),
   'b?': consonant({
-    bilabial: 1.0,
-    voiced: 1.0,
-    plosive: 1.0,
-    implosive: 0.5,
+    site: 'bilabial',
+    tone: 'voiced',
+    mold: 'plosive',
+    flow: 'implosive',
+  }),
+  'bh~': consonant({
+    site: 'bilabial',
+    mold: 'plosive',
+    tone: 'voiced',
+    form: 'aspiration',
+  }),
+  'by~': consonant({
+    site: 'bilabial',
+    mold: 'plosive',
+    tone: 'voiced',
+    form: 'palatalization',
+  }),
+  'bw~': consonant({
+    site: 'bilabial',
+    mold: 'plosive',
+    tone: 'voiced',
+    form: 'labialization',
   }),
   'b!': consonant({
-    bilabial: 1.0,
-    voiced: 1.0,
-    plosive: 1.0,
-    ejective: 0.5,
+    site: 'bilabial',
+    tone: 'voiced',
+    mold: 'plosive',
+    flow: 'ejective',
   }),
-  b: consonant({ bilabial: 1.0, voiced: 1.0, plosive: 1.0 }),
-  'p!': consonant({ bilabial: 1.0, plosive: 1.0, ejective: 0.5 }),
-  'p*': consonant({ bilabial: 1.0, click: 1.0 }),
-  'p.': consonant({ bilabial: 1.0, plosive: 1.0, stop: 0.2 }),
-  'p@': consonant({ bilabial: 1.0, plosive: 1.0, tense: 0.1 }),
-  p: consonant({ bilabial: 1.0, plosive: 1.0 }),
-  'T!': consonant({ plosive: 1.0, retroflex: 0.9, ejective: 0.5 }),
-  T: consonant({ plosive: 1.0 }),
-  't!': consonant({ alveolar: 1.0, plosive: 1.0, ejective: 0.5 }),
-  't*': consonant({ click: 1.0 }),
+  b: consonant({ site: 'bilabial', tone: 'voiced', mold: 'plosive' }),
+  'p!': consonant({
+    site: 'bilabial',
+    mold: 'plosive',
+    flow: 'ejective',
+  }),
+  'p*': consonant({ site: 'bilabial', flow: 'click' }),
+  'ph~': consonant({
+    site: 'bilabial',
+    mold: 'plosive',
+    form: 'aspiration',
+  }),
+  'py~': consonant({
+    site: 'bilabial',
+    mold: 'plosive',
+    form: 'palatalization',
+  }),
+  'pw~': consonant({
+    site: 'bilabial',
+    mold: 'plosive',
+    form: 'labialization',
+  }),
+  'p.': consonant({ site: 'bilabial', mold: 'plosive', form: 'stop' }),
+  'p@': consonant({ site: 'bilabial', mold: 'plosive', form: 'tense' }),
+  p: consonant({ site: 'bilabial', mold: 'plosive' }),
+  'T!': consonant({
+    mold: 'plosive',
+    site: 'retroflex',
+    flow: 'ejective',
+  }),
+  'Tw~': consonant({
+    mold: 'plosive',
+    site: 'retroflex',
+    form: 'labialization',
+  }),
+  T: consonant({ mold: 'plosive', site: 'retroflex' }),
+  't!': consonant({
+    site: 'alveolar',
+    mold: 'plosive',
+    flow: 'ejective',
+  }),
+  't*': consonant({ flow: 'click' }),
   'tQ~': consonant({
-    alveolar: 1.0,
-    plosive: 1.0,
-    pharyngealization: 0.8,
+    site: 'alveolar',
+    mold: 'plosive',
+    form: 'pharyngealization',
   }),
-  't@': consonant({ alveolar: 1.0, plosive: 1.0, tense: 0.1 }),
-  't.': consonant({ alveolar: 1.0, plosive: 1.0, stop: 0.2 }),
-  t: consonant({ alveolar: 1.0, plosive: 1.0 }),
-  'k!': consonant({ velar: 1.0, plosive: 1.0, ejective: 0.5 }),
-  'k.': consonant({ velar: 1.0, plosive: 1.0, stop: 0.2 }),
-  'k*': consonant({ click: 1.0 }),
-  'K!': consonant({ uvular: 1.0, plosive: 1.0, ejective: 0.5 }),
-  K: consonant({ uvular: 1.0, plosive: 1.0 }),
-  k: consonant({ velar: 1.0, plosive: 1.0 }),
-  'H!': consonant({ uvular: 1.0, fricative: 1.0, ejective: 0.5 }),
-  H: consonant({ uvular: 1.0, fricative: 1.0 }),
-  'h~': consonant({ aspiration: 0.5 }),
-  'h!': consonant({ glottal: 1.0, fricative: 1.0, ejective: 0.5 }),
-  h: consonant({ glottal: 1.0, fricative: 1.0 }),
-  J: consonant({ sibilant: 1.0, fricative: 1.0, retroflex: 0.8 }),
-  'j!': consonant({ postalveolar: 1.0, sibilant: 1.0, fricative: 1.0 }),
-  j: consonant({ postalveolar: 1.0, sibilant: 1.0, fricative: 1.0 }),
-  'S!': consonant({ lateral: 1.0, fricative: 1.0, alveolar: 1.0 }),
+  'th~': consonant({
+    site: 'alveolar',
+    mold: 'plosive',
+    form: 'aspiration',
+  }),
+  'ty~': consonant({
+    site: 'alveolar',
+    mold: 'plosive',
+    form: 'palatalization',
+  }),
+  'tw~': consonant({
+    site: 'alveolar',
+    mold: 'plosive',
+    form: 'labialization',
+  }),
+  't@': consonant({ site: 'alveolar', mold: 'plosive', form: 'tense' }),
+  't.': consonant({ site: 'alveolar', mold: 'plosive', form: 'stop' }),
+  t: consonant({ site: 'alveolar', mold: 'plosive' }),
+  'k!': consonant({ site: 'velar', mold: 'plosive', flow: 'ejective' }),
+  'kh~': consonant({
+    site: 'velar',
+    mold: 'plosive',
+    form: 'aspiration',
+  }),
+  'ky~': consonant({
+    site: 'velar',
+    mold: 'plosive',
+    form: 'palatalization',
+  }),
+  'kw~': consonant({
+    site: 'velar',
+    mold: 'plosive',
+    form: 'labialization',
+  }),
+  'k.': consonant({ site: 'velar', mold: 'plosive', form: 'stop' }),
+  'k*': consonant({ flow: 'click' }),
+  'K!': consonant({
+    site: 'uvular',
+    mold: 'plosive',
+    flow: 'ejective',
+  }),
+  'Kh~': consonant({
+    site: 'uvular',
+    mold: 'plosive',
+    form: 'aspiration',
+  }),
+  'Ky~': consonant({
+    site: 'uvular',
+    mold: 'plosive',
+    form: 'palatalization',
+  }),
+  K: consonant({ site: 'uvular', mold: 'plosive' }),
+  k: consonant({ site: 'velar', mold: 'plosive' }),
+  'H!': consonant({
+    site: 'uvular',
+    mold: 'fricative',
+    flow: 'ejective',
+  }),
+  H: consonant({ site: 'uvular', mold: 'fricative' }),
+  h: consonant({ site: 'glottal', mold: 'fricative' }),
+  J: consonant({
+    mold: 'sibilant-fricative',
+    site: 'retroflex',
+  }),
+  'j!': consonant({
+    site: 'postalveolar',
+    mold: 'sibilant-fricative',
+  }),
+  'jy~': consonant({
+    site: 'postalveolar',
+    mold: 'sibilant-fricative',
+    form: 'palatalization',
+  }),
+  'jw~': consonant({
+    site: 'postalveolar',
+    mold: 'sibilant-fricative',
+    form: 'labialization',
+  }),
+  j: consonant({
+    site: 'postalveolar',
+    mold: 'sibilant-fricative',
+  }),
+  'S!': consonant({
+    mold: 'lateral-fricative',
+    site: 'alveolar',
+    flow: 'ejective',
+  }),
   's!': consonant({
-    sibilant: 1.0,
-    fricative: 1.0,
-    alveolar: 1.0,
-    ejective: 0.5,
+    mold: 'sibilant-fricative',
+    site: 'alveolar',
+    flow: 'ejective',
   }),
-  S: consonant({ lateral: 1.0, fricative: 1.0, alveolar: 1.0 }),
+  S: consonant({ mold: 'lateral-fricative', site: 'alveolar' }),
   'sQ~': consonant({
-    sibilant: 1.0,
-    fricative: 1.0,
-    alveolar: 1.0,
-    pharyngealization: 0.8,
+    mold: 'sibilant-fricative',
+    site: 'alveolar',
+    form: 'pharyngealization',
   }),
   's@': consonant({
-    alveolar: 1.0,
-    sibilant: 1.0,
-    fricative: 1.0,
-    tense: 0.1,
+    site: 'alveolar',
+    mold: 'sibilant-fricative',
+    form: 'tense',
   }),
-  s: consonant({ alveolar: 1.0, sibilant: 1.0, fricative: 1.0 }),
-  F: consonant({ bilabial: 1.0, fricative: 1.0 }),
-  'f!': consonant({ fricative: 1.0, ejective: 0.5 }),
-  f: consonant({ labiodental: 1.0, fricative: 1.0 }),
-  V: consonant({ bilabial: 1.0, voiced: 1.0, fricative: 1.0 }),
-  v: consonant({ labiodental: 1.0, voiced: 1.0, fricative: 1.0 }),
-  'z!': consonant({ sibilant: 1.0, fricative: 1.0, ejective: 0.5 }),
+  'sy~': consonant({
+    site: 'alveolar',
+    mold: 'sibilant-fricative',
+    form: 'palatalization',
+  }),
+  'sw~': consonant({
+    site: 'alveolar',
+    mold: 'sibilant-fricative',
+    form: 'labialization',
+  }),
+  s: consonant({
+    site: 'alveolar',
+    mold: 'sibilant-fricative',
+  }),
+  F: consonant({ site: 'bilabial', mold: 'fricative' }),
+  'f!': consonant({
+    site: 'labiodental',
+    mold: 'fricative',
+    flow: 'ejective',
+  }),
+  'fy~': consonant({
+    site: 'labiodental',
+    mold: 'fricative',
+    form: 'palatalization',
+  }),
+  'fw~': consonant({
+    site: 'labiodental',
+    mold: 'fricative',
+    form: 'labialization',
+  }),
+  f: consonant({ site: 'labiodental', mold: 'fricative' }),
+  V: consonant({ site: 'bilabial', tone: 'voiced', mold: 'fricative' }),
+  'vy~': consonant({
+    site: 'labiodental',
+    tone: 'voiced',
+    mold: 'fricative',
+    form: 'palatalization',
+  }),
+  'vw~': consonant({
+    site: 'labiodental',
+    tone: 'voiced',
+    mold: 'fricative',
+    form: 'labialization',
+  }),
+  v: consonant({
+    site: 'labiodental',
+    tone: 'voiced',
+    mold: 'fricative',
+  }),
+  'z!': consonant({
+    mold: 'sibilant-fricative',
+    flow: 'ejective',
+  }),
   'zQ~': consonant({
-    sibilant: 1.0,
-    fricative: 1.0,
-    pharyngealization: 0.8,
+    mold: 'sibilant-fricative',
+    form: 'pharyngealization',
   }),
-  z: consonant({ sibilant: 1.0, fricative: 1.0 }),
+  z: consonant({ mold: 'sibilant-fricative' }),
   'Z!': consonant({
-    lateral: 1.0,
-    fricative: 1.0,
-    alveolar: 1.0,
-    ejective: 0.5,
+    mold: 'lateral-fricative',
+    site: 'alveolar',
+    flow: 'ejective',
   }),
-  Z: consonant({ lateral: 1.0, alveolar: 1.0, fricative: 1.0 }),
+  Z: consonant({ site: 'alveolar', mold: 'lateral-fricative' }),
   'CQ~': consonant({
-    affricate: 1.0,
-    dental: 1.0,
-    pharyngealization: 0.8,
+    mold: 'affricate',
+    site: 'dental',
+    form: 'pharyngealization',
   }),
-  C: consonant({ affricate: 1.0, dental: 1.0 }),
+  C: consonant({ mold: 'affricate', site: 'dental' }),
   'cQ~': consonant({
-    affricate: 1.0,
-    dental: 1.0,
-    pharyngealization: 0.8,
+    mold: 'affricate',
+    site: 'dental',
+    form: 'pharyngealization',
   }),
-  c: consonant({ affricate: 1.0, dental: 1.0 }),
-  L: consonant({ lateral: 1.0, approximant: 1.0, retroflex: 0.8 }),
-  'l*': consonant({ click: 1.0 }),
+  c: consonant({ mold: 'affricate', site: 'dental' }),
+  'Lh~': consonant({
+    mold: 'lateral-approximant',
+    site: 'retroflex',
+    form: 'aspiration',
+  }),
+  'Ly~': consonant({
+    mold: 'lateral-approximant',
+    site: 'retroflex',
+    form: 'palatalization',
+  }),
+  L: consonant({ mold: 'lateral-approximant', site: 'retroflex' }),
+  'l*': consonant({ flow: 'click' }),
   'lQ~': consonant({
-    lateral: 1.0,
-    approximant: 1.0,
-    pharyngealization: 0.8,
+    mold: 'lateral-approximant',
+    form: 'pharyngealization',
   }),
-  l: consonant({ lateral: 1.0, approximant: 1.0 }),
-  R: consonant({ tap: 1.0, retroflex: 1.0 }),
-  'rQ~': consonant({ tap: 1.0, alveolar: 1.0, pharyngealization: 0.8 }),
-  r: consonant({ tap: 1.0, alveolar: 1.0 }),
+  'lh~': consonant({
+    mold: 'lateral-approximant',
+    form: 'aspiriation',
+  }),
+  'ly~': consonant({
+    mold: 'lateral-approximant',
+    form: 'palatalization',
+  }),
+  l: consonant({ mold: 'lateral-approximant' }),
+  R: consonant({ mold: 'tap', site: 'retroflex' }),
+  'rQ~': consonant({
+    mold: 'tap',
+    site: 'alveolar',
+    form: 'pharyngealization',
+  }),
+  r: consonant({ mold: 'tap', site: 'alveolar' }),
+  'xy~': consonant({
+    site: 'postalveolar',
+    mold: 'sibilant-fricative',
+    form: 'palatalization',
+  }),
+  'xw~': consonant({
+    site: 'postalveolar',
+    mold: 'sibilant-fricative',
+    form: 'labialization',
+  }),
   'x!': consonant({
-    postalveolar: 1.0,
-    sibilant: 1.0,
-    fricative: 1.0,
-    ejective: 0.5,
+    site: 'postalveolar',
+    mold: 'sibilant-fricative',
+    flow: 'ejective',
+  }),
+  'Xy~': consonant({
+    mold: 'sibilant-fricative',
+    site: 'retroflex',
+    form: 'palatalization',
+  }),
+  'Xw~': consonant({
+    mold: 'sibilant-fricative',
+    site: 'retroflex',
+    form: 'labialization',
   }),
   'X!': consonant({
-    postalveolar: 1.0,
-    sibilant: 1.0,
-    fricative: 1.0,
-    retroflex: 0.8,
-    ejective: 0.5,
+    mold: 'sibilant-fricative',
+    site: 'retroflex',
+    flow: 'ejective',
   }),
   X: consonant({
-    postalveolar: 1.0,
-    sibilant: 1.0,
-    fricative: 1.0,
-    retroflex: 0.8,
+    mold: 'sibilant-fricative',
+    site: 'retroflex',
   }),
   'x@': consonant({
-    postalveolar: 1.0,
-    sibilant: 1.0,
-    fricative: 1.0,
-    tense: 0.1,
+    site: 'postalveolar',
+    mold: 'sibilant-fricative',
+    form: 'tense',
   }),
   x: consonant({
-    postalveolar: 1.0,
-    sibilant: 1.0,
-    fricative: 1.0,
+    site: 'postalveolar',
+    mold: 'sibilant-fricative',
   }),
   W: consonant({
-    fricative: 1.0,
-    approximant: 1.0,
-    coarticulated: 1.0,
+    mold: 'approximant',
   }),
   'w!': consonant({
-    fricative: 1.0,
-    approximant: 1.0,
-    coarticulated: 1.0,
-    ejective: 0.5,
-  }),
-  'w~': consonant({
-    fricative: 1.0,
-    approximant: 1.0,
-    coarticulated: 1.0,
-    labialization: 0.9,
+    mold: 'approximant',
+    flow: 'ejective',
   }),
   w: consonant({
-    fricative: 1.0,
-    approximant: 1.0,
-    coarticulated: 1.0,
-  }),
-  'y~': consonant({
-    palatalization: 1.0,
+    mold: 'approximant',
   }),
   y: consonant({
-    palatal: 1.0,
-    approximant: 1.0,
+    site: 'palatal',
+    mold: 'approximant',
   }),
 }
 
 export const CONSONANT_KEYS = Object.keys(CONSONANTS)
 
-export const CONSONANT_VECTOR_PLACEHOLDER = consonant()
+export const VECTOR_PLACEHOLDER = consonant()
 
 function consonant(
-  mappings: Partial<Record<ConsonantFeatureName, number>> = {},
+  mappings: Partial<Record<ConsonantFeatureName, string>> = {},
 ) {
-  const consonant = new Float32Array(CONSONANT_FEATURE_NAMES.length)
-  CONSONANT_FEATURE_NAMES.forEach((name, i) => {
-    const number =
-      name in mappings
-        ? typeof mappings[name] === 'number'
-          ? mappings[name]
-          : mappings[name] === true
-          ? 1
-          : 0
-        : 0
-    consonant[i] = number
-  })
+  const consonant = new Float32Array(VECTOR_DIMENSION)
+
+  let i = 0
+
+  for (const link in CONSONANT_FEATURE_WEIGHTS) {
+    const weights =
+      CONSONANT_FEATURE_WEIGHTS[link as ConsonantFeatureName]
+    const mapping = mappings[link as ConsonantFeatureName]
+    const weight = mapping ? weights[mapping]! : 0
+    consonant[i++] = weight
+  }
+
   return consonant
 }
 
 function vowel(
-  mappings: Partial<Record<VowelFeatureName, number>> = {},
+  mappings: Partial<Record<VowelFeatureName, string>> = {},
 ) {
-  const consonant = new Float32Array(VOWEL_FEATURE_NAMES.length)
-  VOWEL_FEATURE_NAMES.forEach((name, i) => {
-    const number =
-      name in mappings
-        ? typeof mappings[name] === 'number'
-          ? mappings[name]
-          : mappings[name] === true
-          ? 1
-          : 0
-        : 0
-    consonant[i] = number
-  })
-  return consonant
+  const vowel = new Float32Array(VECTOR_DIMENSION)
+
+  let i = 0
+
+  for (const link in VOWEL_FEATURE_WEIGHTS) {
+    const weights = VOWEL_FEATURE_WEIGHTS[link as VowelFeatureName]
+    const mapping = mappings[link as VowelFeatureName]
+    const weight = mapping ? weights[mapping]! : 0
+    vowel[i++] = weight
+  }
+
+  return vowel
 }
 
 // function logSimilarity(key, a, b) {
