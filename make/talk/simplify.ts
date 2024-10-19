@@ -1,4 +1,4 @@
-export enum Ease {
+export enum Simplify {
   VowelNone = 2,
   VowelOne = 3,
   VowelBasic = 4,
@@ -17,7 +17,7 @@ export enum Ease {
   AspirationYes = 3,
 }
 
-export type EaseType = {
+export type SimplifyType = {
   vowel: 'none' | 'one' | 'basic' | 'all'
   consonant: 'all' | 'simplified'
   tone: 'yes' | 'no'
@@ -31,11 +31,19 @@ export type ViewType = {
   load: Record<string, string>
 }
 
-const VOWEL: Array<EaseType['vowel']> = ['none', 'one', 'basic', 'all']
-const CONSONANT: Array<EaseType['consonant']> = ['all', 'simplified']
-const TONE: Array<EaseType['tone']> = ['yes', 'no']
-const DURATION: Array<EaseType['duration']> = ['yes', 'no']
-const ASPIRATION: Array<EaseType['aspiration']> = ['yes', 'no']
+const VOWEL: Array<SimplifyType['vowel']> = [
+  'none',
+  'one',
+  'basic',
+  'all',
+]
+const CONSONANT: Array<SimplifyType['consonant']> = [
+  'all',
+  'simplified',
+]
+const TONE: Array<SimplifyType['tone']> = ['yes', 'no']
+const DURATION: Array<SimplifyType['duration']> = ['yes', 'no']
+const ASPIRATION: Array<SimplifyType['aspiration']> = ['yes', 'no']
 
 export function read(text: string) {
   const holdBase: Record<string, Array<ViewType>> = {}
@@ -78,7 +86,7 @@ export function read(text: string) {
 
 export function readCase(
   text: string,
-  { vowel, consonant, tone, aspiration, duration }: EaseType,
+  { vowel, consonant, tone, aspiration, duration }: SimplifyType,
 ) {
   const view: ViewType = { text, mass: 1, load: {} }
 
@@ -151,42 +159,42 @@ export function readCase(
 function moveToNoDurationText(view: ViewType) {
   const text = view.text.replace(/_/g, '')
   if (text !== view.text) {
-    view.mass *= Ease.DurationNo
+    view.mass *= Simplify.DurationNo
     view.load.duration = 'no'
     view.text = text
   }
 }
 
 function moveToYesDurationText(view: ViewType) {
-  view.mass *= Ease.DurationYes
+  view.mass *= Simplify.DurationYes
   view.load.duration = 'yes'
 }
 
 function moveToNoAspirationText(view: ViewType) {
   const text = view.text.replace(/h~/g, '')
   if (text !== view.text) {
-    view.mass *= Ease.AspirationNo
+    view.mass *= Simplify.AspirationNo
     view.load.aspiration = 'no'
     view.text = text
   }
 }
 
 function moveToYesAspirationText(view: ViewType) {
-  view.mass *= Ease.AspirationYes
+  view.mass *= Simplify.AspirationYes
   view.load.aspiration = 'yes'
 }
 
 function moveToNoToneText(view: ViewType) {
   const text = view.text.replace(/[\-\+]+/g, '')
   if (text !== view.text) {
-    view.mass *= Ease.ToneNo
+    view.mass *= Simplify.ToneNo
     view.load.tone = 'no'
     view.text = text
   }
 }
 
 function moveToYesToneText(view: ViewType) {
-  view.mass *= Ease.ToneYes
+  view.mass *= Simplify.ToneYes
   view.load.tone = 'yes'
 }
 
@@ -197,7 +205,7 @@ function moveToNoVowelText(view: ViewType) {
     .replace(/ð/g, 'u$')
 
   if (text !== view.text) {
-    view.mass *= Ease.VowelNone
+    view.mass *= Simplify.VowelNone
     view.load.vowel = 'none'
     view.text = text
   }
@@ -211,7 +219,7 @@ function moveToOneVowelText(view: ViewType) {
     .replace(/a+/g, 'a')
 
   if (text !== view.text) {
-    view.mass *= Ease.VowelOne
+    view.mass *= Simplify.VowelOne
     view.load.vowel = 'one'
     view.text = text
   }
@@ -237,14 +245,14 @@ function moveToBasicVowelText(view: ViewType) {
     .replace(/ð/g, 'u$')
 
   if (text !== view.text) {
-    view.mass *= Ease.VowelBasic
+    view.mass *= Simplify.VowelBasic
     view.load.vowel = 'basic'
     view.text = text
   }
 }
 
 function moveToAllVowelText(view: ViewType) {
-  view.mass *= Ease.VowelAll
+  view.mass *= Simplify.VowelAll
   view.load.vowel = 'all'
 }
 
@@ -265,13 +273,13 @@ function moveToSimplifiedConsonantText(view: ViewType) {
     .replace(/g/gi, 'k')
 
   if (text !== view.text) {
-    view.mass *= Ease.ConsonantSimplified
+    view.mass *= Simplify.ConsonantSimplified
     view.load.consonant = 'simplified'
     view.text = text
   }
 }
 
 function moveToAllConsonantText(view: ViewType) {
-  view.mass *= Ease.ConsonantAll
+  view.mass *= Simplify.ConsonantAll
   view.load.consonant = 'all'
 }
