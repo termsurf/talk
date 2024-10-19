@@ -1,29 +1,31 @@
+import { VECTOR_DIMENSION } from '../tools/features'
+
 const stringSimWeight = 0.2
 const vectorSimWeight = 0.4
 const sequenceSimWeight = 0.4
 
 // Define types
-type Feature = number
+export type Feature = number
 
-type FeatureVector = Array<Feature>
+export type FeatureVector = Array<Feature>
 
-type PhoneticUnit = {
+export type PhoneticUnit = {
   id: string
   vector: FeatureVector
 }
 
-type ConsonantCluster = {
+export type ConsonantCluster = {
   id: string
   phonemes: Array<string>
   vector: FeatureVector
 }
 
-type ClusterGraph = {
+export type ClusterGraph = {
   clusters: Map<string, ConsonantCluster>
   edges: Array<ClusterEdge>
 }
 
-type ClusterEdge = {
+export type ClusterEdge = {
   from: string
   to: string
   weight: number
@@ -35,15 +37,14 @@ type ClusterEdge = {
 
 function calculateClusterVector(
   phonemes: Array<string>,
-  phoneticUnits: Record<string, FeatureVector>,
+  units: Map<string, FeatureVector>,
 ): FeatureVector {
-  const vectors = phonemes.map(p => phoneticUnits[p]!)
+  const vectors = phonemes.map(p => units.get(p)!)
   return combineVectors(vectors)
 }
 
 function combineVectors(vectors: Array<FeatureVector>): FeatureVector {
-  const maxLength = Math.max(...vectors.map(v => v.length))
-  const result = new Array(maxLength).fill(0)
+  const result = new Array(VECTOR_DIMENSION).fill(0)
   for (const vec of vectors) {
     for (let i = 0; i < vec.length; i++) {
       result[i] += vec[i]
@@ -194,23 +195,27 @@ function cosineSimilarity(a: FeatureVector, b: FeatureVector): number {
   return dotProduct / (Math.sqrt(normA) * Math.sqrt(normB))
 }
 
-export default function buildConsonantClusterGraph(
-  specifiedClusters: Array<Array<string>>,
-  phoneticUnits: Record<string, FeatureVector>,
-  similarityThreshold: number,
-): ClusterGraph {
+export default function buildConsonantClusterGraph({
+  clusters,
+  units,
+  similarityThreshold,
+}: {
+  clusters: Array<Array<string>>
+  units: Map<string, FeatureVector>
+  similarityThreshold: number
+}): ClusterGraph {
   const graph: ClusterGraph = {
     clusters: new Map(),
     edges: [],
   }
 
   // Create ConsonantCluster objects for each specified cluster
-  specifiedClusters.forEach(phonemes => {
+  clusters.forEach(phonemes => {
     const id = phonemes.join('')
     const cluster: ConsonantCluster = {
       id,
       phonemes,
-      vector: calculateClusterVector(phonemes, phoneticUnits),
+      vector: calculateClusterVector(phonemes, units),
     }
     graph.clusters.set(id, cluster)
   })
@@ -258,7 +263,7 @@ export default function buildConsonantClusterGraph(
 // }
 
 // // Usage
-// const specifiedClusters = [
+// const clusters = [
 //   ['s', 't'],
 //   ['s', 'p'],
 //   ['t', 'r'],
@@ -269,7 +274,7 @@ export default function buildConsonantClusterGraph(
 // ]
 
 // const clusterGraph = buildClusterGraph(
-//   specifiedClusters,
+//   clusters,
 //   PHONETIC_UNITS,
 //   0.7,
 // )

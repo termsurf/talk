@@ -1,4 +1,8 @@
-import { VECTOR_DIMENSION } from '../tools/features'
+import { VECTOR_DIMENSION } from '~/make/tools/features'
+import buildConsonantClusterGraph, {
+  ClusterGraph,
+  ConsonantCluster,
+} from '~/make/rhymes/cluster-graph'
 
 type PhonemeSequence = string
 
@@ -21,16 +25,31 @@ export default class RhymeDictionary {
     Array<[PhonemeSequence, number]>
   >
 
-  private phoneticUnits: Map<string, PhoneticFeatureVector>
+  private units: Map<string, PhoneticFeatureVector>
+
+  private clusterGraph: ClusterGraph
 
   private indexBuilt: boolean = false
 
-  constructor(phoneticUnits: Map<string, PhoneticFeatureVector>) {
-    this.phoneticUnits = phoneticUnits
+  constructor({
+    units,
+    clusters,
+    similarityThreshold = 0.2,
+  }: {
+    units: Map<string, PhoneticFeatureVector>
+    clusters: Array<Array<string>>
+    similarityThreshold: number
+  }) {
+    this.units = units
     this.wordToPhonemes = new Map()
     this.phonemesToWords = new Map()
     this.lengthBasedSimilarityIndex = new Map()
     this.globalSimilarityIndex = new Map()
+    this.clusterGraph = buildConsonantClusterGraph({
+      clusters,
+      units,
+      similarityThreshold,
+    })
   }
 
   insert(word: Word, phonemes: PhonemeSequence): void {
@@ -42,21 +61,11 @@ export default class RhymeDictionary {
     this.indexBuilt = false // Mark index as outdated
   }
 
-  bulkInsert(words: Array<[Word, PhonemeSequence]>): void {
-    for (const [word, phonemes] of words) {
-      this.insert(word, phonemes)
-    }
-    this.indexBuilt = false // Mark index as outdated
-  }
-
-  buildIndex(): void {
+  index(): void {
     console.time('Building Index')
     this.lengthBasedSimilarityIndex.clear()
     this.globalSimilarityIndex.clear()
     const phonemeSequences = Array.from(this.phonemesToWords.keys())
-    const vectors = phonemeSequences.map(
-      this.phonemeSequenceToVector.bind(this),
-    )
 
     // Group phoneme sequences by length
     const lengthGroups = new Map<number, Array<PhonemeSequence>>()
@@ -79,9 +88,9 @@ export default class RhymeDictionary {
         const similarities: Array<[PhonemeSequence, number]> = []
         for (let j = 0; j < sequences.length; j++) {
           if (i !== j) {
-            const similarity = this.calculateSimilarity(
-              vectors[phonemeSequences.indexOf(sequences[i]!)]!,
-              vectors[phonemeSequences.indexOf(sequences[j]!)]!,
+            const similarity = this.calculateSequenceSimilarity(
+              sequences[i]!,
+              sequences[j]!,
             )
             similarities.push([sequences[j]!, similarity])
           }
@@ -98,9 +107,9 @@ export default class RhymeDictionary {
       const similarities: Array<[PhonemeSequence, number]> = []
       for (let j = 0; j < phonemeSequences.length; j++) {
         if (i !== j) {
-          const similarity = this.calculateSimilarity(
-            vectors[i]!,
-            vectors[j]!,
+          const similarity = this.calculateSequenceSimilarity(
+            phonemeSequences[i]!,
+            phonemeSequences[j]!,
           )
           similarities.push([phonemeSequences[j]!, similarity])
         }
@@ -121,7 +130,7 @@ export default class RhymeDictionary {
   ): { rhymes: Array<Word>; totalCount: number } {
     if (!this.indexBuilt) {
       throw new Error(
-        'Index not built. Call buildIndex() before searching for rhymes.',
+        'Index not built. Call index() before searching for rhymes.',
       )
     }
 
@@ -168,22 +177,78 @@ export default class RhymeDictionary {
     return { rhymes, totalCount }
   }
 
-  private phonemeSequenceToVector(
-    sequence: PhonemeSequence,
-  ): PhoneticFeatureVector {
-    const phonemes = sequence.split(' ')
-    const vectors = phonemes.map(
-      p =>
-        this.phoneticUnits.get(p) ||
-        Array<number>(VECTOR_DIMENSION).fill(0),
-    )
+  private calculateSequenceSimilarity(
+    seq1: PhonemeSequence,
+    seq2: PhonemeSequence,
+  ): number {
+    const phonemes1 = seq1.split(' ')
+    const phonemes2 = seq2.split(' ')
+    const matrix = this.createAlignmentMatrix(phonemes1, phonemes2)
+    const alignmentScore = matrix[phonemes1.length]![phonemes2.length]!
 
-    return vectors
-      .reduce(
-        (acc, vec) => acc.map((v, i) => v + vec[i]!),
-        new Array<number>(VECTOR_DIMENSION).fill(0),
+    // Normalize the score by the length of the longer sequence
+    const maxLength = Math.max(phonemes1.length, phonemes2.length)
+    return alignmentScore / maxLength
+  }
+
+  private createAlignmentMatrix(
+    seq1: Array<string>,
+    seq2: Array<string>,
+  ): Array<Array<number>> {
+    const matrix: Array<Array<number>> = Array(seq1.length + 1)
+      .fill(null)
+      .map(() => Array<number>(seq2.length + 1).fill(0))
+
+    // Initialize first row and column
+    for (let i = 1; i <= seq1.length; i++) {
+      matrix[i]![0] = matrix[i - 1]![0]! - 1
+    }
+    for (let j = 1; j <= seq2.length; j++) {
+      matrix[0]![j] = matrix[0]![j - 1]! - 1
+    }
+
+    // Fill the matrix
+    for (let i = 1; i <= seq1.length; i++) {
+      for (let j = 1; j <= seq2.length; j++) {
+        const match = this.calculatePhonemeOrClusterSimilarity(
+          seq1[i - 1]!,
+          seq2[j - 1]!,
+        )
+        matrix[i]![j] = Math.max(
+          matrix[i - 1]![j - 1]! + match,
+          matrix[i - 1]![j]! - 1,
+          matrix[i]![j - 1]! - 1,
+        )
+      }
+    }
+
+    return matrix
+  }
+
+  private calculatePhonemeOrClusterSimilarity(
+    p1: string,
+    p2: string,
+  ): number {
+    // Check if p1 and p2 are clusters
+    const cluster1 = this.clusterGraph.clusters.get(p1)
+    const cluster2 = this.clusterGraph.clusters.get(p2)
+
+    if (cluster1 && cluster2) {
+      // If both are clusters, use cluster similarity
+      return this.calculateClusterSimilarity(
+        cluster1.vector,
+        cluster2.vector,
       )
-      .map(v => v / phonemes.length)
+    } else {
+      // If not clusters, calculate similarity based on phonetic feature vectors
+      const vec1 =
+        this.units.get(p1) ||
+        new Array<number>(VECTOR_DIMENSION).fill(0)
+      const vec2 =
+        this.units.get(p2) ||
+        new Array<number>(VECTOR_DIMENSION).fill(0)
+      return this.calculateSimilarity(vec1, vec2)
+    }
   }
 
   private calculateSimilarity(
@@ -201,5 +266,51 @@ export default class RhymeDictionary {
     }
 
     return dotProduct / (Math.sqrt(normA) * Math.sqrt(normB))
+  }
+
+  private calculateClusterSimilarity(
+    a: PhoneticFeatureVector,
+    b: PhoneticFeatureVector,
+  ): number {
+    // Find the most similar clusters for vectors a and b
+    const clusterA = this.findMostSimilarCluster(a)
+    const clusterB = this.findMostSimilarCluster(b)
+
+    if (clusterA && clusterB) {
+      // Check if there's an edge between these clusters
+      const edge = this.clusterGraph.edges.find(
+        e =>
+          (e.from === clusterA.id && e.to === clusterB.id) ||
+          (e.from === clusterB.id && e.to === clusterA.id),
+      )
+
+      if (edge) {
+        return edge.weight
+      }
+    }
+
+    // If no cluster similarity found, calculate cosine similarity
+    return this.calculateSimilarity(a, b)
+  }
+
+  private findMostSimilarCluster(
+    vector: PhoneticFeatureVector,
+  ): ConsonantCluster | undefined {
+    let mostSimilarCluster: ConsonantCluster | undefined
+    let highestSimilarity = -1
+
+    for (const cluster of this.clusterGraph.clusters.values()) {
+      const similarity = this.calculateSimilarity(
+        vector,
+        cluster.vector,
+      )
+
+      if (similarity > highestSimilarity) {
+        highestSimilarity = similarity
+        mostSimilarCluster = cluster
+      }
+    }
+
+    return mostSimilarCluster
   }
 }
